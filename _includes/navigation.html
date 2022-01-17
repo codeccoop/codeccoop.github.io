@@ -1,8 +1,21 @@
-<nav>
-  {% for item in site.data.navigation %}
-  <a
-    class="link {% if page.url == item.link %}current{% endif %}"
-    href="{{ item.link }}"
-    >{{ item.name }}</a>
-  {% endfor %}
+<nav class="navbar is-transparent">
+  <div class="navbar-brand">
+    <a class="navbar-item {% if page.url == "/" %}is-active{% endif %}" href="/">
+      {{ "Da|desComunals" | upcase  }}
+    </a>
+    <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      {% assign links = site.data.navigation | where_exp: "item", "item.name != 'da|descomunals'" %}
+      {% for item in links %}
+      	<a class="navbar-item {% if page.url == item.link %}is-active{% endif %}" href="{{ item.link }}">{{ item.name }}</a>
+      {% endfor %}
+    </div>
+  </div>
 </nav>

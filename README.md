@@ -1,3 +1,3 @@
-# Jekyll Template
+# dadescomunals.coop
 
-Jekyll project template for static websites
+Pàgina pública de la cooperative Da|desComunals
