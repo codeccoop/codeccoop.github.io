@@ -1,0 +1,56 @@
+@use "sass:list";
+@use "sass:map";
+
+$breakpoints:  (
+    sm: 0,
+    md: 640px,
+    xmd: 1025px,
+    lg: 1200px,
+    xlg: 1440px,
+    xxlg: 1920px
+);
+
+@mixin m-breakpoint ($values) {
+    $length: list.length($values);
+
+    @each $value in $values {
+        @if map.has-key($breakpoints, $value) {
+            @warn "\n\nOne or more m-breakpoint() mixins failed to compile. You must enter 1  or 2 of these valid keys: \n'" + map.keys($breakpoints) + "'.\n\n'landscape' and 'portrait' are also valid keys if they are preceded by 1 or 2 of the previously mentioned keys.\n";
+        }
+    }
+
+    @if $length == 1 {
+        @if map.has-key($breakpoints, $values[0]) {
+            @media screen and (min-width: $breakpoints[$value[0]]) {
+                @content;
+            }
+        } @else {
+            @media screen and (orientation: $values[0]) {
+                @content;
+            }
+        }
+    }
+
+    @if $length == 2 {
+        @if map.has-key($breakpoints, $values[1]) {
+            @media screen and (min-width: $breakpoints[$values[0]]) and (max-width: $breakpoints[$values[1]]) {
+                @content;
+            }
+        } @else {
+            @media screen and (min-width: $breakpoints[$values[0]]) and (orientation: $values[1]) {
+                @content;
+            }
+        }
+    }
+
+    @if $length == 3 {
+        @media screen and (min-width: $breakpoints[$values[0]]) and (max-width: $breakpoints[$values[1]]) and (orientation: $valuesþ[2]) {
+            @content;
+        }
+    }
+
+    @if $length > 3 {
+        @warn "Too many arguments for m-breakpoint mixin. It expects a maximum amount of three arguments.";
+    }
+
+}

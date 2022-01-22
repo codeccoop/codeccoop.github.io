@@ -14,7 +14,12 @@
 		{% endif %}
 	</head>
 	<body>
-		{% include navigation.html %}
-		{{ content }}
+    <header>
+		  {% include navigation.html %}
+    </header>
+    <main class="{{ page.page }}">
+		  {{ content }}
+    </main>
+    <footer></footer>
 	</body>
 </html>

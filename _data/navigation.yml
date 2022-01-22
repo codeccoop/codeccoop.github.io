@@ -1,8 +1,8 @@
 - name: da|descomunals
-  link: /
+  link: '/#landing'
 - name: Què fem?
-  link: /about.html
+  link: '/#about'
 - name: Nosaltres
-  link: /staff.html
+  link: '/#team'
 - name: Blog
   link: /blog.html

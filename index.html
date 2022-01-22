@@ -1,7 +1,17 @@
 ---
 layout: default
-title: DA|DESCOMUNALS
+title: da|des_comunals
+page: home
 ---
-
-<h1 class="title is-1">{{ "Da|desComunals" | upcase }}</h1>
-<h4 class="subtitle is-4">{{ "dadescomunals.coop" | downcase }}</h4>
+<section id="landing" class="home__section">
+  <h1 class="page-title title is-1">{{ "da|des_comunals" | downcase }}</h1>
+  <h4 class="subtitle is-4">{{ "dadescomunals.coop" | downcase }}</h4>
+  <div class="home__landing-animation"></div>
+</section>
+<section id="about" class="home__section">
+  <h1 class="title is-2">Què fem?</h1>
+</section>
+<section id="team" class="home__section">
+  <h1 class="title is-2" >Nosaltres</h1>
+</section>
+<script src="{{ base.url | prepend: site.url }}/assets/js/pages/home.js"></script>

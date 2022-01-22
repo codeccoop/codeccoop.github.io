@@ -1,0 +1,10 @@
+@mixin m-icon ($icon) {
+    @include m-background-image("/assets/images/icons/#{$icon}.svg");
+}
+
+@mixin m-background-image ($url, $size: contain, $position: center, $repeat: no-repeat) {
+    background-image: url(#{$url});
+    background-repeat: $repeat;
+    background-position: $position;
+    background-size: $size;
+}
