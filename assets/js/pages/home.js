@@ -35,10 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function getCurrentSectionOverflow(direction) {
     var sectionEl = document.getElementById(currentSection);
     var sectionBox = sectionEl.getBoundingClientRect();
-    debugger;
     if (direction > 0) {
-      // console.log(sectionBox.bottom);
-      // return sectionBox.bottom - window.innerHeight;
       return Math.floor(
         sectionBox.height + sectionBox.top - window.innerHeight
       );
@@ -95,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
       if (scrollDelay === true) return;
       var direction = ev.deltaY < 0 ? -1 : 1;
       var overflow = getCurrentSectionOverflow(direction);
-      // console.log(overflow, scrollDelay);
       if (overflow != 0) {
         var scrollOffset =
           direction === 1
