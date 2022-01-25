@@ -1,17 +1,118 @@
 ---
 layout: default
-title: da|des_comunals
+title: còdec
 page: home
 ---
+
 <section id="landing" class="home__section">
-  <h1 class="page-title title is-1">{{ "da|des_comunals" | downcase }}</h1>
-  <h4 class="subtitle is-4">{{ "dadescomunals.coop" | downcase }}</h4>
-  <div class="home__landing-animation"></div>
+  <h1 class="home__title title is-1">{{ "còdec" | downcase }}</h1>
+  <h4 class="subtitle is-4">{{ "codec.coop" | downcase }}</h4>
+  <figure class="home__cite">
+    <blockquote>
+      <em
+        >&#8220;Un còdec (de l'anglès coder/decoder, és a dir
+        codificador/descodificador) és un esquema que regula una sèrie de
+        transformacions en un senyal o informació. Els còdecs tant poden
+        transformar un senyal a una forma codificada (usada per la transmissió o
+        encriptació) com fer-ho al revés, donar el senyal adequat per a la seva
+        visualització o edició (no necessàriament la forma original) a partir de
+        la forma codificada.&#8221;</em
+      >
+    </blockquote>
+    <figcaption>
+      Col·laboradors de la Viquipèdia. Còdec [en línia]. Viquipèdia,
+      l'Enciclopèdia Lliure, 2022 [data de consulta: 19 de gener del 2022].
+      Disponible en
+      //ca.wikipedia.org/w/index.php?title=C%C3%B2dec&oldid=29280351.
+    </figcaption>
+  </figure>
 </section>
-<section id="about" class="home__section">
-  <h1 class="title is-2">Què fem?</h1>
+<section id="work" class="home__section">
+  <h1 class="home__title title is-2">Què fem?</h1>
+  <div class="home__section-content">
+    <div class="home__services">
+      <div class="home__section-row columns">
+        <div class="home__section-column column is-8">
+          <h6 class="title is-6">Codifiquem la web</h6>
+          <p>
+            La
+            <a
+              target="__blank"
+              href="https://en.wikipedia.org/wiki/World_Wide_Web"
+              ><abbr title="World Wide Web">Web</abbr></a
+            >, neix a principis dels 90 i abans de la seva majoria d'edat ja
+            s'havia convertit en l'estàndar amb que el món es comunicava, i es
+            segueix comunicant. Disenyada com un media descentralitzat i
+            horitzontal, va ser somiada com espai de llibertat i emancipació; un
+            àgora on construir noves ciutadanies. Avui, Internet i la Web, són
+            l'espai on s'hi despleguen les més importants lògiques de
+            concentració de poder i acumulació per desposessió a favor de grans
+            tecnològiques. Avui la web no és un àgora sinó un centre comercial.
+            Recuperem la web com a espai de interacció no mediat per capital,
+            tornem-nos a convertir en productors, tornem a crear comunitats fora
+            de les fronteres de les seves xarxes sesgades. <a href="/products.html" ><b>Fes la teva web amb nosaltres!</b></a>
+          </p>
+        </div>
+        <div class="home__section-column column is-4">
+          <a href="/products.html">
+            <img src="/assets/images/developer.png" />
+          </a>
+        </div>
+      </div>
+      <div class="home__section-row columns">
+        <div class="home__section-column column is-4">
+          <a href="/workshops.html">
+            <img src="/assets/images/learning.png" />
+          </a>
+        </div>
+        <div class="home__section-column column is-8">
+          <h6 class="title is-6">Decodifiquem la informàtica</h6>
+          <p style="display: none;">
+            El món és digital, i fins al dia que arribi el col·lapse, o el
+            judici final, sembla que així seguirà. L'evolució de l'informàtica
+            ha transformat i trasformarà encara més el nostre entorn, des de com
+            produïm a com ens estimem, totes les esferes de la nostra vida han
+            sumat una nova capa digital que les transforma i transforma la forma
+            en que les habitem. La alfabtetizació digital es converteix en una
+            necessitat urgent si no volem que lo digital es converteixi en una
+            nou vector de desigualtat i exclusió social.
+          </p>
+          <p>
+            Reapropiemnos de la tecnología informàtica. Els grans capitals
+            aposten per la <em>&#8220;artifical intelligence&#8221;</em>, els
+            <em>&#8220;data centers&#8221;</em>, les
+            <em>&#8220;super computers&#8221;</em> i els anglicismes. Sabem
+            però, que les formes que adopta la tecnologia no són políticament
+            neutres i que la tecnologia que escala en complexitat i potència
+            sempre va aparellada de centralització, concentració i jerarquía.
+            Sabem també que només si és simple és accessible, que allò que té un
+            disseny obert es apropiable, i que amb lògiques de cooperació
+            distribuida i horitzontalitat es poden sumar forces sense delegar en
+            centralitats subordinants. <a href="/workshops.html" ><b>T'expiquem la informàtica de nou perquè la tornis a fer teva!</b></a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <section id="team" class="home__section">
-  <h1 class="title is-2" >Nosaltres</h1>
+  <h1 class="home__title title is-2">Nosaltres</h1>
+  <div class="home__section-content">
+    <p></p>
+    <div class="home__us columns">
+      <div class="home__section-column column">
+        <figure class="home__figure">
+          <img src="/assets/images/lucas.png" />
+          <figcaption>Lucas</figcaption>
+        </figure>
+      </div>
+      <div class="home__section-column column">
+        <figure class="home__figure">
+          <img src="/assets/images/lucas.png" />
+          <figcaption>Pau</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
 </section>
 <script src="{{ base.url | prepend: site.url }}/assets/js/pages/home.js"></script>

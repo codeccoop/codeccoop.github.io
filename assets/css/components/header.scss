@@ -1,5 +1,6 @@
 ---
 ---
+@import "reset";
 
 header {
     position: fixed;
@@ -7,6 +8,8 @@ header {
     left: 0px;
     width: 100vw;
     z-index: 100;
+    height: $header-height;
+    background: white;
 
     .navbar {
         padding: 0 5vw;

@@ -1,9 +1,14 @@
 ---
 ---
-@import "main";
+/* PARTIALS */
 @import "typography";
+@import "colors";
+@import "reset";
 
+/* VENDOR */
 @import "vendor/bulma.min.css";
 
+/* MODULES */
+@import "main.css";
 @import "pages/home.css";
 @import "components/header.css";

@@ -1,0 +1,43 @@
+---
+---
+
+@import "typography";
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+html, body {
+    font-size: 18px;
+    font-family: Quicksand, Roboto, "sans-serif";
+    color: #4a4a4a;
+    line-height: 1.8;
+
+    &.is-mobile {
+        font-size: 22px;
+        line-height: 1.9;
+    }
+}
+
+.title, .subtitle {
+    &.is-1 {
+        font-size: ms(3);
+    }
+
+    &.is-2 {
+        font-size: ms(3);
+    }
+
+    &.is-3 {
+        font-size: ms(2);
+    }
+
+    &.is-4 {
+        font-size: ms(1);
+    }
+
+    &.is-5 {
+        font-size: ms(0);
+    }
+}

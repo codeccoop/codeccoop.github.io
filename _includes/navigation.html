@@ -1,8 +1,6 @@
 <nav class="navbar is-transparent">
   <div class="navbar-brand">
-    <a class="navbar-item {% if page.url == "/" %}is-active{% endif %}" href="/">
-      {{ "da|des_comunals" | downcase  }}
-    </a>
+    <a class="navbar-item {% if page.url == "/" %}is-active{% endif %}" href="/#landing">Còdec</a>
     <div class="navbar-burger" data-target="navbarExampleTransparentExample">
       <span></span>
       <span></span>
@@ -12,7 +10,7 @@
 
   <div class="navbar-menu">
     <div class="navbar-start">
-      {% assign links = site.data.navigation | where_exp: "item", "item.name != 'da|descomunals'" %}
+      {% assign links = site.data.navigation | where_exp: "item", "item.link != '/#landing'" %}
       {% for item in links %}
       	<a class="navbar-item {% if page.url == item.link %}is-active{% endif %}" href="{{ item.link }}">{{ item.name }}</a>
       {% endfor %}

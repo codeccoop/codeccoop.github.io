@@ -18,35 +18,6 @@ $ratio:  1.5;
 }
 
 @function ms($value, $ms-ratio: $ratio, $ms-base: $base){
-    $size: pow($ms-ratio, $value)*$ms-base;
+    $size: pow($ms-ratio, $value) * $ms-base;
     @return $size;
-}
-
-body {
-    font-size: 18px;
-    font-family: Quicksand, Roboto, "sans-serif";
-    color: #336;
-    line-height: 1.8;
-}
-
-.title, .subtitle {
-    &.is-1 {
-        font-size: ms(3);
-    }
-
-    &.is-2 {
-        font-size: ms(3);
-    }
-
-    &.is-3 {
-        font-size: ms(2);
-    }
-
-    &.is-4 {
-        font-size: ms(1);
-    }
-
-    &.is-5 {
-        font-size: ms(0);
-    }
 }

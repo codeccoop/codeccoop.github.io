@@ -1,8 +1,7 @@
-@use "sass:list";
 @use "sass:map";
 
 $breakpoints:  (
-    sm: 0,
+    sm: 0px,
     md: 640px,
     xmd: 1025px,
     lg: 1200px,
@@ -10,41 +9,48 @@ $breakpoints:  (
     xxlg: 1920px
 );
 
-@mixin m-breakpoint ($values) {
-    $length: list.length($values);
+@mixin m-media ($args...) {
+    $length: length($args);
 
-    @each $value in $values {
-        @if map.has-key($breakpoints, $value) {
-            @warn "\n\nOne or more m-breakpoint() mixins failed to compile. You must enter 1  or 2 of these valid keys: \n'" + map.keys($breakpoints) + "'.\n\n'landscape' and 'portrait' are also valid keys if they are preceded by 1 or 2 of the previously mentioned keys.\n";
+    @each $arg in $args {
+        $value:  map-get($breakpoints, $arg);
+        @if not (map-has-key($breakpoints, $arg) or $arg == portrait or $arg == landscape) {
+            @warn "\n\nOne or more m-breakpoint() mixins failed to compile. You must enter 1  or 2 of these valid keys: \n'" + keys($breakpoints) + "'.\n\n'landscape' and 'portrait' are also valid keys if they are preceded by 1 or 2 of the previously mentioned keys.\n";
         }
     }
 
     @if $length == 1 {
-        @if map.has-key($breakpoints, $values[0]) {
-            @media screen and (min-width: $breakpoints[$value[0]]) {
+        $arg: nth($args, 1);
+        @if map-has-key($breakpoints, $arg) {
+            @media screen and (min-width: map-get($breakpoints, $arg)) {
                 @content;
             }
         } @else {
-            @media screen and (orientation: $values[0]) {
+            @media screen and (orientation: $arg) {
                 @content;
             }
         }
     }
 
     @if $length == 2 {
-        @if map.has-key($breakpoints, $values[1]) {
-            @media screen and (min-width: $breakpoints[$values[0]]) and (max-width: $breakpoints[$values[1]]) {
+        $arg1: nth($args, 1);
+        $arg2: nth($args, 2);
+        @if map-has-key($breakpoints, $arg2) {
+            @media screen and (min-width: map-get($breakpoints, $arg1)) and (max-width: map-get($breakpoints, $arg2)) {
                 @content;
             }
         } @else {
-            @media screen and (min-width: $breakpoints[$values[0]]) and (orientation: $values[1]) {
+            @media screen and (min-width: map-get($breakpoints, $arg1)) and (orientation: $arg2) {
                 @content;
             }
         }
     }
 
     @if $length == 3 {
-        @media screen and (min-width: $breakpoints[$values[0]]) and (max-width: $breakpoints[$values[1]]) and (orientation: $valuesþ[2]) {
+        $arg1: nth($args, 1);
+        $arg2: nth($args, 2);
+        $arg3: nth($args, 3);
+        @media screen and (min-width: map-get($breakpoints, $arg1)) and (max-width: map-get($breakpoints, $arg2)) and (orientation: $arg3) {
             @content;
         }
     }
