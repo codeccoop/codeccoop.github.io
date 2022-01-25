@@ -2,6 +2,7 @@
 ---
 
 @import "typography";
+@import "breakpoints";
 
 * {
     box-sizing: border-box;
@@ -15,8 +16,8 @@ html, body {
     line-height: 1.8;
 
     &.is-mobile {
-        font-size: 22px;
-        line-height: 1.9;
+        font-size: 14px;
+        line-height: 1.5;
     }
 }
 

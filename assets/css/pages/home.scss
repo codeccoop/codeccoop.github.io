@@ -15,13 +15,12 @@ main.home {
 .home__section {
     display: flex;
     flex-direction: column;
-    padding: 1.5rem 5vw 3rem;
+    padding: calc(2rem + #{$header-height}) #{$site-paddings} 3rem;
     min-height: 100vh;
-    padding-top: calc(1rem + #{$header-height});
-    /* min-height: calc(100vh - #{$header-height}); */
 
     &#landing {
         background-color: $main-blue;
+        padding-bottom: 250px;
         @include m-background-image("/assets/images/keys.gif", cover);
         background-position-y: bottom;
     }
@@ -39,6 +38,25 @@ main.home {
     }
 }
 
+.home__section-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.home__section-row {
+    display: flex;
+    @include m-media(sm, xmd) {
+        flex-direction: column;
+    }
+}
+
+.home__section-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .home__title {
     font-size: ms(4);
     font-weight: 500;
@@ -47,7 +65,7 @@ main.home {
 .home__cite {
     display: block;
     margin: 0 auto;
-    padding: 1em 3em;
+    padding: 1em 0 2em;
     flex: 1;
 
     blockquote {
@@ -63,20 +81,9 @@ main.home {
     }
 }
 
-.home__section-content {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
 .home__services {
     .title {
         margin-bottom: .5em;
-    }
-
-    p {
-        font-size: .8em;
-        line-height: 1.6;
     }
 
     img {
@@ -85,8 +92,17 @@ main.home {
         max-height: 30vh;
     }
 
-    .home__section-row:hover img {
-        filter: grayscale(0);
+    .home__section-row {
+        &:hover img {
+            filter: grayscale(0);
+        }
+
+        &:nth-child(even) {
+            @include m-media(sm, xmd) {
+                flex-flow: column-reverse;
+                padding-top: 2em;
+            }
+        }
     }
 
     .home__section-column.img-column {

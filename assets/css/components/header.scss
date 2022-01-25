@@ -12,6 +12,6 @@ header {
     background: white;
 
     .navbar {
-        padding: 0 5vw;
+        padding: 0 #{$site-paddings};
     }
 }

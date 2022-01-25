@@ -113,28 +113,58 @@ document.addEventListener("DOMContentLoaded", function () {
   })();
 
   var onSwipe = (function () {
-    var startY, currentY, toId;
+    var startY, deltaY, direction;
+
+    function onTouchMove(ev) {
+      var currentY = ev.changedTouches[0].screenY;
+      deltaY = startY - currentY;
+      direction = currentY > startY ? -1 : 1;
+      var sectionOverflow = getCurrentSectionOverflow(direction);
+
+      if (sectionOverflow != 0) {
+        var scrollOffset =
+          direction === 1
+            ? Math.min(sectionOverflow, deltaY)
+            : Math.max(sectionOverflow, deltaY);
+        rootEl.scrollBy(0, scrollOffset);
+        if (scrollOffset === sectionOverflow) {
+          setTimeout(function () {
+            scrollDelay = false;
+          }, 5e2);
+          scrollDelay = true;
+        }
+        startY = currentY;
+      }
+    }
 
     function onTouchEnd(ev) {
-      document.removeEventListener("touchmove", onTouchEnd);
-      currentY = ev.changedTouches[0].screenY;
-      if (Math.abs(startY - currentY) < 20) return;
-      if (startY > currentY) {
-        toId = sections[sections.indexOf(currentSection) + 1];
-      } else {
-        toId = sections[sections.indexOf(currentSection) - 1];
-      }
+      document.removeEventListener("touchend", onTouchEnd);
+      document.removeEventListener("touchend", onTouchEnd);
+      var sectionOverflow = getCurrentSectionOverflow(direction);
 
-      if (toId) {
-        scrollTo(toId);
+      debugger;
+      if (sectionOverflow == 0) {
+        var toId;
+        if (direction > 0) {
+          toId = sections[sections.indexOf(currentSection) + 1];
+        } else {
+          toId = sections[sections.indexOf(currentSection) - 1];
+        }
+
+        if (toId) {
+          scrollTo(toId, deltaY * -1);
+        }
       }
 
       startY = void 0;
-      currentY = void 0;
+      deltaY = void 0;
+      direction = void 0;
     }
 
     return function (ev) {
+      if (scrollDelay === true) return;
       startY = ev.changedTouches[0].screenY;
+      document.addEventListener("touchmove", onTouchMove);
       document.addEventListener("touchend", onTouchEnd);
     };
   })();
