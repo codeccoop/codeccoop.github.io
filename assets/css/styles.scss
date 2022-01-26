@@ -8,7 +8,13 @@
 /* VENDOR */
 @import "vendor/bulma.min.css";
 
-/* MODULES */
+/* SOURCE */
 @import "main.css";
+
+/* PAGES */
 @import "pages/home.css";
+@import "pages/products.css";
+@import "pages/workshops.css";
+
+/* COMPONENTS */
 @import "components/header.css";

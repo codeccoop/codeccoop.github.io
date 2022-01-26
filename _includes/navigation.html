@@ -1,18 +1,30 @@
 <nav class="navbar is-transparent">
   <div class="navbar-brand">
-    <a class="navbar-item {% if page.url == "/" %}is-active{% endif %}" href="/#landing">Còdec</a>
-    <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+    <a class="navbar-item" data-id="home" href="/#home">Còdec</a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="pageNavbarMenu">
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </a>
   </div>
 
-  <div class="navbar-menu">
+  <div id="pageNavbarMenu" class="navbar-menu">
     <div class="navbar-start">
-      {% assign links = site.data.navigation | where_exp: "item", "item.link != '/#landing'" %}
+      {% assign links = site.data.navigation | where_exp: "item", "item.id != 'home'" %}
       {% for item in links %}
-      	<a class="navbar-item {% if page.url == item.link %}is-active{% endif %}" href="{{ item.link }}">{{ item.name }}</a>
+        {% if item.dropdown %}
+          <div data-id="{{ item.id }}" class="navbar-item has-dropdown is-hoverable" >
+            <a href="{{ item.link }}" class="navbar-link is-arrowless" >{{ item.name }}</a>
+            <div class="navbar-dropdown">
+              {% for subitem in item.dropdown %}
+      	        <a data-id="{{ subitem.id }}" class="navbar-item" href="{{ subitem.link }}">{{ subitem.name }}</a>
+              {% endfor %}
+            </div>
+          </div>
+        {% else %}
+          <a data-id="{{ item.id }}" class="navbar-item" href="{{ item.link }}">{{ item.name }}</a>
+        {% endif %}
       {% endfor %}
     </div>
   </div>

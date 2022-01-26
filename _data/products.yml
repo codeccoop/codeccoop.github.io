@@ -1,0 +1,24 @@
+- name: WordPress
+  subtitle: La solució per als casos d'ús de la gent corrent
+  description: L'arxiconegut WordPress. El gran democratitzador de la web. El protagonista de la febre del blog. WordPress és un sistema de gestió de contingut (CMS per les inicials en anglès) lliure i de codi obert. Un programari madur amb un ecosistema ric en plantilles d'aparença i extensions funcionals. Des de Còdec l'estimem per la seva gran versatilitat i l'autonomia que dona al les usuaries sense necessitat de coneixement tècnic.
+  url: https://wordpress.org/
+  github: https://github.com/WordPress/WordPress
+  price: 350€
+- name: Jekyll
+  subtitle: Un generador de blogs i pàgines web minimalista però complet
+  description: Tot i ser poc conegut, Jekyll ens ha robat el cor &#8212;fins al punt que aquesta pàgina està construida amb Jekyll&#8212;. Dissenyat com un sistema de gestió de continguts (CMS per les sevels inicials en anglès) basat en arxius, es perfecte per projectes de pàgines personals, de projectes o d'organitzacions. A més, permet, per a usuaris amb idees bàsiques d'HTML o de MarkDown, utilitzar les seves funcions de CMS per gestionar de forma dinàmica el contingut de la pàgina web sense necessitat de disposar de bases de dades o actualitzacións periòdiques de software com si que requereix WordPress.
+  url: https://jekyllrb.com/
+  github: https://github.com/jekyll/jekyll
+  price: 500€
+- name: Strapi
+  subtitle: La solució perfecte si necessites una eina de gestió digital personalitzada
+  description: "Strapi és el que s'anomena un Headless CMS, o sistema de gestió de continguts escapçat. Això vol dir que comparteix amb WordPress el caràcter d'eina de gestió de continguts. El que els diferencia és que WordPress imposa el seu sitema de plantilles &#8212;molt pensada per fer blogs&#8212;, i Strapi et dona total llibertat per decidir quina aparença donar-li a la teva eina web: Strapi es limita a donar-te accés al contingut disponible a através de peticions web i el desenvolupador s'encarrega de construir la lògica de presentació amb total llibertat, tan tècnica com estètica."
+  url: https://strapi.io/
+  github: https://github.com/strapi/strapi
+  price: 1.000€
+- name: Artesania
+  subtitle: Aprofita al máxim la plasticitat del medi digital i les seves infinites possibilitats
+  description: Si tens una necessitat molt específica &#8212;un videojoc corporatiu, un visualitzador de dades, un sistema de d'explotació del teu motor de càlcul, un editor de dades cartogràfiques, un sistema de publicació de resultats en viu de curses de canicros... la pedrada que se t'acudeixi&#8212;, truca'ns i mirem com reslodre-ho.
+  url: https://codec.coop
+  github: https://github.com/codeccooperativa
+  price: A negociar

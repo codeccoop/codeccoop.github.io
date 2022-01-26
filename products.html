@@ -1,7 +1,60 @@
 ---
 layout: default
-title: da|des_comunals - Desenvolupament
+title: Còdec | Productes
+page: products
 ---
 
-<h1 class="title is-1">Desenvolupament</h1>
-<p>Què és el que oferim i altres coses.</p>
+<div class="products__content content">
+  <h3 class="products__title title is-3">Solucions</h3>
+  <div class="products__head columns">
+    <div class="products__abstract column is-8">
+      <p>
+        Des de Còdec, oferim solucions digitals basades en la web ajustades a
+        les necessitat del client. Treballem per fer-ho de forma ètica,
+        compromesos amb el programari lliure i el procomú: Procurem no utilitzar
+        programari privatiu, llicenciar de forma lliure i publicar els nostres
+        projectes, i fer particep als nostres clients, de forma didàctica, tant
+        en el disseny com en la decissió de la solució tecnològica a
+        implementar.
+      </p>
+    </div>
+    <div class="products__image column is-4">
+      <img src="/assets/images/products.png" />
+    </div>
+  </div>
+  {% for product in site.data.products %}
+  <article name="{{product.name | downcase}}" class="products__product media">
+    <figure class="products__product-badge media-left">
+      <p class="image is-128x128">
+        <img src="/assets/images/logos/{{product.name | downcase }}.png" />
+      </p>
+    </figure>
+    <div class="products__product-description media-content">
+      <p class="title is-4">{{ product.name }}</p>
+      <p class="subtitle is-6"><strong>{{ product.subtitle }}</strong></p>
+      <p>{{ product.description }}</p>
+      <nav class="products__product-footer">
+        <div>
+          <p><strong>Preu mínim: {{ product.price }}</strong></p>
+        </div>
+        <div>
+          <a
+            class="products__product-link"
+            target="__blank"
+            href="{{ product.url }}"
+          >
+            <span class="icon is-small webpage"><i></i></span>
+          </a>
+          <a
+            class="products__product-link"
+            target="__blank"
+            href="{{ product.github }}"
+          >
+            <span class="icon is-small github"><i></i></span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </article>
+  {% endfor %}
+</div>

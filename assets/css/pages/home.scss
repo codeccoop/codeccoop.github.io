@@ -18,23 +18,23 @@ main.home {
     padding: calc(2rem + #{$header-height}) #{$site-paddings} 3rem;
     min-height: 100vh;
 
-    &#landing {
-        background-color: $main-blue;
+    &#home {
+        background-color: $regent-st-blue;
         padding-bottom: 250px;
         @include m-background-image("/assets/images/keys.gif", cover);
         background-position-y: bottom;
     }
 
     &#about {
-        background-color: $main-blue;
+        background-color: $regent-st-blue;
     }
 
     &#work {
-        background-color: #f3ffb3;
+        background-color: $tidal;
     }
 
     &#team {
-        background-color: #ffc9df;
+        background-color: $pastel-pink;
     }
 }
 
@@ -121,7 +121,10 @@ main.home {
 
     .home__section-column {
         display: flex;
-        align-items: flex-end;
+
+        .title {
+            margin-bottom: .5rem;
+        }
     }
 
     .home__profiles {
@@ -145,18 +148,41 @@ main.home {
                 font-size: ms(1);
             }
 
-            q {
-                font-size: ms(0);
-                line-height: 1.5;
+            .quote-wrapper {
                 display: none;
+                position: absolute;
+                top: 0px;
+                left: 50%;
+                transform: translate(-50%, - 100%);
+                min-width: 100%;
+                max-width: 80vw;
+            }
+
+            .quote {
+                position: relative;
+                display: block;
                 padding: .5em 1.2em;
                 background: white;
                 box-shadow: 2px 2px 6px #0003;
                 border-radius: 6px;
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                transform: translate(-80%, -50%);
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    border-top: 10px solid white;
+                    border-left: 10px solid transparent;
+                    border-right: 10px solid transparent;
+                    width: 10px;
+                    height: 10px;
+                    transform: translate(-200%, 95%);
+                    right: 0px;
+                    bottom: 0px;
+                }
+            }
+
+            q {
+                font-size: ms(0);
+                line-height: 1.5;
             }
 
             &:hover {
@@ -164,7 +190,7 @@ main.home {
                     filter: grayscale(0)
                 }
 
-                q {
+                .quote-wrapper {
                     display: block;
                 }
             }

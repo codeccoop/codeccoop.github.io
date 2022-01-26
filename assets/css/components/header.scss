@@ -1,6 +1,7 @@
 ---
 ---
 @import "reset";
+@import "typography";
 
 header {
     position: fixed;
@@ -13,5 +14,21 @@ header {
 
     .navbar {
         padding: 0 #{$site-paddings};
+
+        @media screen and (max-width: 1024px) {
+            .navbar-menu {
+                width: calc(100% + 20vw);
+                margin-left: -10vw;
+
+                .navbar-item {
+                    text-indent: 10vw;
+                }
+            }
+        }
+
+        .navbar-brand .navbar-item {
+            color: inherit !important;
+            font-weight: bold;
+        }
     }
 }

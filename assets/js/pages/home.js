@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (scrollOffset === overflow) {
           setTimeout(function () {
             scrollDelay = false;
-          }, 5e2);
+          }, 2e2);
           scrollDelay = true;
         }
       } else {
@@ -142,7 +142,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.removeEventListener("touchend", onTouchEnd);
       var sectionOverflow = getCurrentSectionOverflow(direction);
 
-      debugger;
       if (sectionOverflow == 0) {
         var toId;
         if (direction > 0) {
@@ -174,6 +173,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function onPopState() {
     currentSection = location.hash.replace(/#/, "");
+    var header = document.getElementById("pageHeader");
+    header.setActiveLink(currentSection);
   }
 
   window.addEventListener("popstate", onPopState);

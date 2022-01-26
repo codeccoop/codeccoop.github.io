@@ -15,9 +15,10 @@
     <script src="/assets/js/utils/device-detect.js"></script>
   </head>
   <body>
-    <header>{% include navigation.html %}</header>
+    <header id="pageHeader">{% include navigation.html %}</header>
     <main class="{{ page.page }}">{{ content }}</main>
     <footer></footer>
     <script src="/assets/js/main.js" ></script>
+    <script src="/assets/js/components/header.js" ></script>
   </body>
 </html>

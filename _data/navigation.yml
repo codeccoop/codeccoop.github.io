@@ -1,8 +1,19 @@
-- name: Còdec
-  link: '/#landing'
-- name: Què fem?
+- id: home
+  name: Còdec
+  link: '/#home'
+- id: work
+  name: Què fem?
   link: '/#work'
-- name: Nosaltres
+  dropdown:
+    - id: products
+      name: Solucions
+      link: '/products.html'
+    - id: workshops
+      name: Tallers
+      link: '/workshops.html'
+- id: team
+  name: Nosaltres
   link: '/#team'
-- name: Blog
+- id: blog
+  name: Blog
   link: /blog.html
