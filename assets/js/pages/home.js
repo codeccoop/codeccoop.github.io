@@ -59,7 +59,27 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     rootEl.scrollBy(scrollOrder);
-    scrollViewport.scrollBy(scrollOrder);
+
+    var offset = 0;
+    function scrollTransition() {
+      var step;
+      if (scrollOrder.top > 0) {
+        step = Math.min(20, scrollOrder.top - offset);
+      } else {
+        step = Math.max(-20, scrollOrder.top + offset);
+      }
+      scrollViewport.scrollBy(0, step);
+      offset += step;
+      if (
+        (step > 0 && offset < scrollOrder.top) ||
+        (step < 0 && offset > scrollOrder.top)
+      ) {
+        setTimeout(scrollTransition, 5);
+      }
+    }
+    scrollTransition();
+    // scrollViewport.scrollBy(scrollOrder);
+    // scrollViewport.scrollBy(0, scrollOrder.top);
 
     currentSection = id;
     history.replaceState({ from: location.hash }, "", "/#" + id);
@@ -141,10 +161,12 @@ document.addEventListener("DOMContentLoaded", function () {
         rootEl.scrollBy(0, scrollOffset);
         scrollViewport.scrollBy(0, scrollOffset);
         if (scrollOffset === sectionOverflow) {
-          setTimeout(function () {
+          /* setTimeout(function () {
             scrollDelay = false;
-          }, 5e2);
+          }, 5e2); */
           scrollDelay = true;
+        } else {
+          scrollDelay = false;
         }
         startY = currentY;
       }
@@ -154,6 +176,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function onTouchEnd(ev) {
       document.removeEventListener("touchend", onTouchEnd);
       if (swipped === false) return;
+      if (scrollDelay === true) {
+        scrollDelay = false;
+        return;
+      }
 
       var sectionOverflow = getCurrentSectionOverflow(direction);
 
@@ -177,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     return function (ev) {
-      if (scrollDelay === true) return;
+      // if (scrollDelay === true) return;
       startY = ev.changedTouches[0].screenY;
       document.addEventListener("touchmove", onTouchMove);
       document.addEventListener("touchend", onTouchEnd);
@@ -190,7 +216,6 @@ document.addEventListener("DOMContentLoaded", function () {
   function onPopState() {
     currentSection = location.hash.replace(/#/, "");
     document.getElementById("pageHeader").setActiveLink(currentSection);
-    debugger;
     var currentSectionEl = document.getElementById(currentSection);
     var sectionBox = currentSectionEl.getBoundingClientRect();
     scrollViewport.scrollBy(0, sectionBox.top - headerHeight);

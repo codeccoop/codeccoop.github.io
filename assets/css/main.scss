@@ -11,6 +11,7 @@
 }
 
 html, body {
+    overflow: auto;
     font-size: $font-size;
     font-family: Quicksand, Roboto, "sans-serif";
     color: $font-color;
