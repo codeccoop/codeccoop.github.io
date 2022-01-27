@@ -13,15 +13,20 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+      page: "post"
   - scope:
       path: ""
     values:
       layout: "default"
 
+paginate: 6
+paginate_path: "/blog/page:num/"
+
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-paginate
 
 sass:
   sourcemap: never

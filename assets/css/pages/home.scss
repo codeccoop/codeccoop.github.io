@@ -60,6 +60,10 @@ main.home {
 .home__title {
     font-size: ms(4);
     font-weight: 500;
+
+    &:not(:last-child) {
+        margin-bottom: 1.75rem;
+    }
 }
 
 .home__cite {
@@ -196,4 +200,21 @@ main.home {
             }
         }
     }
+}
+
+.home__scroll-viewport {
+    position: absolute;
+    z-index: 1000;
+    pointer-events: none;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.home__scroll-veil {
+    width: 100%;
+    background: transparent;
 }

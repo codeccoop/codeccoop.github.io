@@ -1,0 +1,59 @@
+---
+layout: default
+title: Còdec | Blog
+page: blog
+---
+
+<h3 class="blog__title title is-3">Últimes publicacions</h3>
+{% assign cat_len = site.categories | size %}
+{% if cat_len > 1 %}
+<aside class="blog__categories level">
+  <label>Categories:</label>
+  <ul class="blog__categories-list level-right">
+    {% for category in site.categories %}
+    <li class="level-item">
+      <a
+        data-category="{{ category | first }}"
+        class="blog__category"
+        aria-role="buton"
+        >{{ category | first }}</a
+      >
+    </li>
+    {% endfor %}
+    <button></button>
+  </ul>
+</aside>
+{% endif %}
+
+<ul class="blog__posts">
+  {% for post in paginator.posts %}
+  <li class="blog__entry">
+    <h4 class="blog__entry-title title is-4">
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </h4>
+    <p>{{ post.excerpt }}</p>
+    <time datetime="{{ post.date }}">{{ post.date | date_to_string }}</time>
+  </li>
+  {% endfor %}
+</ul>
+
+<!-- Pagination links -->
+{% if paginator.total_pages > 1 %}
+<div id="blogPagination" class="blog__pagination pagination">
+  {% if paginator.previous_page %}
+  <a href="{{ paginator.previous_page_path }}" class="previous"> Previous </a>
+  {% else %}
+  <span class="previous">Previous</span>
+  {% endif %}
+  <span class="page_number">
+    Page: {{ paginator.page }} of {{ paginator.total_pages }}
+  </span>
+  {% if paginator.next_page %}
+  <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+  {% else %}
+  <span class="next">Next</span>
+  {% endif %}
+</div>
+{% endif %}
+
+<script src="/assets/js/pages/blog.js"></script>

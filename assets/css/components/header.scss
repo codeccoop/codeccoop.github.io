@@ -1,7 +1,9 @@
 ---
 ---
 @import "reset";
+@import "colors";
 @import "typography";
+@import "breakpoints";
 
 header {
     position: fixed;
@@ -9,8 +11,40 @@ header {
     left: 0px;
     width: 100vw;
     z-index: 100;
-    height: $header-height;
+    /* height: $header-height; */
     background: white;
+
+    &.blog-header {
+        background-color: $regent-st-blue;
+
+        .navbar, .navbar-dropdown, .navbar-menu {
+            background-color: $regent-st-blue;
+            color: white;
+
+            .navbar-item,
+            .navbar-link {
+                color: white;
+
+                &.is-active {
+                    color: white;
+                    text-decoration: underline;
+                    background-color: transparent;
+                }
+
+                &:not(.is-active):hover {
+                    color: $font-color;
+
+                    .navbar-item:hover {
+                        color:$font-color;
+                    }
+                }
+
+                &:hover {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
 
     .navbar {
         padding: 0 #{$site-paddings};
@@ -27,8 +61,25 @@ header {
         }
 
         .navbar-brand .navbar-item {
+            padding-left: 0;
             color: inherit !important;
             font-weight: bold;
+        }
+
+        .navbar-item.is-active,
+        .navbar-link.is-active {
+            color: $font-color !important;
+            text-decoration: underline;
+            background-color: white
+        }
+
+        .navbar-item:not(.is-active):hover,
+        .navbar-link:not(.is-active):hover {
+            color: $indigo;
+
+            .navbar-item:hover {
+                color: $indigo;
+            }
         }
     }
 }

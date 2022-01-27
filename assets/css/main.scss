@@ -1,6 +1,7 @@
 ---
 ---
 
+@import "colors";
 @import "typography";
 @import "breakpoints";
 
@@ -10,14 +11,14 @@
 }
 
 html, body {
-    font-size: 18px;
+    font-size: $font-size;
     font-family: Quicksand, Roboto, "sans-serif";
-    color: #4a4a4a;
-    line-height: 1.8;
+    color: $font-color;
+    line-height: $line-height;
 
     &.is-mobile {
-        font-size: 14px;
-        line-height: 1.5;
+        font-size: $mobile-font-size;
+        line-height: $mobile-line-height;
     }
 }
 

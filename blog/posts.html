@@ -1,0 +1,13 @@
+---
+layout:
+---
+
+<ul>
+  {% for post in site.posts %}
+  <li class="blog__entry" data-category="{{ post.categories | first }}">
+    <h4 class="blog__entry-title title is-4"><a href="{{ post.url }}">{{ post.title }}</a></h4>
+    <p>{{ post.excerpt }}</p>
+    <time datetime="{{ post.date }}">{{ post.date | date_to_string }}</time>
+  </li>
+  {% endfor %}
+</ul>

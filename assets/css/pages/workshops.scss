@@ -9,6 +9,10 @@ main.workshops {
     padding: calc(2em + #{$header-height}) #{$site-paddings} 3rem;
     min-height: 100vh;
     background-color: $regent-st-blue;
+
+    .workshops__title {
+        font-weight: 500;
+    }
 }
 
 .workshops__content {

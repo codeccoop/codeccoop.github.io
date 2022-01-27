@@ -4,7 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {% if page.collection == "posts" %}
+    <title>Còdec | Blog</title>
+    {% else %}
     <title>{{ page.title }}</title>
+    {% endif %}
 
     <link rel="stylesheet" href="/assets/css/styles.css" />
 
@@ -15,7 +19,11 @@
     <script src="/assets/js/utils/device-detect.js"></script>
   </head>
   <body>
+    {% if page.page == "blog" or page.collection == "posts" %}
+    <header id="pageHeader" class="blog-header">{% include navigation.html %}</header>
+    {% else %}
     <header id="pageHeader">{% include navigation.html %}</header>
+    {% endif %}
     <main class="{{ page.page }}">{{ content }}</main>
     <footer></footer>
     <script src="/assets/js/main.js" ></script>

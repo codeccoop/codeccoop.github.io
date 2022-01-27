@@ -9,11 +9,18 @@
 main.products {
     padding: calc(2rem + #{$header-height}) #{$site-paddings} 3rem;
     background-color: $tidal;
+
+    .products__title {
+        font-weight: 500;
+    }
 }
 
 .products__image {
     padding-left: 5vw;
-    filter: drop-shadow(2px 2px 6px #0003)
+    filter: drop-shadow(2px 2px 6px #0003);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .products__product {

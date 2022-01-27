@@ -31,11 +31,16 @@ document.addEventListener("DOMContentLoaded", function () {
   var currentPage;
   var match = location.pathname.match(/\/(.*)(?=\.html)/);
   if (match) {
-    currentPage = match[1];
+    var isPost = location.pathname.match(
+      /\/[0-9]{4}\/[0-9]{1,2}\/[0-9]{1,2}\//
+    );
+    if (isPost) currentPage = "blog";
+    else currentPage = match[1];
   } else if (location.hash !== "") {
     currentPage = location.hash.replace(/\#/, "");
   } else {
-    currentPage = "home";
+    if (location.pathname.match(/^\/blog\//)) currentPage = "blog";
+    else currentPage = "home";
   }
 
   header.setActiveLink(currentPage);

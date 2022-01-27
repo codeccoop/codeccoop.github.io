@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var headerHeight = 0; // document.getElementsByTagName("header")[0].offsetHeight;
+  var headerHeight = 0;
   var rootEl = document.getElementsByTagName("main")[0];
+  var scrollViewport = setupScrollViewport();
   var sections = Array.apply(
     null,
     document.getElementsByClassName("home__section")
@@ -14,6 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var sectionBox = currentSectionEl.getBoundingClientRect();
   rootEl.scrollBy(0, sectionBox.top - headerHeight);
+  scrollViewport.scrollBy(0, sectionBox.top - headerHeight);
+  setTimeout(function () {
+    var height = getSectionsTotalHeight();
+    scrollViewport.firstElementChild.style.height = height + "px";
+  }, 100);
   var scrollDelay = false;
 
   function getCurrentSection() {
@@ -46,14 +52,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function scrollTo(id) {
     var el = document.getElementById(id);
-    rootEl.scrollBy({
+    var scrollOrder = {
       left: 0,
       top: el.getBoundingClientRect().top - headerHeight,
       behavior: "smooth",
-    });
+    };
+
+    rootEl.scrollBy(scrollOrder);
+    scrollViewport.scrollBy(scrollOrder);
 
     currentSection = id;
     history.replaceState({ from: location.hash }, "", "/#" + id);
+    document.getElementById("pageHeader").setActiveLink(currentSection);
 
     var debounced;
     function onScrollEnd() {
@@ -98,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ? Math.min(overflow, ev.deltaY)
             : Math.max(overflow, ev.deltaY);
         rootEl.scrollBy(0, scrollOffset);
+        scrollViewport.scrollBy(0, scrollOffset);
         if (scrollOffset === overflow) {
           setTimeout(function () {
             scrollDelay = false;
@@ -113,6 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
   })();
 
   var onSwipe = (function () {
+    var swipped = false;
     var startY, deltaY, direction;
 
     function onTouchMove(ev) {
@@ -127,6 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ? Math.min(sectionOverflow, deltaY)
             : Math.max(sectionOverflow, deltaY);
         rootEl.scrollBy(0, scrollOffset);
+        scrollViewport.scrollBy(0, scrollOffset);
         if (scrollOffset === sectionOverflow) {
           setTimeout(function () {
             scrollDelay = false;
@@ -135,11 +148,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         startY = currentY;
       }
+      swipped = true;
     }
 
     function onTouchEnd(ev) {
       document.removeEventListener("touchend", onTouchEnd);
-      document.removeEventListener("touchend", onTouchEnd);
+      if (swipped === false) return;
+
       var sectionOverflow = getCurrentSectionOverflow(direction);
 
       if (sectionOverflow == 0) {
@@ -158,6 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
       startY = void 0;
       deltaY = void 0;
       direction = void 0;
+      swipped = false;
     }
 
     return function (ev) {
@@ -173,9 +189,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function onPopState() {
     currentSection = location.hash.replace(/#/, "");
-    var header = document.getElementById("pageHeader");
-    header.setActiveLink(currentSection);
+    document.getElementById("pageHeader").setActiveLink(currentSection);
+    debugger;
+    var currentSectionEl = document.getElementById(currentSection);
+    var sectionBox = currentSectionEl.getBoundingClientRect();
+    scrollViewport.scrollBy(0, sectionBox.top - headerHeight);
   }
 
   window.addEventListener("popstate", onPopState);
+
+  function setupScrollViewport() {
+    var scrollViewport = document.createElement("div");
+    scrollViewport.classList.add("home__scroll-viewport");
+    var scrollVeil = document.createElement("div");
+    scrollVeil.classList.add("home__scroll-veil");
+
+    var height = getSectionsTotalHeight();
+    window.addEventListener("resize", function () {
+      height = getSectionsTotalHeight();
+      scrollVeil.style.height = height + "px";
+    });
+
+    scrollVeil.style.height = height + "px";
+    scrollViewport.appendChild(scrollVeil);
+    rootEl.appendChild(scrollViewport);
+    return scrollViewport;
+  }
+
+  function getSectionsTotalHeight() {
+    var height = 0;
+    for (var i = 0; i < rootEl.childElementCount; i++) {
+      if (rootEl.children[i].classList.contains("home__scroll-viewport")) {
+        continue;
+      }
+      height += rootEl.children[i].clientHeight;
+    }
+    return height;
+  }
 });
