@@ -20,7 +20,7 @@ main.home {
 
     &#home {
         background-color: $regent-st-blue;
-        padding-bottom: 250px;
+        padding-bottom: 85;
         @include m-background-image("/assets/images/keys.gif", cover);
         background-position-y: bottom;
     }
@@ -97,6 +97,16 @@ main.home {
     }
 
     .home__section-row {
+        .is-mobile & {
+            &:active img {
+                filter: grayscale(0);
+            }
+
+            img {
+                filter: grayscale(0) drop-shadow(2px 2px 2px #0003);
+            }
+        }
+
         &:hover img {
             filter: grayscale(0);
         }
@@ -112,10 +122,17 @@ main.home {
     .home__section-column.img-column {
         a {
             width: 100%;
-            height: 100%;
+            // height: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+
+            > label {
+                margin-top: .5em;
+                font-weight: bold;
+                font-size: 1.5em;
+            }
         }
     }
 }
@@ -196,6 +213,26 @@ main.home {
 
                 .quote-wrapper {
                     display: block;
+                }
+            }
+
+            .is-mobile & {
+                img {
+                    filter: grayscale(1);
+                }
+
+                .quote-wrapper {
+                    display: none;
+                }
+
+                &:active {
+                    img {
+                        filter: grayscale(0);
+                    }
+
+                    .quote-wrapper {
+                        display: block;
+                    }
                 }
             }
         }

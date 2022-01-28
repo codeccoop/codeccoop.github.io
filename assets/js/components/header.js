@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  var $el = document.getElementById("pageHeader");
   var burger = document.querySelectorAll(".navbar-burger")[0];
   burger.addEventListener("click", function () {
     var targetId = burger.dataset.target;
@@ -6,7 +7,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     burger.classList.toggle("is-active");
     targetEl.classList.toggle("is-active");
+
+    if (burger.classList.contains("is-active")) {
+      document.addEventListener("click", onClickOut, true);
+    }
   });
+
+  function onClickOut(ev) {
+    if (!$el.contains(ev.target)) {
+      burger.classList.remove("is-active");
+      document
+        .getElementById(burger.dataset.target)
+        .classList.remove("is-active");
+      document.removeEventListener("click", onClickOut, true);
+    }
+  }
 
   function setActiveLink(id) {
     var items = Array.apply(null, this.getElementsByClassName("navbar-item"));
@@ -25,8 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  var header = document.getElementsByTagName("header")[0];
-  header.setActiveLink = setActiveLink.bind(header);
+  $el.setActiveLink = setActiveLink.bind($el);
 
   var currentPage;
   var match = location.pathname.match(/\/(.*)(?=\.html)/);
@@ -43,5 +57,5 @@ document.addEventListener("DOMContentLoaded", function () {
     else currentPage = "home";
   }
 
-  header.setActiveLink(currentPage);
+  $el.setActiveLink(currentPage);
 });
