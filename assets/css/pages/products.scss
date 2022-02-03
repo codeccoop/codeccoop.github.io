@@ -12,6 +12,16 @@ main.products {
 
     .products__title {
         font-weight: 500;
+
+        > span {
+            display: block;
+        }
+    }
+
+    hr {
+        margin: 2rem 0 3rem;
+        background-color: $font-color;
+        height: 1px;
     }
 }
 

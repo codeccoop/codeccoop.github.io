@@ -1,0 +1,53 @@
+#! /usr/bin/env bash
+
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $dir
+
+order="$1";
+options=(
+	"serve"
+	"build"
+)
+
+if [[ -z "$order" ]]; then
+	echo
+	echo "JEKYLL CLI"
+	echo "----------"
+	echo "What do you want to do?"
+
+	i=0;
+	for opt in "${options[@]}"; do
+		echo "[$i]: $opt"
+		i=$((i+1))
+	done
+
+	echo
+	echo "Enter an option:"
+	read order
+	echo
+
+	re="^[0-9]*$"
+	if [[ $order =~ $re ]]; then
+		order=${options[$order]}
+	fi
+fi
+
+if [[ "$order" == "serve" ]]; then
+	bundle exec jekyll serve --livereload -P 8050
+elif [[ "$order" == "build" ]]; then
+	bundle exec jekyll build
+
+	if [[ -f "dist.zip" ]]; then
+		rm dist.zip
+	fi
+
+	zip dist.zip -r _site/*
+
+	echo
+	echo "Build success!"
+	echo "Built package has been places on $dir/dist.zip"
+else
+	echo "Unknown command"
+fi
+
+

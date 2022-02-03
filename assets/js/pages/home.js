@@ -39,14 +39,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function getCurrentSectionOverflow(direction) {
+    var overflow;
     var sectionEl = document.getElementById(currentSection);
     var sectionBox = sectionEl.getBoundingClientRect();
     if (direction > 0) {
-      return Math.floor(
+      overflow = Math.floor(
         sectionBox.height + sectionBox.top - window.innerHeight
       );
+      return Math.abs(overflow) <= 5 ? 0 : overflow;
     } else {
-      return Math.floor(sectionBox.top);
+      overflow = Math.floor(sectionBox.top);
+      return Math.abs(overflow) <= 5 ? 0 : overflow;
     }
   }
 

@@ -5,26 +5,46 @@ page: products
 ---
 
 <div class="products__content content">
-  <h3 class="products__title title is-3">Solucions</h3>
+  <h1 class="products__title title is-3">
+    Codifiquem la web
+    <span class="subtitle">Solucions digitals</span>
+  </h1>
   <div class="products__head columns">
     <div class="products__abstract column is-8">
       <p>
         Des de Còdec, oferim solucions digitals basades en la web ajustades a
-        les necessitat del client. Treballem per fer-ho de forma ètica,
-        compromesos amb el programari lliure i el procomú: Procurem no utilitzar
-        programari privatiu, llicenciar de forma lliure i publicar els nostres
-        projectes, i fer particep als nostres clients, de forma didàctica, tant
-        en el disseny com en la decissió de la solució tecnològica a
-        implementar. Treballem la web en tant que protocol lliure i obert, capaç
-        de convertir a totes les usuaries de la xarxa en productores actives de contingut
-        i cultura superant els rols de consumidor en que ens encasillen els productes
-        tancats i privatius de les grans tecnològiques.
+        les necessitat dels nostres client. Amb una amplia experiència
+        dissenyant i desenvolupant aplicacions web, oferim el nostre coneixement
+        adaptat a tot tipus de solucions, des de pàgines webs personals fins a
+        eines distribuides de gestió digitals.
+      </p>
+      <p>
+        Treballem la web en tant que protocol lliure i obert, capaç de convertir
+        a totes les usuaries de la xarxa en productores actives de contingut i
+        cultura, superant els rols de consumidors en que ens encasillen els
+        productes tancats i privatius de les grans tecnològiques.
+      </p>
+      <p>
+        Treballem la web, també, en tant que solució de baixa tecnologia,
+        entenent això, no com a limitació, sinó com la capacitat d'ajustar
+        l'escala de les solucions a les necessitats del client. Perquè potser no
+        fa falta connectar-nos a servidors de California i utilitzar
+        inteligència artificial de reconeixement facial quan podem resoldre el
+        mateix de forma local i amb tecnologia que les usuaries pugin gestionar
+        de forma autonoma.
+      </p>
+      <p>
+        Per últim, treballem compromesos amb el programari lliure i el procomú:
+        No utilitzem software privatiu i procurem que la nostra feina
+        reverteixi, en la mesura del possible, en l'ecosistema del programari
+        lliure.
       </p>
     </div>
     <div class="products__image column is-4">
       <img src="/assets/images/products.png" />
     </div>
   </div>
+  <hr>
   {% for product in site.data.products %}
   <article name="{{product.name | downcase}}" class="products__product media">
     <figure class="products__product-badge media-left">
@@ -33,8 +53,8 @@ page: products
       </p>
     </figure>
     <div class="products__product-description media-content">
-      <p class="title is-4">{{ product.name }}</p>
-      <p class="subtitle is-6"><strong>{{ product.subtitle }}</strong></p>
+      <h2 class="title is-4">{{ product.name }}</h2>
+      <h3 class="subtitle is-6"><strong>{{ product.subtitle }}</strong></h3>
       <p>{{ product.description }}</p>
       <nav class="products__product-footer">
         <div>

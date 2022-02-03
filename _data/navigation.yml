@@ -6,10 +6,10 @@
   link: '/#work'
   dropdown:
     - id: products
-      name: Solucions
+      name: Codifiquem
       link: '/products.html'
     - id: workshops
-      name: Tallers
+      name: Decodifiquem
       link: '/workshops.html'
 - id: team
   name: Nosaltres

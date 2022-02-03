@@ -1,0 +1,15 @@
+---
+layout: default
+---
+
+<nav class="workshop__breadcrumb breadcrumb is-small has-arrow-separator" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="/workshops.html#workshops">Tallers</a></li>
+    <li class="is-active"><a aria-current="page">{{ page.title }}</a></li>
+  </ul>
+</nav>
+<div class="workshop__content content">
+  <h1 class="title is-3">{{ page.title }}</h1>
+  <p class="subtitle" >{{ page.description }}</p>
+  {{ content }}
+</div>

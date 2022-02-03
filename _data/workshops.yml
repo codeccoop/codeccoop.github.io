@@ -1,0 +1,6 @@
+- id: cv_html
+  title: Fes el teu curriculum en format web
+  description: "Apren conceptes bàsics del llenguatge de marques d'hipertext o (<abbr>HTML</abbr> per les seves inicials en anglès)  del llenguatge d'estils extensible en cascada (<abbr>CSS</abbr> per les seves incials en anglès) tot fent el teu pròpi curriculum en format web i imprimible."
+- id: yunohost
+  title: Què és i per què serveix un servidor?
+  description: "Apren a montar un servidor a casa teva i aconsegueix tenir els serveis de gmail, dropbox, facebook, wetransfer, google calendar i molts altres, sense que les teves dades hagin de sortir de casa ni haver d'alimentar els seus algorismes publicitaris."

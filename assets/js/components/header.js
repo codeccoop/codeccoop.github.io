@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function onClickOut(ev) {
     if (!$el.contains(ev.target)) {
+      ev.preventDefault();
+      ev.stopPropagation();
       burger.classList.remove("is-active");
       document
         .getElementById(burger.dataset.target)
