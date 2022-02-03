@@ -215,26 +215,6 @@ main.home {
                     display: block;
                 }
             }
-
-            .is-mobile & {
-                img {
-                    filter: grayscale(1);
-                }
-
-                .quote-wrapper {
-                    display: none;
-                }
-
-                &:active {
-                    img {
-                        filter: grayscale(0);
-                    }
-
-                    .quote-wrapper {
-                        display: block;
-                    }
-                }
-            }
         }
     }
 }
@@ -253,5 +233,6 @@ main.home {
 
 .home__scroll-veil {
     width: 100%;
+    margin-top: -#{$header-height};
     background: transparent;
 }

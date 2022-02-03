@@ -17,12 +17,13 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!$el.contains(ev.target)) {
       ev.preventDefault();
       ev.stopPropagation();
-      burger.classList.remove("is-active");
-      document
-        .getElementById(burger.dataset.target)
-        .classList.remove("is-active");
-      document.removeEventListener("click", onClickOut, true);
     }
+
+    burger.classList.remove("is-active");
+    document
+      .getElementById(burger.dataset.target)
+      .classList.remove("is-active");
+    document.removeEventListener("click", onClickOut, true);
   }
 
   function setActiveLink(id) {
@@ -50,7 +51,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var isPost = location.pathname.match(
       /\/[0-9]{4}\/[0-9]{1,2}\/[0-9]{1,2}\//
     );
+    var isWorkshop = location.pathname.match(/\/workshops\/.*\.html$/);
     if (isPost) currentPage = "blog";
+    else if (isWorkshop) currentPage = "workshops";
     else currentPage = match[1];
   } else if (location.hash !== "") {
     currentPage = location.hash.replace(/\#/, "");
@@ -58,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (location.pathname.match(/^\/blog\//)) currentPage = "blog";
     else currentPage = "home";
   }
+  console.log(currentPage);
 
   $el.setActiveLink(currentPage);
 });

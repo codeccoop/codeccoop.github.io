@@ -63,8 +63,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
     rootEl.scrollBy(scrollOrder);
 
-    var offset = 0;
+    var delta = 0;
     function scrollTransition() {
+      var offset = Math.abs(scrollOrder.top);
+      var direction = scrollOrder.top > 0 ? 1 : -1;
+      var easeer = easeInOut(offset, offset / 20);
+      var next = easeer.next();
+
+      function transition() {
+        scrollViewport.scrollBy(0, next.value * direction - delta);
+        delta = next.value * direction;
+        next = easeer.next();
+        if (next.done === false) {
+          setTimeout(transition, 7);
+        }
+      }
+
+      transition();
+    }
+
+    /* function scrollTransition() {
+      var _offset = Math.abs(scrollOrder.top);
+      var _direction = scrollOrder.top > 0 ? 1 : -1;
+      easeer = easeInOut(_offset, _offset / 20);
+
+      var next = easeer.next();
+      while (next.done === false) {
+        next = easeer.next();
+        scrollViewport.scrollBy(0, next.value - offset);
+      }
       var step;
       if (scrollOrder.top > 0) {
         step = Math.min(20, scrollOrder.top - offset);
@@ -77,12 +104,11 @@ document.addEventListener("DOMContentLoaded", function () {
         (step > 0 && offset < scrollOrder.top) ||
         (step < 0 && offset > scrollOrder.top)
       ) {
-        setTimeout(scrollTransition, 5);
+        setTimeout(scrollTransition, 8);
       }
-    }
+    } */
+
     scrollTransition();
-    // scrollViewport.scrollBy(scrollOrder);
-    // scrollViewport.scrollBy(0, scrollOrder.top);
 
     currentSection = id;
     history.replaceState({ from: location.hash }, "", "/#" + id);
@@ -148,12 +174,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var onSwipe = (function () {
     var swipped = false;
-    var startY, deltaY, direction;
+    var startY, deltaY, direction, lastTrack, now, speed;
+
+    function swipeMotion(speed) {
+      function swipe() {}
+      while (speed < 0) {
+        rootEl.scrollBy();
+      }
+    }
 
     function onTouchMove(ev) {
       var currentY = ev.changedTouches[0].screenY;
+      now = Date.now();
       deltaY = startY - currentY;
       direction = currentY > startY ? -1 : 1;
+      speed = deltaY / (now - lastTrack);
       var sectionOverflow = getCurrentSectionOverflow(direction);
 
       if (sectionOverflow != 0) {
@@ -164,14 +199,12 @@ document.addEventListener("DOMContentLoaded", function () {
         rootEl.scrollBy(0, scrollOffset);
         scrollViewport.scrollBy(0, scrollOffset);
         if (scrollOffset === sectionOverflow) {
-          /* setTimeout(function () {
-            scrollDelay = false;
-          }, 5e2); */
           scrollDelay = true;
         } else {
           scrollDelay = false;
         }
         startY = currentY;
+        lastTrack = now;
       }
       swipped = true;
     }
@@ -197,6 +230,40 @@ document.addEventListener("DOMContentLoaded", function () {
         if (toId) {
           scrollTo(toId, deltaY * -1);
         }
+      } else {
+        var speedFactor = 10;
+        var steps = Math.min(100, Math.abs(speed * speedFactor) / 0.05);
+        var easeer = easeOut(speed * direction * speedFactor, steps);
+        var next = easeer.next();
+
+        var stopped = false;
+        function motion() {
+          var delta = speed * speedFactor - next.value;
+          var direction = delta > 0 ? 1 : -1;
+          var sectionOverflow = getCurrentSectionOverflow(direction);
+          var scrollOffset =
+            direction === -1
+              ? Math.max(delta, sectionOverflow)
+              : Math.min(delta, sectionOverflow);
+          rootEl.scrollBy(0, scrollOffset);
+          scrollViewport.scrollBy(0, scrollOffset);
+          next = easeer.next();
+          if (
+            next.done === false &&
+            stopped === false &&
+            scrollOffset !== sectionOverflow
+          ) {
+            requestAnimationFrame(motion);
+          }
+        }
+
+        function onTouchStart() {
+          stopped = true;
+          document.removeEventListener("touchstart", onTouchStart);
+        }
+        document.addEventListener("touchstart", onTouchStart);
+
+        if (Math.abs(speed) > 0.5) motion();
       }
 
       startY = void 0;
@@ -206,7 +273,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     return function (ev) {
-      // if (scrollDelay === true) return;
       startY = ev.changedTouches[0].screenY;
       document.addEventListener("touchmove", onTouchMove);
       document.addEventListener("touchend", onTouchEnd);
