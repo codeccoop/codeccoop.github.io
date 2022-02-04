@@ -1,0 +1,8 @@
+- id: email
+  url: mailto:hola@codec.coop
+- id: mastodon
+  url: https://barcelona.social/codeccoop
+- id: twitter
+  url: https://twitter.com/codeccoop
+- id: telegram
+  url: https://t.me/codeccoop

@@ -18,6 +18,7 @@
 
     <script src="/assets/js/utils/device-detect.js"></script>
     <script src="/assets/js/utils/easees.js"></script>
+    <script src="/assets/js/utils/SectionScroller.js"></script>
   </head>
   <body>
     {% if page.page == "blog" or page.collection == "posts" %}
@@ -26,7 +27,6 @@
     <header id="pageHeader">{% include navigation.html %}</header>
     {% endif %}
     <main class="{{ page.page }}">{{ content }}</main>
-    <footer></footer>
     <script src="/assets/js/main.js" ></script>
     <script src="/assets/js/components/header.js" ></script>
   </body>

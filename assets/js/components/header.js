@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
   var $el = document.getElementById("pageHeader");
   var burger = document.querySelectorAll(".navbar-burger")[0];
+
   burger.addEventListener("click", function () {
-    var targetId = burger.dataset.target;
-    var targetEl = document.getElementById(targetId);
+    if (!burger.classList.contains("is-active")) {
+      var targetId = burger.dataset.target;
+      var targetEl = document.getElementById(targetId);
 
-    burger.classList.toggle("is-active");
-    targetEl.classList.toggle("is-active");
-
-    if (burger.classList.contains("is-active")) {
+      burger.classList.add("is-active");
+      targetEl.classList.add("is-active");
       document.addEventListener("click", onClickOut, true);
     }
   });
@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
   function onClickOut(ev) {
     if (!$el.contains(ev.target)) {
       ev.preventDefault();
-      ev.stopPropagation();
     }
 
+    ev.stopPropagation();
     burger.classList.remove("is-active");
     document
       .getElementById(burger.dataset.target)

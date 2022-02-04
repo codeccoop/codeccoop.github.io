@@ -72,8 +72,13 @@ main.blog {
     }
 }
 
+.blog__categories {
+    display: flex;
+}
+
 .blog__categories-list {
     margin-left: 0.75rem;
+    display: flex;
 }
 
 .blog__category {

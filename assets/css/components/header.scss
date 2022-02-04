@@ -85,5 +85,40 @@ header {
         .navbar-burger {
             width: 16px;
         }
+
+        .navbar-end {
+            @media screen and (max-width: 1024px) {
+                > .navbar-item {
+                    padding-top: 2rem;
+                }
+            }
+
+            .icon {
+                opacity: .8;
+                cursor: pointer;
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                margin-right: .5em;
+
+                &:last-child {
+                    margin-right: 0px;
+                }
+
+                $icons: email, mastodon, twitter, telegram;
+                @each $icon in $icons {
+                    &[data-link="#{$icon}"] {
+                        background-image: url("/assets/images/icons/#{$icon}.png");
+                    }
+                }
+
+                > a {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+        }
     }
 }

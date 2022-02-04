@@ -17,6 +17,7 @@ main.home {
     flex-direction: column;
     padding: calc(2rem + #{$header-height}) #{$site-paddings} 3rem;
     min-height: 100vh;
+    scroll-snap-align: start;
 
     &#home {
         background-color: $regent-st-blue;
@@ -219,7 +220,7 @@ main.home {
     }
 }
 
-.home__scroll-viewport {
+.scroll-viewport {
     position: absolute;
     z-index: 90;
     pointer-events: none;
@@ -231,7 +232,7 @@ main.home {
     overflow-y: auto;
 }
 
-.home__scroll-veil {
+.scroll-span {
     width: 100%;
     margin-top: -#{$header-height};
     background: transparent;

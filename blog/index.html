@@ -7,7 +7,7 @@ page: blog
 <h3 class="blog__title title is-3">Últimes publicacions</h3>
 {% assign cat_len = site.categories | size %}
 {% if cat_len > 1 %}
-<aside class="blog__categories level">
+<aside class="blog__categories level is-mobile">
   <label>Categories:</label>
   <ul class="blog__categories-list level-right">
     {% for category in site.categories %}
