@@ -41,24 +41,8 @@ var SectionScroller = (function () {
     return viewport;
   }
 
-  function _onScrollEnds($el, fn) {
-    var scrolled = false;
-    var delayed;
-
-    function then() {
-      $el.removeEventListener("scroll", whileScroll);
-      if (scrolled) fn();
-    }
-
-    function whileScroll() {
-      clearTimeout(delayed);
-      delayed = setTimeout(then, 150);
-      scrolled = true;
-    }
-
-    $el.addEventListener("scroll", whileScroll);
-    delayed = setTimeout(then, 150);
-  }
+  var _while;
+  var _whileScroll = function () {};
 
   function _swipeMotion(speed) {
     if (Math.abs(speed) < 0.5) return;
@@ -123,8 +107,6 @@ var SectionScroller = (function () {
     logger.classList.add("scroll-logger");
 
     logger.log = function (message) {
-      message += "\n------\nwin.height: " + window.innerHeight;
-      message += "\ndoc.offset: " + document.body.offsetHeight;
       logger.innerText = message;
     };
 
@@ -132,8 +114,9 @@ var SectionScroller = (function () {
   }
 
   /* PUBLIC INTERFACE */
-  function SectionScroller(scrollEl, sectionClass, log) {
+  function SectionScroller(scrollEl, sectionClass, settings) {
     var self = this;
+    settings ||= {};
     _createStylesheet();
 
     this.$el = scrollEl;
@@ -171,12 +154,28 @@ var SectionScroller = (function () {
       },
       set: function (section) {
         if (Number.isInteger(section)) {
-          section = self.sections[section];
+          section = self.sections[section] || _currentSection;
         }
 
-        if (section !== _currentSection && section) {
+        if (section !== _currentSection) {
+          var direction =
+            self.sections.indexOf(section) -
+            self.sections.indexOf(_currentSection);
           _currentSection = section;
-          self.scrollTo(_currentSection);
+
+          function whileScroll() {
+            clearTimeout(_while);
+            _while = setTimeout(function () {
+              self.$el.removeEventListener("scroll", whileScroll);
+              self.delayed = false;
+              self.$logger.log("Delayed = false");
+            }, 50);
+          }
+          self.$el.addEventListener("scroll", whileScroll);
+          self.delayed = true;
+          self.$logger.log("Delayed = true");
+
+          self.scrollTo(_currentSection, direction);
 
           setTimeout(function () {
             self.onSectionUpdate(_currentSection);
@@ -210,10 +209,11 @@ var SectionScroller = (function () {
       _currentSection = visibleSection.id;
       location.hash = _currentSection;
 
-      self.scrollTo(_currentSection, "auto");
+      self.scrollTo(_currentSection, 1, "auto");
       self.delayed = false;
+      self.$logger.log("Delayed = false");
 
-      if (log) {
+      if (settings.debug) {
         self.$viewport.appendChild(self.$logger);
         self.$logger.log("Initialized");
       }
@@ -266,14 +266,21 @@ var SectionScroller = (function () {
     return Math.abs(overflow) <= 5 ? 0 : overflow;
   };
 
-  SectionScroller.prototype.scrollTo = function (id, behavior) {
+  SectionScroller.prototype.scrollTo = function (id, direction, behavior) {
+    direction ||= 1;
     behavior ||= "smooth";
     var el = document.getElementById(id);
     var order = {
       left: 0,
-      top: el.getBoundingClientRect().top,
+      top: null,
       behavior: behavior,
     };
+
+    if (direction > 0) {
+      order.top = el.getBoundingClientRect().top;
+    } else {
+      order.top = el.getBoundingClientRect().bottom - window.innerHeight;
+    }
 
     this.$el.scrollBy(order);
 
@@ -285,109 +292,61 @@ var SectionScroller = (function () {
 
     this.currentSection = id;
     history.replaceState({ from: location.hash }, null, "/#" + id);
-
-    _onScrollEnds(
-      this.$el,
-      (function (self) {
-        return function () {
-          self.delayed = false;
-        };
-      })(this)
-    );
-
-    this.delayed = true;
   };
 
   SectionScroller.prototype.onScroll = (function () {
-    var delaye, startEvent, direction, overflow;
+    var self, delayed, startEvent, direction, overflow;
+
+    function _onScrollEnds() {
+      overflow = self.getCurrentSectionOverflow(direction);
+      if (overflow * direction < 0) {
+        self.currentSection =
+          self.sections.indexOf(self.currentSection) + direction;
+      }
+    }
 
     return function (ev) {
-      ev.stopPropagation();
       self = this;
       if (self.delayed === true) return;
+
+      var offset = ev.deltaY;
       direction = ev.deltaY < 0 ? -1 : 1;
-      overflow = self.getCurrentSectionOverflow(direction);
 
-      self.$logger.log(
-        "OnScroll\n Overflow: " + overflow + "px\n Direction: " + direction
-      );
+      self.$el.scrollBy(0, offset);
+      self.$viewport.scrollBy(0, offset);
 
-      if (overflow === 0) {
-        // Case when scrolled to the end of a section
-        startEvent = ev;
-        clearTimeout(delaye);
-        delaye = setTimeout(function () {
-          self.currentSection =
-            self.sections.indexOf(self.currentSection) + direction;
-        }, 50);
-      } else {
-        // Scroll through the content of one section
-        var offset =
-          Math.min(Math.abs(overflow), Math.abs(ev.deltaY)) * direction;
-        self.$el.scrollBy(0, offset);
-        self.$viewport.scrollBy(0, offset);
-
-        if (offset === overflow) {
-          _onScrollEnds(self.$el, function () {
-            self.delayed = false;
-          });
-          self.delayed = true;
-        }
-      }
+      clearTimeout(delayed);
+      delayed = setTimeout(_onScrollEnds, 50);
     };
   })();
 
   SectionScroller.prototype.onSwipe = (function () {
     var swipped = false;
-    var startY, deltaY, direction, overflow, speed, lastTrack;
+    var self, startY, deltaY, direction, overflow, speed, lastTrack;
 
     function _onTouchMove(ev) {
-      var self = this;
+      if (self.delayed === true) return;
       var currentY = ev.changedTouches[0].screenY;
       var now = Date.now();
       deltaY = startY - currentY;
       direction = currentY > startY ? -1 : 1;
       speed = deltaY / (now - lastTrack);
 
-      overflow = self.getCurrentSectionOverflow(direction);
-      self.$logger.log(
-        "OnMove\n Overflow: " + overflow + "px\n Direction: " + direction
-      );
-
-      if (overflow === 0) {
-        // pass
-      } else {
-        var offset = Math.min(Math.abs(overflow), Math.abs(deltaY)) * direction;
-        self.$el.scrollBy(0, offset);
-        self.$viewport.scrollBy(0, offset);
-
-        if (offset === overflow) {
-          self.delayed = true;
-        } else {
-          self.delayed = false;
-        }
-
-        startY = currentY;
-        lastTrack = now;
-      }
+      var offset = deltaY;
+      self.$el.scrollBy(0, offset);
+      self.$viewport.scrollBy(0, offset);
+      startY = currentY;
+      lastTrack = now;
 
       swipped = true;
     }
 
     function _onTouchEnd(ev) {
-      var self = this;
       document.removeEventListener("touchmove", _onTouchMove);
       document.removeEventListener("touchend", _onTouchEnd);
       if (!swipped) return;
-      if (self.delayed) {
-        self.delayed = false;
-        return;
-      }
 
       overflow = self.getCurrentSectionOverflow(direction);
-      self.$logger.log(
-        "OnEnds\n Overflow: " + overflow + "px\n Direction: " + direction
-      );
 
       if (direction * overflow <= 0) {
         self.currentSection =
@@ -403,6 +362,7 @@ var SectionScroller = (function () {
     }
 
     return function (ev) {
+      self = this;
       startY = ev.changedTouches[0].screenY;
 
       _onTouchMove = _onTouchMove.bind(this);
