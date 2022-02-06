@@ -25,6 +25,13 @@ var SectionScroller = (function () {
 
     var height = getContentHeight();
     window.addEventListener("resize", function () {
+      if (isMobile()) {
+        return;
+      }
+      height = getContentHeight();
+      span.style.height = height + "px";
+    });
+    screen.orientation.addEventListener("change", function () {
       height = getContentHeight();
       span.style.height = height + "px";
     });
@@ -62,7 +69,7 @@ var SectionScroller = (function () {
     var steps = Math.min(100, Math.abs(speed) / 0.1);
 
     var stop = Easeer.animate(
-      function (progress) {
+      function (progress, stop) {
         var delta = speed - speed * progress;
         var direction = delta > 0 ? 1 : -1;
         var overflow = self.getCurrentSectionOverflow(direction);
@@ -70,7 +77,7 @@ var SectionScroller = (function () {
         self.$el.scrollBy(0, offset);
         self.$viewport.scrollBy(0, offset);
 
-        if (offset === overflow) {
+        if (Math.round(offset) === Math.round(overflow)) {
           stop();
         }
       },
@@ -86,29 +93,70 @@ var SectionScroller = (function () {
     document.addEventListener("touchstart", onTouchStart);
   }
 
+  function _createStylesheet() {
+    var styles = "html, body { overscroll-behavior-y: contain; }";
+    styles +=
+      ".scroll-root { overflow: hidden; height: 100vh; height: calc(var(--vh, 1vh) * 100); width: 100%; overscroll-behavior-y: contain; }";
+    styles +=
+      ".scroll-root .scroll-section { min-height: 100vh; min-height: calc(var(--vh, 1vh) * 100); width: 100vw; width: calc(var(--vw, 1vw) * 100); }";
+    styles +=
+      ".scroll-viewport { position: absolute; z-index: 90; pointer-events: none; top: 0px; left: 0px; width: 100vw; width: calc(var(--vw, 1vw) * 100); height: 100vh; height: calc(var(--vh, 1vh) * 100); overflow-x: hidden; overflow-y: auto; }";
+    styles +=
+      ".scroll-viewport .scroll-span { width: 100%; background: transparent; }";
+    styles +=
+      ".scroll-viewport .scroll-logger { position: fixed; bottom: 15px; right: 30px; z-index: 10; background: white; border-radius: 5px; padding: .5em 1em; box-shadow: 2px 2px 6px #0003; }";
+
+    var css = document.createElement("style");
+    css.type = "text/css";
+
+    if (css.styleSheet) {
+      css.styleSheet.cssText = styles;
+    } else {
+      css.appendChild(document.createTextNode(styles));
+    }
+
+    document.getElementsByTagName("head")[0].appendChild(css);
+  }
+
+  function _setupLogger() {
+    logger = document.createElement("div");
+    logger.classList.add("scroll-logger");
+
+    logger.log = function (message) {
+      message += "\n------\nwin.height: " + window.innerHeight;
+      message += "\ndoc.offset: " + document.body.offsetHeight;
+      logger.innerText = message;
+    };
+
+    return logger;
+  }
+
   /* PUBLIC INTERFACE */
-  function SectionScroller(scrollEl, sectionClass) {
+  function SectionScroller(scrollEl, sectionClass, log) {
     var self = this;
+    _createStylesheet();
+
     this.$el = scrollEl;
-    sectionClass ||= "scroll-section";
-    this.sectionClass = sectionClass;
+    this.$el.classList.add("scroll-root");
+    this.sectionClass = "scroll-section";
     this.delayed = false;
 
-    this.$el.style.height = "100vh";
-    this.$el.style.overflowY = "hidden";
-
-    for (var i = 0; i < this.$el.childElementCount; i++) {
-      this.$el.children[i].style.minHeight = "100vh";
+    var sections;
+    if (sectionClass) {
+      sections = Array.apply(
+        null,
+        this.$el.getElementsByClassName(sectionClass)
+      );
+    } else {
+      sections = Array.apply(null, this.$el.children);
     }
 
     Object.defineProperty(this, "sections", {
       configurable: false,
       enumerable: true,
       writable: false,
-      value: Array.apply(
-        null,
-        document.getElementsByClassName(sectionClass)
-      ).map(function (el, i) {
+      value: Array.apply(null, sections).map(function (el, i) {
+        el.classList.add("scroll-section");
         if (el.getAttribute("id") === null) {
           el.setAttribute("id", "scroll-section-" + i);
         }
@@ -164,7 +212,14 @@ var SectionScroller = (function () {
 
       self.scrollTo(_currentSection, "auto");
       self.delayed = false;
+
+      if (log) {
+        self.$viewport.appendChild(self.$logger);
+        self.$logger.log("Initialized");
+      }
     }, 0);
+
+    this.$logger = _setupLogger();
   }
 
   SectionScroller.prototype.getContentHeight = function () {
@@ -252,6 +307,11 @@ var SectionScroller = (function () {
       if (self.delayed === true) return;
       direction = ev.deltaY < 0 ? -1 : 1;
       overflow = self.getCurrentSectionOverflow(direction);
+
+      self.$logger.log(
+        "OnScroll\n Overflow: " + overflow + "px\n Direction: " + direction
+      );
+
       if (overflow === 0) {
         // Case when scrolled to the end of a section
         startEvent = ev;
@@ -290,6 +350,9 @@ var SectionScroller = (function () {
       speed = deltaY / (now - lastTrack);
 
       overflow = self.getCurrentSectionOverflow(direction);
+      self.$logger.log(
+        "OnMove\n Overflow: " + overflow + "px\n Direction: " + direction
+      );
 
       if (overflow === 0) {
         // pass
@@ -322,7 +385,11 @@ var SectionScroller = (function () {
       }
 
       overflow = self.getCurrentSectionOverflow(direction);
-      if (overflow === 0) {
+      self.$logger.log(
+        "OnEnds\n Overflow: " + overflow + "px\n Direction: " + direction
+      );
+
+      if (direction * overflow <= 0) {
         self.currentSection =
           self.sections.indexOf(self.currentSection) + direction;
       } else {
@@ -342,6 +409,22 @@ var SectionScroller = (function () {
       document.addEventListener("touchmove", _onTouchMove);
       _onTouchEnd = _onTouchEnd.bind(this);
       document.addEventListener("touchend", _onTouchEnd);
+    };
+  })();
+
+  SectionScroller.prototype.onResize = (function () {
+    var self;
+    var delayed;
+
+    return function () {
+      self = this;
+      clearTimeout(delayed);
+      delayer = setTimeout(function () {
+        var section = self.getVisibleSection();
+        var box = section.getBoundingClientRect();
+        self.$el.scrollBy(0, box.top);
+        self.$viewport.scrollBy(0, box.top);
+      }, 50);
     };
   })();
 

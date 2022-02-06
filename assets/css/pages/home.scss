@@ -7,23 +7,21 @@
 @import "breakpoints";
 @import "typography";
 
-main.home {
-    overflow: hidden;
-    height: 100vh;
-}
 
 .home__section {
     display: flex;
     flex-direction: column;
     padding: calc(2rem + #{$header-height}) #{$site-paddings} 3rem;
-    min-height: 100vh;
-    scroll-snap-align: start;
 
     &#home {
         background-color: $regent-st-blue;
         padding-bottom: 85;
         @include m-background-image("/assets/images/keys.gif", cover);
         background-position-y: bottom;
+
+        .is-mobile & {
+            height: 101vh;
+        }
     }
 
     &#about {
@@ -83,6 +81,10 @@ main.home {
         text-align: right;
         margin: 1em 0;
         font-size: .8em;
+
+        .is-mobile & {
+            margin-top: 3em;
+        }
     }
 }
 

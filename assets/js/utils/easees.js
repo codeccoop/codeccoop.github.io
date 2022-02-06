@@ -80,7 +80,9 @@ var Easeer = (function () {
 
     function _transition() {
       next = gen.next();
-      fn(next.value);
+      fn(next.value, function () {
+        closed = true;
+      });
       if (!(next.done || closed)) {
         setTimeout(_transition, debounce);
       }
@@ -99,7 +101,9 @@ var Easeer = (function () {
     var closed = false;
 
     function _wrapper() {
-      fn(next.value);
+      fn(next.value, function () {
+        closed = true;
+      });
       next = gen.next();
     }
 
