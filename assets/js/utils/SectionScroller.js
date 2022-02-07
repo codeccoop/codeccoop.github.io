@@ -41,9 +41,6 @@ var SectionScroller = (function () {
     return viewport;
   }
 
-  var _while;
-  var _whileScroll = function () {};
-
   function _swipeMotion(speed) {
     if (Math.abs(speed) < 0.5) return;
 
@@ -147,6 +144,7 @@ var SectionScroller = (function () {
       }),
     });
 
+    var _while;
     var _currentSection;
     Object.defineProperty(this, "currentSection", {
       get: function () {
@@ -163,15 +161,18 @@ var SectionScroller = (function () {
             self.sections.indexOf(_currentSection);
           _currentSection = section;
 
+          function afterScroll() {
+            self.$el.removeEventListener("scroll", whileScroll);
+            self.delayed = false;
+            self.$logger.log("Delayed = false");
+          }
+
           function whileScroll() {
             clearTimeout(_while);
-            _while = setTimeout(function () {
-              self.$el.removeEventListener("scroll", whileScroll);
-              self.delayed = false;
-              self.$logger.log("Delayed = false");
-            }, 50);
+            _while = setTimeout(afterScroll, 50);
           }
           self.$el.addEventListener("scroll", whileScroll);
+          _while = setTimeout(afterScroll, 150);
           self.delayed = true;
           self.$logger.log("Delayed = true");
 
