@@ -73,8 +73,13 @@ main.products {
 }
 
 .products__product-link {
+
     &:not(:first-child) {
         margin-left: 10px;
+    }
+
+    &:hover {
+        text-decoration: none;
     }
 
     .icon {

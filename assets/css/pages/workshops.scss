@@ -38,10 +38,19 @@ main.workshops {
     padding-top: 3rem;
 
     a {
+        display: block;
         color: $font-color;
+        text-decoration: none;
+
+        &:not(:last-child) {
+            margin-bottom: 1em;
+        }
 
         &:hover {
-            color: $font-color;
+            h2.title {
+                color: $indigo;
+                text-decoration: underline;
+            }
         }
     }
 }

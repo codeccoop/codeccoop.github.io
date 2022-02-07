@@ -44,3 +44,8 @@ html, body {
         font-size: ms(0);
     }
 }
+
+a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: from-font;
+}
