@@ -12,7 +12,7 @@ header {
     width: 100vw;
     z-index: 100;
     /* height: $header-height; */
-    background: white;
+    background: transparent;
 
     &.blog-header {
         background-color: $regent-st-blue;
@@ -47,6 +47,7 @@ header {
     }
 
     .navbar {
+        background-color: transparent;
         padding: 0 #{$site-paddings};
 
         @media screen and (max-width: 1024px) {

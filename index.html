@@ -5,8 +5,9 @@ page: home
 ---
 
 <section id="home" class="home__section">
+  <div class="home__background"></div>
   <h1 class="home__title title is-1">Còdec</h1>
-  <p class="subtitle is-4">codec.coop</p>
+  <p class="subtitle is-4">Codis comuns per una tecnologia més democràtica</p>
   <figure class="home__cite">
     <blockquote>
       <em
@@ -26,15 +27,17 @@ page: home
       //ca.wikipedia.org/w/index.php?title=C%C3%B2dec&oldid=29280351.
     </figcaption>
   </figure>
+  <div class="home__animation"></div>
 </section>
 <section id="work" class="home__section">
-  <h2 class="home__title title is-3">Què fem?</h2>
+  <h2 style="display: none" class="home__title title is-3">Què fem?</h2>
   <div class="home__section-content">
     <div class="home__services">
       <div class="home__section-row columns">
         <div class="home__section-column column is-8">
-          <h3 class="title is-6">Codifiquem la web</h3>
-          <p>
+          <h3 class="title is-3">Codifiquem la web</h3>
+          <h4 class="subtitle is-4">Convertim el teu projecte en codi</h4>
+          <p style="display: none">
             La
             <a
               target="__blank"
@@ -49,32 +52,28 @@ page: home
             l'espai on s'hi despleguen les més importants lògiques de
             concentració de poder i acumulació per despossessió a favor de grans
             tecnològiques. Avui la web no és un àgora sinó un centre comercial.
-            Recuperem la web com a espai d'interacció no mediat pel capital,
-            tornem-nos a convertir en productors, tornem a crear comunitats fora
-            de les fronteres de les seves xarxes sesgades.
-            <a href="/products.html"><b>Fes la teva web amb nosaltres!</b></a>
+            Per escapar d'aquestes lògiques treballem la web com estandar obert
+            amb eines i programari lliure per tal que puguis recobrar el control
+            sobre com comuniques a través d'internet. A més, treballem de forma
+            cooperativa
           </p>
+          <a class="button is-link" href="/products.html"
+            ><b>Fes la teva web amb nosaltres!</b></a
+          >
         </div>
         <div class="home__section-column img-column column is-4">
-          <a href="/products.html">
-            <figure>
-              <img src="/assets/images/developer.png" />
-              <figcaption>Ves-hi</figcaption>
-            </figure>
-          </a>
+          <figure>
+            <img src="/assets/images/developer.png" />
+            <!-- <figcaption>Fes la teva web amb nosaltres</figcaption> -->
+          </figure>
         </div>
       </div>
       <div class="home__section-row columns">
-        <div class="home__section-column img-column column is-4">
-          <a href="/workshops.html">
-            <figure>
-              <img src="/assets/images/learning.png" />
-              <figcaption>Ves-hi</figcaption>
-            </figure>
-          </a>
-        </div>
         <div class="home__section-column column is-8">
-          <h3 class="title is-6">Decodifiquem la informàtica</h3>
+          <h3 class="title is-3">Decodifiquem la informàtica</h3>
+          <h4 class="subtitle is-4">
+            Treballem per fer-la accessible i inclusiva
+          </h4>
           <p style="display: none">
             El món és digital, i fins al dia que arribi el col·lapse, o el
             judici final, sembla que així seguirà. L'evolució de l'informàtica
@@ -86,14 +85,8 @@ page: home
             vector de desigualtat i exclusió social. Si volem una tecnología
             justa, fa falta socialitzar el coneixement que ens permeti
             utilitzar-la de forma conscient i sobirana.
-            <a href="/workshops.html"
-              ><b
-                >T'expliquem la informàtica de nou perquè la tornis a fer
-                teva!</b
-              >b >
-            </a>
           </p>
-          <p>
+          <p style="display: none">
             Els grans capitals aposten per la
             <em>&#8220;artifical intelligence&#8221;</em>, els
             <em>&#8220;data centers&#8221;</em>, les
@@ -106,13 +99,16 @@ page: home
             distribuida i horitzontalitat es poden sumar forces sense delegar en
             centralitats subordinants. Fa falta que reaprenguem la tecnologia
             desde les coordenades de l'escala local i la sobirania tecnològica.
-            <a href="/workshops.html"
-              ><b
-                >T'expiquem la informàtica de nou perquè la tornis a fer
-                teva!</b
-              ></a
-            >
           </p>
+          <a class="button is-link" href="/workshops.html"
+            ><b>Descobreix els nostres tallers</b>
+          </a>
+        </div>
+        <div class="home__section-column img-column column is-4">
+          <figure>
+            <img src="/assets/images/learning.png" />
+            <!-- <figcaption>Ves-hi</figcaption> -->
+          </figure>
         </div>
       </div>
     </div>
@@ -124,24 +120,27 @@ page: home
     <div class="home__us columns">
       <div class="home__section-column column is-6">
         <div class="content">
-          <h3 class="title is-6">Serveis digitals</h3>
+          <h3 class="title is-6">Solucions digitals</h3>
           <p>
             Treballem per una digitalització a escala humana i amb caràcter
             comunitari. Naixem amb voluntat de desenvolupar productes i serveis
-            digitals desde la cultura del programari lliure i la sobirania
-            tecnològica.
+            digitals desde la cultura del programari lliure.
           </p>
-          <h3 class="title is-6">Tecnologia i cultura crítica</h3>
+          <h3 class="title is-6">Tecnologia i cultura lliure</h3>
           <p>
             Volem ser espai de reflexió i formació crítica al voltant de la
-            informàtica i les tecnologies de la informació i la comunicació.
-            Sobirania tecnològica, hackfeminisme, cultura lliure i decreixement.
+            informàtica. Solucions simples a problemes simples, apropiables,
+            accessibles i inclusives per garantir una tecnologia útil i
+            empoderadora a escala local i comunitaria. A favor de la creació
+            entesa com a procés col·lectiu i comunitari basat en la còpia, la
+            reutilització i la reapropiació.
           </p>
           <h3 class="title is-6">Autoocupació cooperativa</h3>
           <p>
             Apostem per projectes d'ocupació a través de la cooperació per
-            superar les formes de treballa basades en la propietat capitalista i
-            l'ànim de lucre antisocial.
+            superar les formes de treballa basades en lògiques capitalistes.
+            Volem construir espais laborals basats en l'horitzontalitat i les
+            cures.
           </p>
 
           <p><b>Som Còdec, sóm cooperativa</b></p>
@@ -152,24 +151,20 @@ page: home
       </div>
       <div class="home__section-column column is-6">
         <div class="home__profiles">
+          {% for author in site.authors %}
           <figure>
-            <img src="/assets/images/lucas.png" unselectable="on" />
-            <figcaption>Lucas</figcaption>
+            <img
+              src="/assets/images/{{ author.short_name }}.png"
+              unselectable="on"
+            />
+            <figcaption>{{ author.name }}</figcaption>
             <div class="quote-wrapper">
               <div class="quote">
-                <q><em>Vaig començar a fumar per poder deixar-ho.</em></q>
+                <q><em>{{ author.description }}</em></q>
               </div>
             </div>
           </figure>
-          <figure>
-            <img src="/assets/images/lucas.png" unselectable="on" />
-            <figcaption>Pau</figcaption>
-            <div class="quote-wrapper">
-              <div class="quote">
-                <q><em>Frase que em defineixi...</em></q>
-              </div>
-            </div>
-          </figure>
+          {% endfor %}
         </div>
       </div>
     </div>

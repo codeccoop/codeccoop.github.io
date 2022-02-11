@@ -6,4 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
   sectionScroller.onSectionUpdate = function (sectionId) {
     document.getElementById("pageHeader").setActiveLink(sectionId);
   };
+
+  setTimeout(function () {
+    var homeBg = new BackgroundPatterns("home");
+    homeBg.bind(document.getElementById("home"));
+    var workBg = new BackgroundPatterns("work");
+    workBg.bind(document.getElementById("work"));
+    var teamBg = new BackgroundPatterns("team");
+    teamBg.bind(document.getElementById("team"));
+  }, 0);
 });

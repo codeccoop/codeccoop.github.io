@@ -8,7 +8,9 @@
 
 main.products {
     padding: calc(2rem + #{$header-height}) #{$site-paddings} 3rem;
-    background-color: $tidal;
+    @include m-background-image("/assets/images/generic-bg.svg", contain);
+    background-position-y: 0%;
+    // background-color: $tidal;
 
     .products__title {
         font-weight: 500;
