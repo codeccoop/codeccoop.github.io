@@ -92,6 +92,7 @@
     font-size: ms(4);
     font-weight: 500;
     line-height: 1;
+    color: white;
 
     &:not(:last-child) {
         margin-bottom: 1.75rem;
@@ -140,6 +141,7 @@
 }
 
 .home__animation {
+    display:none;
     flex: 1;
     margin-right: -10vw;
     @include m-background-image("/assets/images/keys.gif", cover);

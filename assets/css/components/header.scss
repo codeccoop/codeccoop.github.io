@@ -12,7 +12,8 @@ header {
     width: 100vw;
     z-index: 100;
     /* height: $header-height; */
-    background: transparent;
+    background: white;
+    box-shadow: 0px -2px 5px #0003;
 
     &.blog-header {
         background-color: $regent-st-blue;
