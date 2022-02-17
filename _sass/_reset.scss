@@ -1,2 +1,11 @@
 $header-height: 60px;
 $site-paddings: 12vw;
+
+$link-color: #525393;
+.is-link {
+	background-color: $link-color !important;
+}
+
+a {
+	color: $link-color;
+}

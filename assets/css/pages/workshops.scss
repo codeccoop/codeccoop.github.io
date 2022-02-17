@@ -7,15 +7,35 @@
 @import "breakpoints";
 
 main.workshops {
-    padding: calc(2em + #{$header-height}) #{$site-paddings} 3rem;
+    padding: $header-height $site-paddings 175px;
     min-height: 100vh;
-    background-color: $regent-st-blue;
 
     .workshops__title {
+		margin-top: 15px;
+		height: 110px;
+		color: white;
         font-weight: 500;
+		line-height: .9;
+		display: flex;
+		flex-direction: column;
+		justify-content: end;
+		padding-bottom: 10px;
 
-        > span {
+		.is-mobile & {
+			height: 75px;
+		}
+
+		@include m-media(md) {
+			font-size: 2.5rem;
+		}
+
+        .subtitle {
+			color: white;
             display: block;
+
+			@include m-media(zr, md) {
+				font-size: 1rem;
+			}
         }
     }
 }
@@ -48,7 +68,7 @@ main.workshops {
 
         &:hover {
             h2.title {
-                color: $indigo;
+                color: $action-color;
                 text-decoration: underline;
             }
         }
@@ -56,7 +76,7 @@ main.workshops {
 }
 
 .workshops__item {
-    @include m-media(sm, md) {
+    @include m-media(zr, md) {
         flex-direction: column;
         align-items: center;
         flex-flow: column-reverse;
@@ -85,7 +105,7 @@ main.workshops {
 .workshops__items a:nth-child(even) .workshops__item {
     flex-flow: row-reverse;
 
-    @include m-media(sm, md) {
+    @include m-media(zr, md) {
         flex-flow: column-reverse;
     }
 }

@@ -25,6 +25,8 @@ html, body {
 }
 
 .title, .subtitle {
+	color: $font-color;
+
     &.is-1 {
         font-size: ms(3);
     }
@@ -44,6 +46,10 @@ html, body {
     &.is-5 {
         font-size: ms(0);
     }
+}
+
+.subtitle {
+	opacity: .8;
 }
 
 a:hover {

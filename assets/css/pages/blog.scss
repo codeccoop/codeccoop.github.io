@@ -3,14 +3,19 @@
 
 @import "reset";
 @import "colors";
+@import "images";
+@import "breakpoints";
 
 main.blog {
     min-height: 100vh;
-    padding: calc(#{$header-height} + 2rem) $site-paddings 2rem;
+    padding: $header-height $site-paddings 3rem;
     display: flex;
     flex-direction: column;
 
-    .blog__title,
+    .blog__title {
+		font-weight: bold;
+	}
+
     .blog__entry-title {
         font-weight: 500;
     }
@@ -20,7 +25,41 @@ main.blog {
     }
 }
 
-.blog__categories {
+.blog__banner {
+	height: 160px;
+	margin: 0 -12vw;
+	@include m-background-image("/assets/images/keys.gif", cover);
+	background-position-y: 100%;
+
+	.is-mobile & {
+		height: 75px;
+	}
+
+	@include m-media(xsm) {
+		height: 150px !important;
+	}
+
+	@include m-media(sm) {
+		height: 210px !important;
+	}
+
+	@include m-media(md) {
+		height: 260px !important;
+	}
+
+	@include m-media(lg) {
+		height: 300px !important;
+	}
+
+	@include m-media(xlg) {
+		height: 400px !important;
+	}
+}
+
+aside.blog__categories.level {
+	margin-bottom: 0;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
     justify-content: flex-start;
 
     &.is-active button {
@@ -90,9 +129,14 @@ main.blog {
 
 .blog__entry {
     padding: 1rem 2rem 1rem 0;
+
     &:not(:first-child) {
         border-top: 1px solid
     }
+
+	time {
+		font-size: .6em;
+	}
 }
 
 .blog__pagination {

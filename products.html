@@ -5,7 +5,7 @@ page: products
 ---
 
 <div class="products__content content">
-  <h1 class="products__title title is-3">
+  <h1 class="products__title title is-4">
     Codifiquem la web
     <span class="subtitle">Solucions digitals</span>
   </h1>
@@ -69,7 +69,4 @@ page: products
   </article>
   {% endfor %}
 </div>
-<script>
-  var SectionBg = new BackgroundPatterns("default");
-  SectionBg.bind(document.getElementsByTagName("main")[0]);
-</script>
+<script src="{{ base.url | prepend: site.url }}/assets/js/pages/products.js"></script>

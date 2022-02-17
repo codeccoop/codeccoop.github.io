@@ -2,10 +2,12 @@
 ---
 
 @import "reset";
+@import "breakpoints";
 
 main.workshop {
     padding: $header-height $site-paddings 3rem;
 }
+
 
 .workshop__breadcrumb {
     margin-top: 1em;

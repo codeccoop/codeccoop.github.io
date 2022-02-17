@@ -11,7 +11,7 @@
   github: https://github.com/jekyll/jekyll
   price: 500€
 - name: Strapi
-  subtitle: Una eina perfecta de gestió digital personalitzada
+  subtitle: Un CMS orientat a la gestió de dades
   description: "Strapi és el que s'anomena un Headless CMS, o sistema de gestió de continguts escapçat. A diferència dels CMS clàssics (WordPress, Joomla, Drupal), Strapi no disposa d'un sistema de plantilles, o dit d'una altra manera, Strapi s'encarrega exclusivament de la gestió del contingut, però no de la seva presentació. En definitiva, si estàs buscant una eina de gestió digital distribuida &#8212;eines de backoffice, de gestió corporativa, d'analytics&#8212; Strapi permet centrar-te més en que vols solucionar i menys en com ho vols solucionar."
   url: https://strapi.io/
   github: https://github.com/strapi/strapi
