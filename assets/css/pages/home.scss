@@ -210,10 +210,12 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: center;
 
         figure {
             flex: 1;
-            flex-basis: 250px;
+            flex-basis: 200px;
+            flex-grow: 0;
             cursor: help;
             position: relative;
 
@@ -228,7 +230,7 @@
 
             figcaption {
                 text-align: center;
-                font-size: ms(1);
+                font-size: 1.7em;
             }
 
             .quote-wrapper {
