@@ -5,6 +5,8 @@
 @import "colors";
 @import "images";
 @import "breakpoints";
+@import "viewport";
+@import "typography";
 
 main.workshops {
     padding: $header-height $site-paddings 175px;
@@ -108,4 +110,16 @@ main.workshops {
     @include m-media(zr, md) {
         flex-flow: column-reverse;
     }
+}
+
+.workshops__work-in-progress {
+	figcaption {
+		font-size: ms(1);
+		margin-bottom: 1em;
+	}
+
+	img {
+		width: vw(50);
+		max-width: 200px;
+	}
 }

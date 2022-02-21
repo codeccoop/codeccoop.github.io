@@ -3,5 +3,5 @@
 }
 
 @function vw ($value) {
-    @return "calc(var(--vw, 1vw) * #{$value})";
+    @return unquote("calc(var(--vw, 1vw) * #{$value})");
 }

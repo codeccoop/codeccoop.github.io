@@ -5,49 +5,55 @@ page: workshops
 ---
 
 <div class="workshops__content content">
-  <h1 class="workshops__title title is-4">
-    Decodifiquem la informàtica
-    <span class="subtitle">Tallers i formacions</span>
-  </h1>
-  <div class="workshops__head columns">
-    <div class="workshops__abstract column is-9">
-      <p>
-        El món és cada cop més digital i sembla que així seguirà sent. Així,  l'alfabtetizació digital es converteix en
-        imperatiu urgent si no volem que la tecnologia es converteixi en un nou
-        vector de desigualtat i exclusió social. Si volem una tecnología
-        justa, fa falta socialitzar el coneixement que ens permeti
-        utilitzar-la de forma conscient i sobirana.
-    </p>
-    <p>
-        Sabem que les formes que adopta la tecnologia no són políticament
-        neutres i que espais com l'escola, l'administració o els llocs de feina esdevenen un camp de batalla on les grans tecnològiques aposten per les seves solucions. Aquesta invasió de l'imaginari col·lectiu impossibilita pensar altres tecnologies que solucionin els nostres problemes i fins i tot, el per a què les necessitem i les utilitzem.
-      </p>
-      <p>
-        Amb els nostres tallers volem capacitar tecnològicament i alhora ajudar a crear nous marcs des d'on entendre la tecnologia.
-    </p>
-    </div>
-    <div class="workshops__image column is-3">
-      <img src="/assets/images/workshops.png" />
-    </div>
-  </div>
-  <div id="workshops" class="workshops__items">
-    {% for workshop in site.workshops %}
-    <a href="{{ workshop.url }}"
-      ><article id="{{ workshop.id }}" class="workshops__item media">
-        <figure class="workshops__sorkshop-badge media-left">
-          <p class="image is-128x128">
-            <img
-              src="/assets/images/workshops/{{workshop.id | downcase }}.png"
-            />
-          </p>
-        </figure>
-        <div class="workshops__workshop-description media-content">
-          <h2 class="title is-4">{{ workshop.title }}</h2>
-          <p>{{ workshop.description }}</p>
+    <h1 class="workshops__title title is-4">
+        Decodifiquem la informàtica
+        <span class="subtitle">Tallers i formacions</span>
+    </h1>
+    <div class="workshops__head columns">
+        <div class="workshops__abstract column is-9">
+            <p>
+                El món és cada cop més digital i sembla que així seguirà sent. Així, l'alfabtetizació digital es converteix en
+                imperatiu urgent si no volem que la tecnologia es converteixi en un nou
+                vector de desigualtat i exclusió social. Si volem una tecnología
+                justa, fa falta socialitzar el coneixement que ens permeti
+                utilitzar-la de forma conscient i sobirana.
+            </p>
+            <p>
+                Sabem que les formes que adopta la tecnologia no són políticament
+                neutres i que espais com l'escola, l'administració o els llocs de feina esdevenen un camp de batalla on les grans tecnològiques aposten per les seves solucions. Aquesta invasió de l'imaginari col·lectiu impossibilita pensar altres tecnologies que solucionin els nostres problemes i fins i tot, el per a què les necessitem i les utilitzem.
+            </p>
+            <p>
+                Amb els nostres tallers volem capacitar tecnològicament i alhora ajudar a crear nous marcs des d'on entendre la tecnologia.
+            </p>
         </div>
-      </article></a
-    >
-    {% endfor %}
-  </div>
+        <div class="workshops__image column is-3">
+            <img src="/assets/images/workshops.png" />
+        </div>
+    </div>
+    <div id="workshops" class="workshops__items">
+        {% assign workshops = site.workshops | where: "status", "public" %}
+        {% if workshops.size > 0 %}
+        {% for workshop in workshops %}
+        <a href="{{ workshop.url }}">
+            <article id="{{ workshop.id }}" class="workshops__item media">
+                <figure class="workshops__sorkshop-badge media-left">
+                    <p class="image is-128x128">
+                        <img src="/assets/images/workshops/{{workshop.id | downcase }}.png" />
+                    </p>
+                </figure>
+                <div class="workshops__workshop-description media-content">
+                    <h2 class="title is-4">{{ workshop.title }}</h2>
+                    <p>{{ workshop.description }}</p>
+                </div>
+            </article>
+        </a>
+        {% endfor %}
+        {% else %}
+        <figure class="workshops__work-in-progress">
+            <figcaption>Estem treballant en el contingut d'aquesta secció.</figcaption>
+            <img src="/assets/images/wip.png" alt="work in progress" />
+        </figure>
+        {% endif %}
+    </div>
 </div>
 <script src="{{ base.url | prepend: site.url }}/assets/js/pages/workshops.js"></script>
