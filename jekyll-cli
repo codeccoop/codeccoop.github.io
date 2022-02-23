@@ -6,7 +6,8 @@ cd $dir
 order="$1";
 options=(
 	"serve"
-	"build"
+	"build:pre"
+	"build:pro"
 )
 
 if [[ -z "$order" ]]; then
@@ -34,7 +35,7 @@ fi
 
 if [[ "$order" == "serve" ]]; then
 	bundle exec jekyll serve --livereload -P 8050
-elif [[ "$order" == "build" ]]; then
+elif [[ "$order" == "build:pre" ]]; then
 	bundle exec jekyll build
 
 	if [[ -f "dist.zip" ]]; then
@@ -46,6 +47,19 @@ elif [[ "$order" == "build" ]]; then
 	echo
 	echo "Build success!"
 	echo "Built package has been places on $dir/dist.zip"
+elif [[ "$order" == "build:pro" ]]; then
+	JEKYLL_ENV=production bundle exec jekyll build --config _config.prod.yml 
+
+	if [[ -f "dist.zip" ]]; then
+		rm dist.zip
+	fi
+
+	zip dist.zip -r _site/*
+
+	echo
+	echo "Build success!"
+	echo "Built package has been places on $dir/dist.zip"
+
 else
 	echo "Unknown command"
 fi

@@ -7,6 +7,9 @@
 @import "breakpoints";
 @import "typography";
 
+//.home.scroll-root{
+//    scroll-behavior: smooth;
+//}
 
 .home__section {
     position: relative;
@@ -266,8 +269,8 @@
             }
 
             q {
-                font-size: ms(0);
-                line-height: 1.5;
+                font-size: .8em;
+                line-height: 1;
             }
 
             &:hover {
