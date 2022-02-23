@@ -80,6 +80,7 @@ var SectionScroller = (function() {
             styles = ".scroll-root { overflow-y: scroll; height: 100vh; scroll-snap-type: y mandatory; }";
             styles +=
                 ".scroll-root .scroll-section { min-height: 100vh; min-height: calc(var(--vh, 1vh) * 100); width: 100vw; width: calc(var(--vw, 1vw) * 100); scroll-snap-align: start; scroll-snap-stop: always; }";
+			styles += ".scroll-root .scroll-section:last-child { height: 0px; min-height: 0px; }";
         } else {
             styles = "html, body { overscroll-behavior-y: contain; }";
             styles +=
@@ -194,6 +195,9 @@ var SectionScroller = (function() {
         });
 
 		if (isMobile()) {
+			var lastChild = document.createElement("div");
+			lastChild.classList.add(this.sectionClass);
+			this.$el.appendChild(lastChild);
 			return
 		}
 
