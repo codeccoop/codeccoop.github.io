@@ -29,7 +29,7 @@ page: products
       </p>
     </div>
     <div class="products__image column is-4">
-      <img src="/assets/images/products.png" />
+      <img src="{{ base.url | prepend: site.url }}/assets/images/products.png" />
     </div>
   </div>
   <hr />
@@ -37,7 +37,7 @@ page: products
   <article name="{{product.name | downcase}}" class="products__product media">
     <figure class="products__product-badge media-left">
       <p class="image is-128x128">
-        <img src="/assets/images/logos/{{product.name | downcase }}.png" />
+        <img src="{{ base.url | prepend: site.url }}/assets/images/logos/{{product.name | downcase }}.png" />
       </p>
     </figure>
     <div class="products__product-description media-content">
@@ -69,4 +69,4 @@ page: products
   </article>
   {% endfor %}
 </div>
-<script src="/assets/js/pages/products.js"></script>
+<script src="{{ base.url | prepend: site.url }}/assets/js/pages/products.js"></script>

@@ -27,7 +27,7 @@ page: workshops
             </p>
         </div>
         <div class="workshops__image column is-3">
-            <img src="/assets/images/workshops.png" />
+            <img src="{{ base.url | prepend: site.url }}/assets/images/workshops.png" />
         </div>
     </div>
     <div id="workshops" class="workshops__items">
@@ -38,7 +38,7 @@ page: workshops
             <article id="{{ workshop.id }}" class="workshops__item media">
                 <figure class="workshops__sorkshop-badge media-left">
                     <p class="image is-128x128">
-                        <img src="/assets/images/workshops/{{workshop.id | downcase }}.png" />
+                        <img src="{{ base.url | prepend: site.url }}/assets/images/workshops/{{workshop.id | downcase }}.png" />
                     </p>
                 </figure>
                 <div class="workshops__workshop-description media-content">
@@ -51,9 +51,9 @@ page: workshops
         {% else %}
         <figure class="workshops__work-in-progress">
             <figcaption>Estem treballant en el contingut d'aquesta secció.</figcaption>
-            <img src="/assets/images/wip.png" alt="work in progress" />
+            <img src="{{ base.url | prepend: site.url }}/assets/images/wip.png" alt="work in progress" />
         </figure>
         {% endif %}
     </div>
 </div>
-<script src="/assets/js/pages/workshops.js"></script>
+<script src="{{ base.url | prepend: site.url }}/assets/js/pages/workshops.js"></script>

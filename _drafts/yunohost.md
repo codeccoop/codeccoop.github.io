@@ -48,7 +48,7 @@ teu interès. Me'n alegro. Així doncs, seguim, i ara ens toca presentar-te el q
 serà el nostre company de viatge.
 
 {:.centered}
-[![yunohost-logo](/assets/images/yunohost-logo.png)](https://yunohost.org/)
+[![yunohost-logo]({% link /assets/images/yunohost-logo.png %})](https://yunohost.org/)
 
 > YunoHost és un sistema operatiu pensat per fer simplificar al màxim la feina
 > d'administració d'un servidor, a més de democratitzar el món del "self-hosting",
@@ -115,7 +115,7 @@ els CDs?) on poder grabar la imàtge del sistema operatiu Yunohost que instal·l
 després. Aquest hauria de disposar d'una capacitat d'enmagatzematge mínim de 1GB.
 
 {:.centered}
-![cdrom](/assets/images/cdrom.png){:style="height:200px;"}
+![cdrom]({% link /assets/images/cdrom.png %}){:style="height:200px;"}
 
 {:.centered}
 <sup>Per als més joves, això és una pila de CDs.</sup>

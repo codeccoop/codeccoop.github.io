@@ -51,11 +51,11 @@ page: home
                         sobre com comuniques a través d'internet. A més, treballem de forma
                         cooperativa
                     </p>
-                    <a class="button is-link" href="/products.html"><b>Fes la teva web amb nosaltres!</b></a>
+                    <a class="button is-link" href="{{ base.url | prepend: site.url }}/products.html"><b>Fes la teva web amb nosaltres!</b></a>
                 </div>
                 <div class="home__section-column img-column column is-4">
                     <figure>
-						<a href="/products.html"><img src="/assets/images/developer.png" /></a>
+						<a href="{{ base.url | prepend: site.url }}/products.html"><img src="{{ base.url | prepend: site.url }}/assets/images/developer.png" /></a>
                     </figure>
                 </div>
             </div>
@@ -91,12 +91,12 @@ page: home
                         centralitats subordinants. Fa falta que reaprenguem la tecnologia
                         desde les coordenades de l'escala local i la sobirania tecnològica.
                     </p>
-                    <a class="button is-link" href="/workshops.html"><b>Descobreix els nostres tallers</b>
+                    <a class="button is-link" href="{{ base.url | prepend: site.url }}/workshops.html"><b>Descobreix els nostres tallers</b>
                     </a>
                 </div>
                 <div class="home__section-column img-column column is-4">
                     <figure>
-						<a href="/workshops.html"><img src="/assets/images/learning.png" /></a>
+						<a href="{{ base.url | prepend: site.url }}/workshops.html"><img src="{{ base.url | prepend: site.url }}/assets/images/learning.png" /></a>
                     </figure>
                 </div>
             </div>
@@ -142,7 +142,7 @@ page: home
                 <div class="home__profiles">
                     {% for author in site.authors %}
                     <figure>
-                        <img src="/assets/images/{{ author.short_name }}.png" unselectable="on" />
+                        <img src="{{ base.url | prepend: site.url }}/assets/images/{{ author.short_name }}.png" unselectable="on" />
                         <figcaption>{{ author.name }}</figcaption>
                         <div class="quote-wrapper">
                             <div class="quote">
@@ -156,4 +156,4 @@ page: home
         </div>
     </div>
 </section>
-<script src="/assets/js/pages/home.js"></script>
+<script src="{{ base.url | prepend: site.url }}/assets/js/pages/home.js"></script>

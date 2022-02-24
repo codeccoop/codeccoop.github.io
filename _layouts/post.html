@@ -4,7 +4,7 @@ layout: default
 
 <nav class="post__breadcrumb breadcrumb is-small has-arrow-separator" aria-label="breadcrumbs">
   <ul>
-    <li><a href="/blog/">Blog</a></li>
+    <li><a href="{{ base.url | prepend: site.url }}/blog/">Blog</a></li>
     <li class="is-active"><a aria-current="page">{{ page.title }}</a></li>
   </ul>
 </nav>
