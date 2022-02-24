@@ -1,4 +1,7 @@
+title: Còdec
+description: Codis comuns per una tecnologia més democràtica
 url: https://codeccoop.org
+
 collections:
   authors:
     output: true
@@ -39,3 +42,5 @@ plugins:
 
 sass:
   sourcemap: never
+
+

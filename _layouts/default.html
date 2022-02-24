@@ -10,7 +10,17 @@
     <title>{{ page.title }}</title>
     {% endif %}
 
-    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="{{ base.url | prepend: site.url }}/assets/css/styles.css" />
+
+	<!-- favicons -->
+	<link rel="icon" type="image/png" href="{{ base.url | prepend: site.url }}/assets/images/favicons/32x32.png" />
+	<!-- For iPad -->
+	<link rel="icon" type="image/png" sizes="167x167" href="{{ base.url | prepend: site.url }}/assets/images/favicons/167x167.png" />
+	<!-- For iPhone -->
+	<link rel="icon" type="image/png" sizes="180x180" href="{{ base.url | prepend: site.url }}/assets/images/favicons/180x180.png" />
+	<!-- For Android -->
+	<link rel="icon" type="image/png" sizes="192x192" href="{{ base.url | prepend: site.url }}/assets/images/favicons/192x192.png" />
+	<link rel="icon" type="image/png" sizes="48x48" href="{{ base.url | prepend: site.url }}/assets/images/favicons/48x48.png" />
 
     {% feed_meta %} {% seo %} {% if jekyll.environment == "production" %}
     <script src="my-analytics-script.js"></script>
