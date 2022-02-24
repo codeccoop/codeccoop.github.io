@@ -41,10 +41,9 @@ page: products
             </p>
         </figure>
         <div class="products__product-body media-content">
-            <h2 class="title is-4">{{ product.name }}</h2>
-            <h3 class="subtitle is-6"><strong>{{ product.subtitle }}</strong></h3>
-            <a class="products__product-toggle" aria-expanded="false">
-				<p class="products__product-toggle-btn is-link" role="button" aria-pressed="false" tabindex="0">+ Info</p>
+			<a class="products__product-toggle" aria-expanded="false" role="button" tabindex="0" aria-pressed="false">
+				<h2 class="products__product-title title is-4">{{ product.name }}</h2>
+				<h3 class="products__product-subtitle subtitle is-6"><strong>{{ product.subtitle }}</strong></h3>
                 <p class="products__product-description">{{ product.description }}</p>
             </a>
             <nav class="products__product-footer">

@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", function() {
 			if (!ev.target.classList.contains("products__product-description")) {
 				ev.currentTarget.classList.toggle("open");
 				if (ev.currentTarget.classList.contains("open")) {
-					ev.target.setAttribute("aria-pressed", "true");
+					ev.currentTarget.setAttribute("aria-pressed", "true");
 					ev.currentTarget.setAttribute("aria-expanded", "true");
 				} else {
-					ev.target.setAttribute("aria-pressed", "false");
+					ev.currentTarget.setAttribute("aria-pressed", "false");
 					ev.currentTarget.setAttribute("aria-expanded", "false");
 				}
 			}

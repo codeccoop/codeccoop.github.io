@@ -94,8 +94,37 @@ main.products {
 		text-decoration: none;
 		color: $font-color;
 
-		&:not(.open) .products__product-description {
-			display: none;
+		.products__product-title {
+			position: relative;
+
+			&:after {
+				position: absolute;
+				top: 0px;
+				right: 0px;
+				content: "";
+				border: solid $font-color;
+				border-width: 0 3px 3px 0;
+				display: inline-block;
+				padding: 5px;
+				transform: translateY(50%) rotate(45deg);
+				transition: transform 250ms ease-out;
+			}
+		}
+
+		.products__product-title,
+		.products__product-subtitle {
+			cursor: pointer;
+		}
+
+
+		&.open {
+			.products__product-title:after {
+				transform: translateY(50%) rotate(-135deg);
+			}
+
+			.products__product-description {
+				display: block;
+			}
 		}
 
 		.products__product-toggle-btn {
@@ -110,6 +139,7 @@ main.products {
 		}
 
 		.products__product-description {
+			display: none;
 			margin-bottom: 1em;
 		}
 	}
