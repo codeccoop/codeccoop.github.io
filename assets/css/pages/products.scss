@@ -54,6 +54,12 @@ main.products {
 }
 
 .products__product {
+	position: relative;
+
+	.products__product-body {
+		width: 100%;
+	}
+
     @include m-media(zr, md) {
         flex-direction: column;
         align-items: center;
@@ -82,6 +88,31 @@ main.products {
     &[name="artesania"] img {
         filter: saturate(.7) drop-shadow(2px 2px 6px #00006030);
     }
+
+	.products__product-toggle {
+		cursor: default;
+		text-decoration: none;
+		color: $font-color;
+
+		&:not(.open) .products__product-description {
+			display: none;
+		}
+
+		.products__product-toggle-btn {
+			cursor: pointer;
+			position: absolute;
+			right: 0px;
+			top: 1rem;
+			padding: 0.2em 0.6em;
+			margin: 0px;
+			color: white;
+			border-radius: 4px;
+		}
+
+		.products__product-description {
+			margin-bottom: 1em;
+		}
+	}
 }
 
 .products__product-footer {

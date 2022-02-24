@@ -5,68 +5,63 @@ page: products
 ---
 
 <div class="products__content content">
-  <h1 class="products__title title is-4">
-    Codifiquem la web
-    <span class="subtitle">Solucions digitals</span>
-  </h1>
-  <div class="products__head columns">
-    <div class="products__abstract column is-8">
-      <p>
-        Des de Còdec, oferim solucions digitals basades en la web ajustades a
-        les necessitat dels nostres client. Amb una amplia experiència
-        dissenyant i desenvolupant aplicacions web, oferim el nostre coneixement
-        adaptat a tot tipus de solucions, des de pàgines webs personals fins a
-        eines distribuides de gestió digitals.
-      </p>
-      <p>
-        Treballem la web en tant que protocol lliure i obert, capaç de convertir
-        a totes les usuaries de la xarxa en productores actives de contingut i
-        cultura, superant els rols de consumidors en que ens encasellen els
-        productes tancats i privatius de les grans tecnològiques. Creiem que no
-        cal recorre a aquestes quan podem aportar solucions de forma local i amb
-        programari lliure on les usuaries i les comunitats estiguin al centre i les
-        puguin gestionar de forma autònoma.
-      </p>
-    </div>
-    <div class="products__image column is-4">
-      <img src="{{ base.url | prepend: site.url }}/assets/images/products.png" />
-    </div>
-  </div>
-  <hr />
-  {% for product in site.data.products %}
-  <article name="{{product.name | downcase}}" class="products__product media">
-    <figure class="products__product-badge media-left">
-      <p class="image is-128x128">
-        <img src="{{ base.url | prepend: site.url }}/assets/images/logos/{{product.name | downcase }}.png" />
-      </p>
-    </figure>
-    <div class="products__product-description media-content">
-      <h2 class="title is-4">{{ product.name }}</h2>
-      <h3 class="subtitle is-6"><strong>{{ product.subtitle }}</strong></h3>
-      <p>{{ product.description }}</p>
-      <nav class="products__product-footer">
-        <div>
-          <p><strong>Preu mínim: {{ product.price }}</strong></p>
+    <h1 class="products__title title is-4">
+        Codifiquem la web
+        <span class="subtitle">Solucions digitals</span>
+    </h1>
+    <div class="products__head columns">
+        <div class="products__abstract column is-8">
+            <p>
+                Des de Còdec, oferim solucions digitals basades en la web ajustades a
+                les necessitat dels nostres client. Amb una amplia experiència
+                dissenyant i desenvolupant aplicacions web, oferim el nostre coneixement
+                adaptat a tot tipus de solucions, des de pàgines webs personals fins a
+                eines distribuides de gestió digitals.
+            </p>
+            <p>
+                Treballem la web en tant que protocol lliure i obert, capaç de convertir
+                a totes les usuaries de la xarxa en productores actives de contingut i
+                cultura, superant els rols de consumidors en que ens encasellen els
+                productes tancats i privatius de les grans tecnològiques. Creiem que no
+                cal recorre a aquestes quan podem aportar solucions de forma local i amb
+                programari lliure on les usuaries i les comunitats estiguin al centre i les
+                puguin gestionar de forma autònoma.
+            </p>
         </div>
-        <div>
-          <a
-            class="products__product-link"
-            target="__blank"
-            href="{{ product.url }}"
-          >
-            <span class="icon is-small webpage"><i></i></span>
-          </a>
-          <a
-            class="products__product-link"
-            target="__blank"
-            href="{{ product.github }}"
-          >
-            <span class="icon is-small github"><i></i></span>
-          </a>
+        <div class="products__image column is-4">
+            <img src="{{ base.url | prepend: site.url }}/assets/images/products.png" />
         </div>
-      </nav>
     </div>
-  </article>
-  {% endfor %}
+    <hr />
+    {% for product in site.data.products %}
+    <article name="{{product.name | downcase}}" class="products__product media">
+        <figure class="products__product-badge media-left">
+            <p class="image is-128x128">
+                <img src="{{ base.url | prepend: site.url }}/assets/images/logos/{{product.name | downcase }}.png" />
+            </p>
+        </figure>
+        <div class="products__product-body media-content">
+            <h2 class="title is-4">{{ product.name }}</h2>
+            <h3 class="subtitle is-6"><strong>{{ product.subtitle }}</strong></h3>
+            <a class="products__product-toggle" aria-expanded="false">
+				<p class="products__product-toggle-btn is-link" role="button" aria-pressed="false" tabindex="0">+ Info</p>
+                <p class="products__product-description">{{ product.description }}</p>
+            </a>
+            <nav class="products__product-footer">
+                <div>
+                    <p><strong>Preu mínim: {{ product.price }}</strong></p>
+                </div>
+                <div>
+                    <a class="products__product-link" target="__blank" href="{{ product.url }}">
+                        <span class="icon is-small webpage"><i></i></span>
+                    </a>
+                    <a class="products__product-link" target="__blank" href="{{ product.github }}">
+                        <span class="icon is-small github"><i></i></span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </article>
+    {% endfor %}
 </div>
 <script src="{{ base.url | prepend: site.url }}/assets/js/pages/products.js"></script>
