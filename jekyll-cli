@@ -6,6 +6,7 @@ cd $dir
 order="$1";
 options=(
 	"serve"
+	"serve:drafts"
 	"build:pre"
 	"build:pro"
 )
@@ -35,6 +36,8 @@ fi
 
 if [[ "$order" == "serve" ]]; then
 	bundle exec jekyll serve --livereload -P 8050
+elif [[ "$order" == "serve:drafts" ]]; then
+	bundle exec jekyll serve --livereload -P 8050 --drafts
 elif [[ "$order" == "build:pre" ]]; then
 	bundle exec jekyll build
 

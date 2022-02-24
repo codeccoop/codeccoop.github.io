@@ -2,11 +2,44 @@
 ---
 
 @import "reset";
+@import "colors";
 
 main.post {
     padding: $header-height $site-paddings 3rem;
 }
 
+.post__content {
+	max-width: $post-width;
+	margin-left: auto;
+	margin-right: auto;
+
+	p {
+		&.centered { 
+			text-align: center;
+		}
+
+		&.align-right {
+			text-align: end;
+		}
+
+		&.no-bottom {
+			margin-bottom: 0px;
+		}
+	}
+
+	blockquote {
+		padding: .5em 1em;
+		border-radius: 5px;
+		border-color: $butterfly-bush;
+		color: $tundora;
+		font-style: italic;
+		background-color: transparent;
+	}
+}
+
 .post__breadcrumb {
+	max-width: $post-width;
+	margin-left: auto;
+	margin-right: auto;
     margin-top: 1em;
 }
