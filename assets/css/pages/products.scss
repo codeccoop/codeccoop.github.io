@@ -76,6 +76,7 @@ main.products {
 
                 > img {
                     max-height: 100%;
+					max-width: 40vw;
                 }
             }
         }
@@ -100,7 +101,7 @@ main.products {
 			&:after {
 				position: absolute;
 				top: 0px;
-				right: 0px;
+				right: 5px;
 				content: "";
 				border: solid $font-color;
 				border-width: 0 3px 3px 0;
@@ -108,6 +109,16 @@ main.products {
 				padding: 5px;
 				transform: translateY(50%) rotate(45deg);
 				transition: transform 250ms ease-out;
+
+				@include m-media(zr, sm) {
+					padding: 3px;
+					right: 10px;
+				}
+
+				@media (orientation: portrait) {
+					padding: 3px;
+					right: 10px;
+				}
 			}
 		}
 
