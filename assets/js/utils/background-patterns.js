@@ -247,7 +247,7 @@ var BackgroundPatterns = (function() {
                     "url(" +
                     b64url(render(self.templates[self.page], self.viewport)) +
                     ")"; */
-				vectorImage = render(this.templates[this.page], this.viewport);
+				vectorImage = render(self.templates[self.page], self.viewport);
 				node.style.backgroundImage = "url(" + b64url(vectorImage) + ")";
                 toPNG(vectorImage, self.canvas)
                     .then(function(dataURL) {
