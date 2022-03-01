@@ -229,7 +229,10 @@ var BackgroundPatterns = (function() {
         node.style.backgroundPositionY = "0px";
         node.style.backgroundSize = "cover";
         node.style.backgroundRepeat = "no-repeat";
-        toPNG(render(this.templates[this.page], this.viewport), this.canvas)
+
+		var vectorImage = render(this.templates[this.page], this.viewport);
+		node.style.backgroundImage = "url(" + b64url(vectorImage) + ")";
+        toPNG(vectorImage, this.canvas)
             .then(function(dataURL) {
                 node.style.backgroundImage = "url(" + dataURL + ")";
             }).catch(function(err) {
@@ -244,7 +247,9 @@ var BackgroundPatterns = (function() {
                     "url(" +
                     b64url(render(self.templates[self.page], self.viewport)) +
                     ")"; */
-                toPNG(render(self.templates[self.page], self.viewport), self.canvas)
+				vectorImage = render(this.templates[this.page], this.viewport);
+				node.style.backgroundImage = "url(" + b64url(vectorImage) + ")";
+                toPNG(vectorImage, self.canvas)
                     .then(function(dataURL) {
                         node.style.backgroundImage = "url(" + dataURL + ")";
                     }).catch(function(err) {
