@@ -256,6 +256,50 @@
         .title {
             margin-bottom: .5rem;
         }
+        .toggle-container{
+            margin: 50px 0;
+            padding-bottom: 2%; 
+            border-bottom: 2px solid lightgrey;
+            position: relative;  
+        }
+        .us__information-toggle{
+		    text-decoration: none;
+		    color: $font-color;
+            display: block;
+            
+
+            .us__information-toggle-btn{
+                
+                width: fit-content;
+                cursor: pointer; 
+                
+                
+                &::after{
+                    position: absolute;
+				    top: -2px;
+				    right: 0px;
+				    content: "";
+				    border: solid $font-color;
+				    border-width: 0 3px 3px 0;
+				    display: inline-block;
+				    padding: 4px;
+				    transform: translateY(50%) rotate(45deg);
+				    transition: transform 250ms ease-out;
+                }
+            }   
+            .us__information-description{
+                display: none;
+            }
+            &.open {
+                .us__information-toggle-btn:after {
+                    transform: translateY(100%) rotate(-135deg);
+                }
+    
+                .us__information-description {
+                    display: block;
+                }
+            }
+        }
     }
 
     .home__profiles {
