@@ -1,0 +1,29 @@
+---
+layout: default
+title: Còdec | Projectes
+page: projects
+---
+
+<div class="projects__content">
+    <h1 class="projects__title title is-3"> Projectes</h1> 
+
+    <div class="projects__data">
+
+    {% for project in site.data.projects %} 
+    
+    <article name="{{project.name}}" class="projects__product">  
+        <img src="{{ base.url | prepend: site.url }}/assets/images/projects/{{project.imagename}}.png">
+        <div class="projects__product project description">
+            <a href="{{project.url}}" target="_blank"><h2 class="projects__product-title title is-4">{{project.name}}</h2></a>
+            <p class="projects__product-description">{{project.description}}</p>
+
+
+        </div>
+
+    </article>
+
+
+
+    {% endfor %}
+    </div>
+</div>

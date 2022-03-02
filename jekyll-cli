@@ -31,6 +31,7 @@ if [[ -z "$order" ]]; then
 	re="^[0-9]*$"
 	if [[ $order =~ $re ]]; then
 		order=${options[$order]}
+		echo $order
 	fi
 fi
 

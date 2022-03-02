@@ -1,0 +1,40 @@
+---
+---
+
+@import 'reset';
+@import 'breakpoints';
+
+.projects__content{
+    display: block;
+    margin-top: $header-height;
+    padding: 60px 12vw 3rem;
+}
+.projects__data{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items:stretch;
+}
+.projects__product{
+    
+    display: flex;
+    flex-direction: column;
+    width:50%;
+    @include m-media(zr, xsm){
+        width:100%;
+        + .projects__product{
+            margin-top: 10px;
+        }
+    }
+    img {
+        margin-top: 10px;
+        width:90%;
+    }
+    h2{
+        margin-top: 10px;
+    }
+    .description{
+        margin-top: 10px;
+        width:90%;
+    }
+}
