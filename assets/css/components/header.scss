@@ -74,7 +74,7 @@ header {
                     margin-right: 0px;
                 }
 
-                $icons: email, mastodon, twitter, telegram;
+                $icons: email, mastodon, twitter, telegram, github;
                 @each $icon in $icons {
                     &[data-link="#{$icon}"] {
                         background-image: url("/assets/images/icons/#{$icon}.png");
