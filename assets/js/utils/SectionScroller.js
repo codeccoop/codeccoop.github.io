@@ -1,4 +1,4 @@
-var SectionScroller = (function() {
+var SectionSnapScroller = (function() {
     /* PRIVATE INTERFACE */
     function _smoothScrolling($el, order) {
         var delta = 0;
@@ -41,7 +41,7 @@ var SectionScroller = (function() {
         return viewport;
     }
 
-    function _swipeMotion(speed) {
+    /* function _swipeMotion(speed) {
         if (Math.abs(speed) < 0.5) return;
 
         var self = this;
@@ -72,7 +72,7 @@ var SectionScroller = (function() {
         }
 
         document.addEventListener("touchstart", onTouchStart);
-    }
+    } */
 
     function _createStylesheet() {
         var styles;
@@ -80,7 +80,7 @@ var SectionScroller = (function() {
             styles = ".scroll-root { overflow-y: scroll; height: 100vh; scroll-snap-type: y mandatory; }";
             styles +=
                 ".scroll-root .scroll-section { min-height: 100vh; min-height: calc(var(--vh, 1vh) * 100); width: 100vw; width: calc(var(--vw, 1vw) * 100); scroll-snap-align: start; scroll-snap-stop: always; }";
-			styles += ".scroll-root .scroll-section:last-child { height: 0px; min-height: 0px; }";
+            styles += ".scroll-root .scroll-section:last-child { height: 0px; min-height: 0px; }";
         } else {
             styles = "html, body { overscroll-behavior-y: contain; }";
             styles +=
@@ -119,22 +119,100 @@ var SectionScroller = (function() {
         return logger;
     }
 
+    var onScroll = (function() {
+        var self, direction, overflow, delayed;
+		var scrolling = false;
+
+        function _onScrollEnds() {
+            overflow = self.getCurrentSectionOverflow(direction);
+            if (overflow * direction < 0) {
+				if (self.behavior === "mandatory") {
+					self.currentSection =
+						self.sections.indexOf(self.currentSection) + direction;
+				} else {
+					self.currentSection = self.getVisibleSection().id;
+				}
+            }
+			self.afterScroll(self.currentSection);
+			scrolling = false;
+        }
+
+        return function(ev) {
+            self = this;
+            if (this._delayed === true) return;
+			if (scrolling === false) {
+				this.beforeScroll(this.currentSection);
+				scrolling = true;
+			}
+
+            var offset = ev.deltaY;
+            direction = ev.deltaY < 0 ? -1 : 1;
+
+			var nextSection = this.sections[Math.max(0, Math.min(
+				this.sections.length - 1,
+				this.sections.indexOf(this.currentSection) + direction
+			))];
+			var nextSectionOverflow = getSectionOverflow(nextSection, direction);
+
+			if (this.behavior === "mandatory") {
+				offset = Math.abs(offset) > Math.abs(nextSectionOverflow) ?
+					nextSectionOverflow : offset;
+			}
+
+            this.$el.scrollBy(0, offset);
+            this.$viewport.scrollBy(0, offset);
+			this.onScroll(this.currentSection);
+
+            clearTimeout(delayed);
+            delayed = setTimeout(_onScrollEnds, 50);
+        };
+    })();
+
+	function getSectionOverflow (id, direction) {
+		if (direction === void 0) {
+			console.warn("getSectionOverflow needs a direction to compute the sections overflow. Direction mus't be a positive integer like 1 to get descending overflow, and negative integer, like -1, to get ascending overflow. When no direction is informed, then it uses 1 as a fallback value.");
+			direction = 1;
+		}
+        var overflow;
+        var $el = document.getElementById(id);
+        var box = $el.getBoundingClientRect();
+        if (direction > 0) {
+            overflow = Math.floor(box.height + box.top - window.innerHeight);
+        } else {
+            overflow = Math.floor(box.top);
+        }
+
+        return Math.abs(overflow) <= 5 ? 0 : overflow;
+	}
+
+
     /* PUBLIC INTERFACE */
-    function SectionScroller(scrollEl, sectionClass, settings) {
+    function SectionSnapScroller(scrollEl, settings) {
         var self = this;
         settings = settings || {};
+		this.behavior = settings.behavior || "mandatory";
         _createStylesheet();
 
-        this.$el = scrollEl;
+        if (typeof scrollEl === "string") {
+            this.$el = document.querySelector(scrollEl);
+            if (this.$el === void 0) {
+                throw new Error("SectionSnapScroller can't find their root HTMLElement");
+            }
+        } else if (HTMLElement.prototype.isPrototypeOf(scrollEl)) {
+            this.$el = scrollEl;
+        } else {
+            throw new Error("SecttionSnapScroller initialization needs a root HTMLElement to be attached on");
+        }
+
         this.$el.classList.add("scroll-root");
-        this.sectionClass = "scroll-section";
-        this.delayed = false;
+        this._sectionClass = "scroll-section";
+        this._delayed = false;
 
         var sections;
-        if (sectionClass) {
+        if (settings.sectionClass) {
             sections = Array.apply(
                 null,
-                this.$el.getElementsByClassName(sectionClass)
+                this.$el.getElementsByClassName(settings.sectionClass)
             );
         } else {
             sections = Array.apply(null, this.$el.children);
@@ -172,8 +250,8 @@ var SectionScroller = (function() {
 
                     function afterScroll() {
                         self.$el.removeEventListener("scroll", whileScroll);
-                        self.delayed = false;
-                        self.$logger.log("Delayed = false");
+                        self._delayed = false;
+                        // self.$logger.log("Delayed = false");
                     }
 
                     function whileScroll() {
@@ -182,8 +260,8 @@ var SectionScroller = (function() {
                     }
                     self.$el.addEventListener("scroll", whileScroll);
                     _while = setTimeout(afterScroll, 150);
-                    self.delayed = true;
-                    self.$logger.log("Delayed = true");
+                    self._delayed = true;
+                    // self.$logger.log("Delayed = true");
 
                     self.scrollTo(_currentSection, direction);
 
@@ -194,17 +272,26 @@ var SectionScroller = (function() {
             },
         });
 
-		if (isMobile()) {
-			var lastChild = document.createElement("div");
-			lastChild.classList.add(this.sectionClass);
-			this.$el.appendChild(lastChild);
-			return
-		}
+        Object.defineProperty(this, "currentSectionEl", {
+            get: function() {
+                return Array.apply(null, self.$el.getElementsByClassName(self._sectionClass))
+                    .filter(function(el) {
+                        return el.id === self.currentSection;
+                    });
+            }
+        })
 
-        this.onScroll = this.onScroll.bind(this);
-        document.addEventListener("wheel", this.onScroll, true);
-        this.onSwipe = this.onSwipe.bind(this);
-        document.addEventListener("touchstart", this.onSwipe, true);
+        if (isMobile()) {
+            var lastChild = document.createElement("div");
+            lastChild.classList.add(this._sectionClass);
+            this.$el.appendChild(lastChild);
+            return
+        }
+
+        onScroll = onScroll.bind(this);
+        document.addEventListener("wheel", onScroll, true);
+        // this.onSwipe = this.onSwipe.bind(this);
+        // document.addEventListener("touchstart", this.onSwipe, true);
 
         function onPopState() {
             _currentSection = location.hash.replace(/#/, "");
@@ -227,19 +314,25 @@ var SectionScroller = (function() {
             location.hash = _currentSection;
 
             self.scrollTo(_currentSection, 1, "auto");
-            self.delayed = false;
-            self.$logger.log("Delayed = false");
+            self._delayed = false;
+            // self.$logger.log("Delayed = false");
 
             if (settings.debug) {
                 self.$viewport.appendChild(self.$logger);
-                self.$logger.log("Initialized");
+                // self.$logger.log("Initialized");
             }
         }, 0);
 
-        this.$logger = _setupLogger();
+        // this.$logger = _setupLogger();
+
+		/* SCROLL HOOKS */
+		if (settings.onSectionUpdate) this.onSectionUpdate = settings.onSectionUpdate;
+		if (settings.beforeScroll) this.beforeScroll = settings.beforeScroll;
+		if (settings.onScroll) this.onScroll = settings.onScroll;
+		if (settings.afterScroll) this.afterScroll = settings.afterScroll;
     }
 
-    SectionScroller.prototype.getContentHeight = function() {
+    SectionSnapScroller.prototype.getContentHeight = function() {
         var height = 0;
         for (var i = 0; i < this.$el.childElementCount; i++) {
             if (this.$el.children[i].classList.contains("scroll-viewport")) {
@@ -252,10 +345,10 @@ var SectionScroller = (function() {
         return height;
     };
 
-    SectionScroller.prototype.getVisibleSection = function() {
+    SectionSnapScroller.prototype.getVisibleSection = function() {
         return Array.apply(
             null,
-            document.getElementsByClassName(this.sectionClass)
+            document.getElementsByClassName(this._sectionClass)
         ).reduce(function(focused, sectionEl) {
             var acum_top = focused ?
                 focused.getBoundingClientRect().top :
@@ -270,20 +363,11 @@ var SectionScroller = (function() {
         }, null);
     };
 
-    SectionScroller.prototype.getCurrentSectionOverflow = function(direction) {
-        var overflow;
-        var childEl = document.getElementById(this.currentSection);
-        var box = childEl.getBoundingClientRect();
-        if (direction > 0) {
-            overflow = Math.floor(box.height + box.top - window.innerHeight);
-        } else {
-            overflow = Math.floor(box.top);
-        }
-
-        return Math.abs(overflow) <= 5 ? 0 : overflow;
+    SectionSnapScroller.prototype.getCurrentSectionOverflow = function(direction) {
+		return getSectionOverflow(this.currentSection, direction);
     };
 
-    SectionScroller.prototype.scrollTo = function(id, direction, behavior) {
+    SectionSnapScroller.prototype.scrollTo = function(id, direction, behavior) {
         direction = direction || 1;
         behavior = behavior || "smooth";
         var el = document.getElementById(id);
@@ -313,38 +397,12 @@ var SectionScroller = (function() {
         }, null, "/#" + id);
     };
 
-    SectionScroller.prototype.onScroll = (function() {
-        var self, delayed, startEvent, direction, overflow;
-
-        function _onScrollEnds() {
-            overflow = self.getCurrentSectionOverflow(direction);
-            if (overflow * direction < 0) {
-                self.currentSection =
-                    self.sections.indexOf(self.currentSection) + direction;
-            }
-        }
-
-        return function(ev) {
-            self = this;
-            if (self.delayed === true) return;
-
-            var offset = ev.deltaY;
-            direction = ev.deltaY < 0 ? -1 : 1;
-
-            self.$el.scrollBy(0, offset);
-            self.$viewport.scrollBy(0, offset);
-
-            clearTimeout(delayed);
-            delayed = setTimeout(_onScrollEnds, 50);
-        };
-    })();
-
-    SectionScroller.prototype.onSwipe = (function() {
+    /* SectionSnapScroller.prototype.onSwipe = (function() {
         var swipped = false;
         var self, startY, deltaY, direction, overflow, speed, lastTrack;
 
         function _onTouchMove(ev) {
-            if (self.delayed === true) return;
+            if (self._delayed === true) return;
             var currentY = ev.changedTouches[0].screenY;
             var now = Date.now();
             deltaY = startY - currentY;
@@ -389,9 +447,9 @@ var SectionScroller = (function() {
             _onTouchEnd = _onTouchEnd.bind(this);
             document.addEventListener("touchend", _onTouchEnd);
         };
-    })();
+    })(); */
 
-    SectionScroller.prototype.onResize = (function() {
+    SectionSnapScroller.prototype.onResize = (function() {
         var self;
         var delayed;
 
@@ -407,7 +465,10 @@ var SectionScroller = (function() {
         };
     })();
 
-    SectionScroller.prototype.onSectionUpdate = function() {};
+    SectionSnapScroller.prototype.onSectionUpdate = function() {};
+    SectionSnapScroller.prototype.beforeScroll = function() {};
+	SectionSnapScroller.prototype.onScroll = function() {};
+	SectionSnapScroller.prototype.afterScroll = function() {};
 
-    return SectionScroller;
+    return SectionSnapScroller;
 })();

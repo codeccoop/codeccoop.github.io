@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var rootEl = document.getElementsByTagName("main")[0];
-    var sectionScroller = new SectionScroller(rootEl, "home__section", {
+    var $el = document.getElementsByTagName("main")[0];
+    var sectionScroller = new SectionSnapScroller($el, {
+		sectionClass: "home__section",
         debug: false,
+		behavior: "mandatory",
+		onSectionUpdate: function (sectionId) {
+			document.getElementById("pageHeader").setActiveLink(sectionId);
+		},
     });
-    sectionScroller.onSectionUpdate = function(sectionId) {
-        document.getElementById("pageHeader").setActiveLink(sectionId);
-    };
 
     setTimeout(function() {
         var homeBg = new BackgroundPatterns("home", {
