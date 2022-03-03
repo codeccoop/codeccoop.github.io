@@ -5,7 +5,11 @@ page: projects
 ---
 
 <div class="projects__content">
-    <h1 class="projects__title title is-3"> Projectes</h1> 
+    <h1 class="projects__title title is-4">
+        Coneix els nostres projectes
+        <span class="subtitle">Arxiu</span>
+    </h1> 
+
 
     <div class="projects__data">
 
@@ -14,10 +18,13 @@ page: projects
     <article name="{{project.name}}" class="projects__product">  
         <img src="{{ base.url | prepend: site.url }}/assets/images/projects/{{project.imagename}}.png">
         <div class="projects__product project description">
-            <a href="{{project.url}}" target="_blank"><h2 class="projects__product-title title is-4">{{project.name}}</h2></a>
-            <p class="projects__product-description">{{project.description}}</p>
-
-
+            <a href="{{project.url}}" target="_blank"><h2 class="projects__product-title title is-5">{{project.name}}</h2></a>
+            <p class="projects__product-description description">{{project.description}}</p>
+            <ul class="projects__product-tags tags">
+                {% for tag in project.tags %}
+                    <li>{{tag}}</li>
+                {% endfor %}
+            </ul>
         </div>
 
     </article>
@@ -27,3 +34,4 @@ page: projects
     {% endfor %}
     </div>
 </div>
+<script src="{{ base.url | prepend: site.url }}/assets/js/pages/projects.js"></script>

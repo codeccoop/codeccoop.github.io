@@ -5,25 +5,56 @@
 @import 'breakpoints';
 
 .projects__content{
-    display: block;
-    margin-top: $header-height;
-    padding: 60px 12vw 3rem;
+    padding: $header-height $site-paddings 175px;
+
+    .projects__title {
+		margin-top: 15px;
+		height: 110px;
+		color: white;
+        font-weight: 500;
+		line-height: .9;
+		display: flex;
+		flex-direction: column;
+		justify-content: end;
+		padding-bottom: 10px;
+
+		.is-mobile & {
+			height: 75px;
+		}
+
+		@include m-media(md) {
+			font-size: 2.5rem;
+		}
+
+        .subtitle {
+			color: white;
+            display: block;
+
+			@include m-media(zr, md) {
+				font-size: 1rem;
+			}
+        }
+    }
+
+
+
 }
 .projects__data{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items:stretch;
+    padding: 50px 0;
 }
 .projects__product{
-    
+    align-items: center;
     display: flex;
     flex-direction: column;
     width:50%;
     @include m-media(zr, xsm){
         width:100%;
         + .projects__product{
-            margin-top: 10px;
+            margin-top: 50px;
         }
     }
     img {
@@ -34,7 +65,26 @@
         margin-top: 10px;
     }
     .description{
-        margin-top: 10px;
+        padding: .5em 0em;
         width:90%;
+        font-size: 0.90em;
+        align-items: flex-start;
+        @include m-media(zr, xsm){
+            font-size:1em;  
+        }
+    }
+    .tags{
+        display: block;
+        li{
+            font-size: 0.75em;
+            font-weight: bold;
+            text-decoration: underline;
+            //margin-left: .8em;
+            &:first-child{
+                margin-left: 0;
+            }
+        }
+
+
     }
 }

@@ -205,6 +205,12 @@ var BackgroundPatterns = (function() {
                         `<path d="M {12vw}, calc({98vh} - ${bandWidth}) V {100vh} H calc({12vw} - ${bandWidth}) V {98vh} Z" fill="#fe9a00"/>` +
                         `<path d="M {12vw}, calc({98vh} - ${bandWidth}) H {100vw} V {98vh} H {12vw} Z" fill="#3f2752" />` +
 					'</svg>',
+                    projects: '<svg width="{100vw}" height="{100vh}" xmlns="http://www.w3.org/2000/svg">' +
+                        `<path d="M {92vw}, calc(75px + ${bandWidth}) V 0 H calc({92vw} + ${bandWidth}) V 75 Z" fill="#fe9a00"/>` +
+                        `<path d="M 0, calc(75px + ${bandWidth}) H {92vw} V 75 H 0 Z" fill="#051d41" />` +
+                        `<path d="M {12vw}, calc({98vh} - ${bandWidth}) V {100vh} H calc({12vw} - ${bandWidth}) V {98vh} Z" fill="#fe9a00"/>` +
+                        `<path d="M {12vw}, calc({98vh} - ${bandWidth}) H {100vw} V {98vh} H {12vw} Z" fill="#051d41" />` +
+					'</svg>',
                     default: '<svg width="{100vw}" height="{100vh}" xmlns="http://www.w3.org/2000/svg">' +
                         '<path d="M 0, 90 H {5vw} V calc(90px + {8vw}) H 0 Z" fill="#f6ff62" />' +
                         '<path d="M {5vw}, 90 H {90vw} V calc(90px + {8vw}) H {5vw} Z" fill="#005f89" />' + '<path d="M 0, calc(90px + {8vw}) H {5vw} V {50vh} H 0 Z" fill="#f76464" />' +
