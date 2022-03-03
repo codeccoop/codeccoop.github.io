@@ -4,8 +4,9 @@
 @import 'reset';
 @import 'breakpoints';
 
-.projects__content{
+main.projects {
     padding: $header-height $site-paddings 175px;
+	min-height: 100vh;
 
     .projects__title {
 		margin-top: 15px;
@@ -35,10 +36,8 @@
 			}
         }
     }
-
-
-
 }
+
 .projects__data{
     display: flex;
     flex-wrap: wrap;
