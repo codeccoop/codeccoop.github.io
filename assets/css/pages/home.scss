@@ -320,8 +320,14 @@
 			}
 
             img {
-				filter: drop-shadow(0px 0px 0px #0003) saturate(0.5);
-                transition: filter 150ms ease-out, transform 150ms ease-out;
+				// filter: drop-shadow(0px 0px 0px #0003) saturate(0.5);
+                // transition: filter 150ms ease-out, transform 150ms ease-out;
+                filter: brightness(1.1) saturate(0.8);
+                border-radius: 50%;
+                filter: sepia(0.5) contrast(0.9);
+                box-shadow: 0px 0px #0003, 0px 0px #0008;
+                transition: box-shadow 200ms ease-out, transform 200ms ease-out;
+
             }
 
             figcaption {
@@ -368,8 +374,9 @@
 
             &:hover {
                 img {
-                    transform: translate(-2px, -2px);
-                    filter: drop-shadow(2px 2px 3px #0005) saturate(.8);
+                    transform: translate(-2px, -6px);
+                    //filter: drop-shadow(2px 2px 3px #0005) saturate(.8);
+                    box-shadow:-6px 6px 10px #0003, -1px 2px 4px #0006;
                 }
 
                 .quote-wrapper {
