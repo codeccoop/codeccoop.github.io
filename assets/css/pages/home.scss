@@ -7,10 +7,6 @@
 @import "breakpoints";
 @import "typography";
 
-//.home.scroll-root{
-//    scroll-behavior: smooth;
-//}
-
 .home__section {
     position: relative;
     display: flex;
@@ -335,7 +331,7 @@
 
         figure {
             flex: 1;
-            flex-basis: 200px;
+            flex-basis: 120px;
             flex-grow: 0;
             cursor: help;
             position: relative;
@@ -345,18 +341,13 @@
 				margin-top: 2rem;
 			}
 
-			@include m-media(zr, xxsm) {
-				flex-basis: 120px;	
+			@include m-media(xsm) {
+				flex-basis: 200px;	
 			}
 
             img {
-                // filter: brightness(1.1) saturate(0.8);
-                // border-radius: 50%;
-                // filter: sepia(0.5) contrast(0.9);
-                // box-shadow: 0px 0px #0003, 0px 0px #0008;
 				filter: drop-shadow(2px 4px 5px #0003);
 				background-color: transparent;
-                // transition: box-shadow 200ms ease-out, transform 200ms ease-out;
 				transition: filter 200ms ease-out, transform 200ms ease-out;
             }
 
@@ -406,7 +397,6 @@
                 img {
                     transform: translate(-2px, -6px);
                     filter: drop-shadow(2px 2px 3px #0005);
-                    // box-shadow:-6px 6px 10px #0003, -1px 2px 4px #0006;
                 }
 
                 .quote-wrapper {

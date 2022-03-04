@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
             isMobile: isMobile()
         });
         teamBg.bind(document.getElementById("team"));
-    }, 0);
+    }, 200);
 
     var description
     var descriptions = document.getElementsByClassName("us__information-toggle");

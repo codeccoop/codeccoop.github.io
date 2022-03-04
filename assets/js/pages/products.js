@@ -1,15 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var rootEl = document.getElementsByTagName("main")[0];
+    var $el = document.getElementsByTagName("main")[0];
 
-    var renderBackground = (function(el) {
-        return function() {
-            var background = new BackgroundPatterns("products", {
-                isMobile: isMobile()
-            });
-            background.bind(rootEl);
-        }
-    })(rootEl);
-    setTimeout(renderBackground, 0);
+    setTimeout(function () {
+        var background = new BackgroundPatterns("products", {
+            isMobile: isMobile()
+        });
+        background.bind($el);
+	}, 200);
 
     var description
     var descriptions = document.getElementsByClassName("products__product-toggle");

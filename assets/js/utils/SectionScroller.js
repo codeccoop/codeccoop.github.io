@@ -46,8 +46,8 @@ var SectionSnapScroller = (function() {
         if (isMobile()) {
             styles += ".scroll-root { overflow-y: scroll; height: 100vh; scroll-behavior: smooth; }";
             styles +=
-                ".scroll-root .scroll-section { min-height: 100vh; min-height: calc(var(--vh, 1vh) * 100); width: 100vw; width: calc(var(--vw, 1vw) * 100); scroll-snap-align: start; scroll-snap-stop: always; }";
-            styles += ".scroll-root .scroll-section:last-child { height: 0px; min-height: 0px; }";
+                ".scroll-root .scroll-section { min-height: 100vh; min-height: calc(var(--vh, 1vh) * 100); width: 100vw; width: calc(var(--vw, 1vw) * 100); scroll-snap-align: start; }";
+            styles += ".scroll-root .scroll-section:last-child { height: 0px; min-height: 0px; scroll-snap-align: end; }";
         } else {
             styles +=
                 ".scroll-root { overflow: hidden; height: 100vh; height: calc(var(--vh, 1vh) * 100); width: 100%; overscroll-behavior-y: contain; }";
@@ -157,9 +157,9 @@ var SectionSnapScroller = (function() {
 
         function onScrollEnds() {
             var $el = self.getVisibleSection();
-			if ($el) {
-				location.hash = "#" + $el.id;
-			}
+            if ($el) {
+                location.hash = "#" + $el.id;
+            }
         }
 
         return function(ev) {
@@ -270,6 +270,13 @@ var SectionSnapScroller = (function() {
             onTouchScroll = onTouchScroll.bind(this);
             this.$el.addEventListener("scroll", onTouchScroll);
 
+            function setupInlineStyles() {
+                self.$el.style.scrollSnapType = "y mandatory";
+                Array.apply(null, self.$el.getElementsByClassName(self._sectionClass))
+                    .forEach(function($section) {
+                        $section.style.scrollSnapStop = "always";
+                    });
+            }
             var currentSection = location.hash.split("/").pop().replace(/#/, "");
             if (currentSection && currentSection !== this.sections[0]) {
                 setTimeout(function() {
@@ -278,10 +285,10 @@ var SectionSnapScroller = (function() {
                         left: 0,
                         top: document.getElementById(currentSection).getBoundingClientRect().top
                     });
-					setTimeout(function () {
-						self.$el.style.scrollSnapType = "y mandatory";
-					}, 500);
+                    setTimeout(setupInlineStyles, 500);
                 }, 0);
+            } else {
+                setTimeout(setupInlineStyles, 500);
             }
         } else {
             onScroll = onScroll.bind(this);
