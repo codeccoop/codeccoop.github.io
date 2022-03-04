@@ -10,7 +10,7 @@
   url: https://www.to.upc.edu
   name: TO ETSAV
   imagename: toetsav
-  description: '<em>&#8220;El projecte TO vol qüestionar-se la idea de sostenibilitat: Què cal sostenir?&#8221;</em>. Pàgina web del projecte arquitectònic."'
+  description: '<em>&#8220;El projecte TO vol qüestionar-se la idea de sostenibilitat: Què cal sostenir?&#8221;</em>. Pàgina web del projecte arquitectònic.'
   tags:
     - Programari a mida
     - Single-page application (SPA)
