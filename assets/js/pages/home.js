@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
     var $el = document.getElementsByTagName("main")[0];
     var sectionScroller = new SectionSnapScroller($el, {
-		sectionClass: "home__section",
+        sectionClass: "home__section",
         debug: false,
-		behavior: "mandatory",
-		onSectionUpdate: function (sectionId) {
-			document.getElementById("pageHeader").setActiveLink(sectionId);
-		},
+        behavior: "mandatory",
+        onSectionUpdate: function(sectionId) {
+            document.getElementById("pageHeader").setActiveLink(sectionId);
+        },
     });
 
     setTimeout(function() {
@@ -57,6 +57,4 @@ document.addEventListener("DOMContentLoaded", function() {
         descriptions[i].addEventListener("click", toggleVisibility);
         descriptions[i].addEventListener("keydown", bindToEnter(toggleVisibility, 13));
     }
-
-
 });

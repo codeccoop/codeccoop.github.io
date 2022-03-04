@@ -9,7 +9,7 @@ header {
     position: fixed;
     top: 0px;
     left: 0px;
-    width: 100vw;
+    width: 100%;
     z-index: 100;
     background: white;
     box-shadow: 0px -2px 5px #0003;
@@ -33,6 +33,11 @@ header {
             padding-left: 0;
             color: inherit !important;
             font-weight: bold;
+			text-decoration: none !important;
+
+			@include m-media(zr, md) {
+				font-size: 1.4rem;
+			}
         }
 
         .navbar-item.is-active,

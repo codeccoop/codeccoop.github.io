@@ -2,15 +2,31 @@
   url: https://www.silviagenoves.art/
   name: Silvia Genovés Art
   imagename: silviagenoves
-  description: Portafoli i plataforma e-commerce desenvolupada amb wordpress de l'artista multidisciplinar Silvia Genovés.
+  description: Portafoli i plataforma e-commerce desenvolupada amb wordpress per l'artista multidisciplinar Silvia Genovés.
   tags: 
     - Wordpress
     - e-commerce
 - id: to
-  url: https://www.codeccoop.org/projectes/to
+  url: https://www.to.upc.edu
   name: TO ETSAV
   imagename: toetsav
-  description: "El projecte TO vol qüestionar-se la idea de sostenibilitat: Què cal sostenir? Pàgina web del projecte arquitectònic."
-  tags: 
+  description: '<em>&#8220;El projecte TO vol qüestionar-se la idea de sostenibilitat: Què cal sostenir?&#8221;</em>. Pàgina web del projecte arquitectònic."'
+  tags:
     - Programari a mida
     - Single-page application (SPA)
+- id: kilometrezero
+  url: https://kilometrezero.org/
+  name: KilometreZero
+  imagename: kilometrezero
+  description: Plataforma de gestió d'inscripcions a esdeveniments esportius i publicació en viu de resultats.
+  tags:
+      - Programari a mida
+      - Single-page application (SPA)
+- id: vh3d
+  url: https://fem.vallhebron.com/#/?pieceId=2534
+  name: Vall d'Hebron 3D
+  imagename: vh3d
+  description: Videojoc col·laboratiu per a la presentació del nou Pla Estratègic 2021-2025 de la Vall d'Hebron
+  tags:
+      - Programari a mida
+      - WebGL

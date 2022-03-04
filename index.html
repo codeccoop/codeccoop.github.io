@@ -135,17 +135,18 @@ page: home
                         </a>
                     </div>
                     
-                    <p><b>Som Còdec, som cooperativa</b></p>
-                    <p>
+					<!-- <p><b>Som Còdec, som cooperativa</b></p> -->
+					<p class="home__us-projects"><a class="button is-link" href="/projects.html"><b>Coneix els nostres projectes</b></a></p>
+                    <!-- <p>
                         Escriu-nos a: <a href="mailto:hola@codeccoop.org">hola@codeccoop.org</a>
-                    </p>
+					</p> -->
                 </div>
             </div>
             <div class="home__section-column column is-6">
                 <div class="home__profiles">
                     {% for author in site.authors %}
                     <figure>
-                        <img src="{{ base.url | prepend: site.url }}/assets/images/{{ author.short_name }}.jpg" unselectable="on" />
+                        <img src="{{ base.url | prepend: site.url }}/assets/images/{{ author.short_name }}-sticker.png" unselectable="on" />
                         <figcaption>{{ author.name }}</figcaption>
                         <div class="quote-wrapper">
                             <div class="quote">

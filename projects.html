@@ -8,30 +8,26 @@ page: projects
     <h1 class="projects__title title is-4">
         Coneix els nostres projectes
         <span class="subtitle">Arxiu</span>
-    </h1> 
-
-
+    </h1>
     <div class="projects__data">
-
-    {% for project in site.data.projects %} 
-    
-    <article name="{{project.name}}" class="projects__product">  
-        <img src="{{ base.url | prepend: site.url }}/assets/images/projects/{{project.imagename}}.png">
-        <div class="projects__product project description">
-            <a href="{{project.url}}" target="_blank"><h2 class="projects__product-title title is-5">{{project.name}}</h2></a>
-            <p class="projects__product-description description">{{project.description}}</p>
-            <ul class="projects__product-tags tags">
-                {% for tag in project.tags %}
+        {% for project in site.data.projects %}
+        <article name="{{project.name}}" class="projects__product">
+			<a href="{{ project.url }}">
+				<img src="{{ base.url | prepend: site.url }}/assets/images/projects/{{project.imagename}}.png">
+			</a>
+            <div class="projects__product-body">
+                <a href="{{project.url}}" target="_blank">
+                    <h2 class="projects__product-title title is-5">{{project.name}}</h2>
+                </a>
+                <p class="projects__product-description">{{project.description}}</p>
+                <ul class="projects__product-tags">
+                    {% for tag in project.tags %}
                     <li>{{tag}}</li>
-                {% endfor %}
-            </ul>
-        </div>
-
-    </article>
-
-
-
-    {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </article>
+        {% endfor %}
     </div>
 </div>
 <script src="{{ base.url | prepend: site.url }}/assets/js/pages/projects.js"></script>

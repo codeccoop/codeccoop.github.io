@@ -10,7 +10,7 @@ main.products {
     padding: $header-height $site-paddings 175px;
 
     .products__title {
-		margin-top: 15px;
+		margin-top: 0px;
 		height: 110px;
 		color: white;
         font-weight: 500;
@@ -24,8 +24,17 @@ main.products {
 			height: 75px;
 		}
 
-		@include m-media(md) {
+		@include m-media(zr, xxsm) {
+			margin-top: 6px;
+		}
+
+		@include m-media(xxsm) {
+			margin-top: 3px;
+		}
+
+		@include m-media(sm) {
 			font-size: 2.5rem;
+			margin-top: 5px;
 		}
 
         .subtitle {
@@ -118,6 +127,10 @@ main.products {
 				@media (orientation: portrait) {
 					padding: 3px;
 					right: 10px;
+				}
+
+				.is-mobile & {
+					border-width: 0px 1px 1px 0px;
 				}
 			}
 		}

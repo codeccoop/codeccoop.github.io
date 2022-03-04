@@ -117,27 +117,12 @@ var BackgroundPatterns = (function() {
 
     var debounce = (function() {
         return function(callback, debounce) {
-            var now, last, debounced;
-
-            function _callback() {
-                debounced = void 0;
-                callback();
-                // console.log("%cresize", "color: red");
-            }
+			var debounced;
 
             return function(ev) {
                 debounce = debounce || 50;
                 clearTimeout(debounced);
-                now = Date.now();
-                if (last === void 0) {
-                    _callback();
-                    last = now;
-                } else if (now - last > debounce) {
-                    _callback();
-                    last = now;
-                } else {
-                    debounced = setTimeout(_callback, now - last);
-                }
+				debounced = setTimeout(callback, debounce);
             };
         };
     })();
@@ -229,39 +214,37 @@ var BackgroundPatterns = (function() {
 
     BackgroundPatterns.prototype.bind = function(node) {
         this.node = node;
-        /* node.style.backgroundImage =
-            "url(" + b64url(render(this.templates[this.page], this.viewport)) + ")"; */
+
         node.style.backgroundPositionX = "0px";
         node.style.backgroundPositionY = "0px";
         node.style.backgroundSize = "cover";
         node.style.backgroundRepeat = "no-repeat";
+		/* node.style.transition = node.style.transition ?
+			node.style.transition + ", background-image 300ms ease-out" :
+			"background-image 300ms ease-out"; */
 
 		var vectorImage = render(this.templates[this.page], this.viewport);
 		node.style.backgroundImage = "url(" + b64url(vectorImage) + ")";
-        toPNG(vectorImage, this.canvas)
+        /* toPNG(vectorImage, this.canvas)
             .then(function(dataURL) {
-                node.style.backgroundImage = "url(" + dataURL + ")";
+                // node.style.backgroundImage = "url(" + dataURL + ")";
             }).catch(function(err) {
                 console.warn(err);
-            });
+            }); */
 
         var self = this;
         window.addEventListener(
             "resize",
             debounce(function() {
-                /* node.style.backgroundImage =
-                    "url(" +
-                    b64url(render(self.templates[self.page], self.viewport)) +
-                    ")"; */
 				vectorImage = render(self.templates[self.page], self.viewport);
 				node.style.backgroundImage = "url(" + b64url(vectorImage) + ")";
-                toPNG(vectorImage, self.canvas)
+                /* toPNG(vectorImage, self.canvas)
                     .then(function(dataURL) {
-                        node.style.backgroundImage = "url(" + dataURL + ")";
+                        // node.style.backgroundImage = "url(" + dataURL + ")";
                     }).catch(function(err) {
                         console.warn(err);
-                    });
-            }, 150)
+                    }); */
+            }, 200)
         );
     };
 

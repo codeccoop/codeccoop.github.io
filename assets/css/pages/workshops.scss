@@ -27,7 +27,20 @@ main.workshops {
 			height: 75px;
 		}
 
+		@include m-media(zr, xxsm) {
+			margin-top: 15px;
+		}
+
+		@include m-media(xxsm) {
+			margin-top: 10px;
+		}
+
+		@include m-media(xsm) {
+			margin-top: 0px;
+		}
+
 		@include m-media(md) {
+			margin-top: 10px;
 			font-size: 2.5rem;
 		}
 
