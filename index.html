@@ -144,17 +144,7 @@ page: home
             </div>
             <div class="home__section-column column is-6">
                 <div class="home__profiles">
-                    {% for author in site.authors %}
-                    <figure>
-                        <img src="{{ base.url | prepend: site.url }}/assets/images/{{ author.short_name }}-sticker.png" unselectable="on" />
-                        <figcaption>{{ author.name }}</figcaption>
-                        <div class="quote-wrapper">
-                            <div class="quote">
-                                <q><em>{{ author.description }}</em></q>
-                            </div>
-                        </div>
-                    </figure>
-                    {% endfor %}
+                    <img src="assets/images/nosaltres-r.jpg" alt="">
                 </div>
             </div>
         </div>

@@ -251,6 +251,7 @@
 
     .home__section-column {
         display: flex;
+        justify-content: flex-start;
 
         .title {
             margin-bottom: .5rem;
@@ -329,80 +330,13 @@
         flex-wrap: wrap;
         justify-content: center;
 
-        figure {
-            flex: 1;
-            flex-basis: 120px;
-            flex-grow: 0;
-            cursor: help;
-            position: relative;
-			padding: 0 .5rem;
-
-			@include m-media(zr, md) {
-				margin-top: 2rem;
-			}
-
-			@include m-media(xsm) {
-				flex-basis: 200px;	
-			}
-
-            img {
-				filter: drop-shadow(2px 4px 5px #0003);
-				background-color: transparent;
-				transition: filter 200ms ease-out, transform 200ms ease-out;
+        img {
+            filter: sepia(0.5) contrast(1.1);
+            padding-top: 40px;
+            @include m-media(zr, xsm){
+                padding-top: 0px;
             }
 
-            figcaption {
-                text-align: center;
-                font-size: 1.5em;
-            }
-
-            .quote-wrapper {
-                display: none;
-                position: absolute;
-                top: 0px;
-                left: 50%;
-                transform: translate(-50%, - 100%);
-                min-width: 100%;
-                max-width: 80vw;
-            }
-
-            .quote {
-                position: relative;
-                display: block;
-                padding: .5em 1.2em;
-                background: white;
-                box-shadow: 2px 2px 6px #0003;
-                border-radius: 6px;
-
-                &:after {
-                    content: "";
-                    position: absolute;
-                    border-top: 10px solid white;
-                    border-left: 10px solid transparent;
-                    border-right: 10px solid transparent;
-                    width: 10px;
-                    height: 10px;
-                    transform: translate(-200%, 95%);
-                    right: 0px;
-                    bottom: 0px;
-                }
-            }
-
-            q {
-                font-size: .8em;
-                line-height: 1;
-            }
-
-            &:hover {
-                img {
-                    transform: translate(-2px, -6px);
-                    filter: drop-shadow(2px 2px 3px #0005);
-                }
-
-                .quote-wrapper {
-                    display: block;
-                }
-            }
         }
     }
 }
