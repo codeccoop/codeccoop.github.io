@@ -1,0 +1,66 @@
+<div class="contact">
+    <p class="contact__title title is-5 has-text-white">Contacta'ns</p>
+    <div class="contact__notification notification is-success is-hidden">
+        <button class="delete"></button>
+        Gràcies per posar-te en contacte. Ens comprometem a respondret en breus!
+    </div>
+    <form class="contact__form">
+        <div id="contactName" class="contact__field field" required>
+            <label class="label has-text-white">Nom i Cognom</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="Tal i Pasqual">
+            </div>
+            <p class="help"></p>
+        </div>
+        <div id="contactEmail" class="contact__field field" required>
+            <label class="label has-text-white">Correu electrònic</label>
+            <div class="control">
+                <input class="input" type="email" placeholder="hola@">
+            </div>
+            <p class="help"></p>
+        </div>
+        <div id="contactSubject" class="contact__field field" required>
+            <label class="label has-text-white">Assumpte</label>
+            <div class="control">
+                <input id="subject" class="input" type="text" placeholder="Hola!">
+            </div>
+            <p class="help"></p>
+        </div>
+        <div id="contactMessage" class="contact__field field" required>
+            <label class="label has-text-white">Missatge</label>
+            <div class="control">
+                <textarea class="textarea" placeholder="Blablabla"></textarea>
+            </div>
+            <p class="help"></p>
+        </div>
+        <div id="contactTerms" class="contact__field field" required>
+            <div class="control">
+                <label class="checkbox">
+                    <input type="checkbox">
+                    Accepto <a href="#">els termes and condicions</a>
+                </label>
+            </div>
+            <p class="help"></p>
+        </div>
+        <div id="contactSubscription" class="contact__field field is-grouped">
+            <div class="field has-text-white">Vols rebre informació sobre la cooperativa?</div>
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="question" value="true">
+                    Sí
+                </label>
+                <label class="radio">
+                    <input type="radio" name="question" value="false" value="false" checked="true">
+                    No
+                </label>
+            </div>
+            <p class="help"></p>
+        </div>
+        <div id="contactSubmit" class="contact__submit-field field">
+            <div class="control">
+                <button class="button is-danger">Enviar</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="{{ base.url | prepend: site.url }}/assets/js/components/contact.js"></script>
