@@ -36,14 +36,16 @@ page: products
     {% for product in site.data.products %}
     <article name="{{product.name | downcase}}" class="products__product media">
         <figure class="products__product-badge media-left">
-            <p class="image is-128x128">
-                <img src="{{ base.url | prepend: site.url }}/assets/images/logos/{{product.name | downcase }}.png" />
-            </p>
+            <a href="{{ product.url }}" target="__blank">
+                <p class="image is-128x128">
+                    <img src="{{ base.url | prepend: site.url }}/assets/images/logos/{{product.name | downcase }}.png" />
+                </p>
+            </a>
         </figure>
         <div class="products__product-body media-content">
-			<a class="products__product-toggle" aria-expanded="false" role="button" tabindex="0" aria-pressed="false">
-				<h2 class="products__product-title title is-4">{{ product.name }}</h2>
-				<h3 class="products__product-subtitle subtitle is-6"><strong>{{ product.subtitle }}</strong></h3>
+            <a class="products__product-toggle" aria-expanded="false" role="button" tabindex="0" aria-pressed="false">
+                <h2 class="products__product-title title is-4">{{ product.name }}</h2>
+                <h3 class="products__product-subtitle subtitle is-6"><strong>{{ product.subtitle }}</strong></h3>
                 <p class="products__product-description">{{ product.description }}</p>
             </a>
             <nav class="products__product-footer">

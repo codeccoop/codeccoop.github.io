@@ -39,6 +39,9 @@
     <header id="pageHeader">{% include navigation.html %}</header>
     {% endif %}
     <main class="{{ page.page }}">{{ content }}</main>
+	{% if page.page != "home" %}
+	<footer id="pageFooter">{% include footer.html %}</footer>
+	{% endif %}
     <script src="{{ base.url | prepend: site.url }}/assets/js/main.js" ></script>
     <script src="{{ base.url | prepend: site.url }}/assets/js/components/header.js" ></script>
   </body>

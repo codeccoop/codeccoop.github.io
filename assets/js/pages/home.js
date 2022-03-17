@@ -57,4 +57,34 @@ document.addEventListener("DOMContentLoaded", function() {
         descriptions[i].addEventListener("click", toggleVisibility);
         descriptions[i].addEventListener("keydown", bindToEnter(toggleVisibility, 13));
     }
+
+	var profiles = $el.getElementsByClassName("home__profiles-wrapper")[0]
+	if (isMobile()) {
+		function onTouchStart () {
+			profiles.removeEventListener("touchstart", onTouchStart);
+			profiles.addEventListener("touchend", onTouchEnd);
+			profiles.classList.add("as-text");
+		}
+
+		function onTouchEnd () {
+			profiles.addEventListener("touchstart", onTouchStart);
+			profiles.removeEventListener("touchend", onTouchEnd);
+			profiles.classList.remove("as-text");
+		}
+
+		profiles.addEventListener("touchstart", onTouchStart);
+	} else {
+		function onMouseOver () {
+			profiles.removeEventListener("mouseover", onMouseOver);
+			profiles.addEventListener("mouseout", onMouseOut)
+			profiles.classList.add("as-text");
+		}
+
+		function onMouseOut () {
+			profiles.addEventListener("mouseover", onMouseOver);
+			profiles.removeEventListener("mouseout", onMouseOut);
+			profiles.classList.remove("as-text");
+		}
+		profiles.addEventListener("mouseover", onMouseOver);
+	}
 });
