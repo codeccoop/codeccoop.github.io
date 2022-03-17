@@ -62,7 +62,7 @@
 
 	#home & {
 		color: white;
-		margin-top: 70px;
+		margin-top: 40px;
 
 		.is-mobile & {
 			margin-top: 60px;
@@ -74,12 +74,13 @@
 	}
 
     &:not(:last-child) {
-        margin-bottom: 1.75rem;
+        margin-bottom: 1rem;
     }
 }
 
 .home__title + .subtitle {
     line-height: 1;
+	color:white;
 }
 
 .home__cite {
@@ -123,7 +124,7 @@
         filter: grayscale(.5) drop-shadow(2px 2px 2px #0003);
         filter: drop-shadow(2px 2px 2px #0003);
         transition: filter 200ms ease-in;
-		width: 300px;
+		width: 200px;
 
 		.is-mobile & {
 			@media (orientation: portrait) {
@@ -150,7 +151,8 @@
 
     .home__section-row {
         &:not(:last-child) {
-            padding-bottom: 2em;
+			padding-top: 1em;
+            padding-bottom: 1em;
             border-bottom: 2px dashed #ccc;
 
 			@include m-media(zr, sm) {
@@ -176,8 +178,8 @@
 
         .button {
             width: fit-content;
-            padding: 0 2em;
-            margin-top: 1.5rem;
+            padding: 0 1em;
+            margin-top: 1rem;
         }
 
 		@include m-media(zr, sm) {
@@ -308,20 +310,6 @@
                 }
             }
         }
-
-		.home__us-projects {
-			@include m-media(zr, sm) {
-				.button {
-					font-size: 0.85em;
-				}
-			}
-
-			@media (orientation: portrait) {
-				.button {
-					font-size: 0.85em;
-				}
-			}
-		}
     }
 
     .home__profiles-wrapper {
@@ -429,4 +417,46 @@
     width: 100%;
     margin-top: -#{$header-height};
     background: transparent;
+}
+#projects{
+	.home__projects {
+		@include m-media(zr, sm) {
+			.button {
+				font-size: 0.85em;
+			}
+		}
+
+		@media (orientation: portrait) {
+			.button {
+				font-size: 0.85em;
+			}
+		}
+	}
+	.projects__data{
+		padding: 40px 0;
+	}
+	.projects__product{
+		align-items: start;
+		padding-right: 0px;
+		&:first-child {
+			padding-left: 0px;
+		}
+	}
+	.container__home__projects{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.home__projects{
+		margin-top: 40px;
+	}
+	.projects__product-tags li{
+		display: inline;
+		&:not(:first-child){
+			margin-left: 7px;
+		}
+	}
+	.projects__product img{
+		height: 200px;
+	}
 }

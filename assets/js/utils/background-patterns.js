@@ -162,8 +162,8 @@ var BackgroundPatterns = (function() {
                 var bandWidth = self.settings.isMobile ? '72px' : '110px';
                 return {
                     home: '<svg width="{100vw}" height="{100vh}" xmlns="http://www.w3.org/2000/svg">' +
-                        `<path d="M 0, calc(100px + ${bandWidth}) H {82vw} V 100 H 0 Z" fill="#051d41" />` +
-                        `<path d="M {82vw}, calc(100px + ${bandWidth}) V 0 H calc({82vw} + ${bandWidth}) V 110 Z" fill="#fe9a00"/>` +
+                        /* `<path d="M 0, calc(100px + ${bandWidth}) H {82vw} V 100 H 0 Z" fill="#051d41" />` +
+                        `<path d="M {82vw}, calc(100px + ${bandWidth}) V 0 H calc({82vw} + ${bandWidth}) V 110 Z" fill="#fe9a00"/>` + */
                         `<path d="M 0, calc({95vh} - ${bandWidth}) H {2vw} V {95vh} H 0 Z" fill="#051d41"/>` +
                         `<path d="M {2vw}, calc({95vh} - ${bandWidth}) V {100vh} H calc({2vw} + ${bandWidth}) V {95vh} Z" fill="#fe9a00"/>` +
                         "</svg>",

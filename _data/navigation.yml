@@ -14,10 +14,13 @@
 - id: team
   name: Nosaltres
   link: '/#team'
+- id: projects
+  name: Projectes
+  link: '/#projects' 
   dropdown:
-    - id: projects
-      name: Projectes
-      link: '/projects.html'  
+    - id: archive
+      name: Arxiu de projectes
+      link: '/projects.html' 
 - id: blog
   name: Blog
   link: /blog
