@@ -15,15 +15,15 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         homeBg.bind(document.getElementById("home"));
 
-        var workBg = new BackgroundPatterns("work", {
-            isMobile: isMobile()
-        });
-        workBg.bind(document.getElementById("work"));
-
         var teamBg = new BackgroundPatterns("team", {
             isMobile: isMobile()
         });
         teamBg.bind(document.getElementById("team"));
+
+        var teamBg = new BackgroundPatterns("projects", {
+            isMobile: isMobile()
+        });
+        teamBg.bind(document.getElementById("projects"));
     }, 200);
 
     var description
