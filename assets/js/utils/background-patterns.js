@@ -164,8 +164,8 @@ var BackgroundPatterns = (function() {
                     home: '<svg width="{100vw}" height="{100vh}" xmlns="http://www.w3.org/2000/svg">' +
                         /* `<path d="M 0, calc(100px + ${bandWidth}) H {82vw} V 100 H 0 Z" fill="#051d41" />` +
                         `<path d="M {82vw}, calc(100px + ${bandWidth}) V 0 H calc({82vw} + ${bandWidth}) V 110 Z" fill="#fe9a00"/>` + */
-                        `<path d="M 0, calc({95vh} - ${bandWidth}) H {2vw} V {95vh} H 0 Z" fill="#051d41"/>` +
-                        `<path d="M {2vw}, calc({95vh} - ${bandWidth}) V {100vh} H calc({2vw} + ${bandWidth}) V {95vh} Z" fill="#fe9a00"/>` +
+                        // `<path d="M 0, calc({95vh} - ${bandWidth}) H {2vw} V {95vh} H 0 Z" fill="#051d41"/>` +
+                        `<path d="M {2vw}, {0vh} V {100vh} H calc({2vw} + ${bandWidth}) V {0vh} Z" fill="#fe9a00"/>` +
                         "</svg>",
                     team: '<svg width="{100vw}" height="{100vh}" xmlns="http://www.w3.org/2000/svg">' +
                         `<path d="M calc({2vw} + ${bandWidth}), calc({45vh} - ${bandWidth}) V 0 H {2vw} V {45vh} Z" fill="#fe9a00" />` +
@@ -174,13 +174,16 @@ var BackgroundPatterns = (function() {
                         `<path d="M {150vw}, {55vh} H {98vw} V calc({55vh} + ${bandWidth}) H {150vw} Z" fill="#051d41" />` +
                         "</svg>",
                     projects: '<svg width="{100vw}" height="{100vh}" xmlns="http://www.w3.org/2000/svg">' +
-                        `<path d="M calc({98vw} - ${bandWidth}), {98vh} V 0 H calc({98vw}) V calc({98vh} - ${bandWidth}) Z" fill="#fe9a00" />` +
-                        `<path d="M calc({98vw} - ${bandWidth}), {98vh} H calc({2vw} + ${bandWidth}) V calc({98vh} - ${bandWidth}) H calc({98vw}) Z" fill="#051d41" />` +
-                        `<path d="M {2vw}, {98vh} V {100vh} H calc({2vw} + ${bandWidth}) V calc({98vh} - ${bandWidth}) Z" fill="#fe9a00"/>` +
+                        // `<path d="M calc({98vw} - ${bandWidth}), {100vh} V 0 H calc({98vw}) V {100vh} Z" fill="#fe9a00" />` +
+                        `<path d="M {98vw}, calc({98vh} - ${bandWidth}) V {0vh} H calc({98vw} - ${bandWidth}) V {98vh} Z" fill="#fe9a00"/>` +
+						`<path d="M {0vw}, {98vh} H calc({98vw} - ${bandWidth}) V calc({98vh} - ${bandWidth}) H {0vw} Z" fill="#051d41" />` +
+						// `<path d="M {98vw} {95vh} H {100vw} V calc({95vh} - ${bandWidth}) H {98vw} Z" fill="#051d41" />` +
+                        // `<path d="M calc({98vw} - ${bandWidth}), {98vh} H calc({2vw} + ${bandWidth}) V calc({98vh} - ${bandWidth}) H calc({98vw}) Z" fill="#051d41" />` +
+                        // `<path d="M {2vw}, {98vh} V {100vh} H calc({2vw} + ${bandWidth}) V calc({98vh} - ${bandWidth}) Z" fill="#fe9a00"/>` +
                         "</svg>",
                     products: '<svg width="{100vw}" height="{100vh}" xmlns="http://www.w3.org/2000/svg">' +
-                        `<path d="M {92vw}, calc(75px + ${bandWidth}) V 0 H calc({92vw} + ${bandWidth}) V 75 Z" fill="#fe9a00"/>` +
-                        `<path d="M 0, calc(75px + ${bandWidth}) H {92vw} V 75 H 0 Z" fill="#184042" />` +
+                        // `<path d="M {92vw}, calc(75px + ${bandWidth}) V 0 H calc({92vw} + ${bandWidth}) V 75 Z" fill="#fe9a00"/>` +
+                        // `<path d="M 0, calc(75px + ${bandWidth}) H {92vw} V 75 H 0 Z" fill="#184042" />` +
                         // `<path d="M {12vw}, calc({98vh} - ${bandWidth}) V {100vh} H calc({12vw} - ${bandWidth}) V {98vh} Z" fill="#fe9a00"/>` +
                         // `<path d="M {12vw}, calc({98vh} - ${bandWidth}) H {100vw} V {98vh} H {12vw} Z" fill="#184042" />` +
 					'</svg>',
@@ -195,6 +198,10 @@ var BackgroundPatterns = (function() {
                         `<path d="M 0, calc(75px + ${bandWidth}) H {92vw} V 75 H 0 Z" fill="#051d41" />` +
                         `<path d="M {12vw}, calc({98vh} - ${bandWidth}) V {100vh} H calc({12vw} - ${bandWidth}) V {98vh} Z" fill="#fe9a00"/>` +
                         `<path d="M {12vw}, calc({98vh} - ${bandWidth}) H {100vw} V {98vh} H {12vw} Z" fill="#051d41" />` +
+					'</svg>',
+                    contact: '<svg width="{100vw}" height="{100vh}" xmlns="http://www.w3.org/2000/svg">' +
+                        // `<path d="M {98vw}, calc({98vh} - ${bandWidth}) V {0vh} H calc({98vw} - ${bandWidth}) V {98vh} Z" fill="#fe9a00"/>` +
+						// `<path d="M {0vw}, {98vh} H calc({98vw} - ${bandWidth}) V calc({98vh} - ${bandWidth}) H {0vw} Z" fill="#051d41" />` +
 					'</svg>',
                     default: '<svg width="{100vw}" height="{100vh}" xmlns="http://www.w3.org/2000/svg">' +
                         '<path d="M 0, 90 H {5vw} V calc(90px + {8vw}) H 0 Z" fill="#f6ff62" />' +

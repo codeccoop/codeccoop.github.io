@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var $el = document.getElementById("pageFooter");
+    var $el = document.getElementById("pageFooter") || document.getElementById("contact");
 
     var contactForm = new ContactForm($el);
 });

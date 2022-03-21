@@ -20,10 +20,15 @@ document.addEventListener("DOMContentLoaded", function() {
         });
         teamBg.bind(document.getElementById("team"));
 
-        var teamBg = new BackgroundPatterns("projects", {
+        var projectsBg = new BackgroundPatterns("projects", {
             isMobile: isMobile()
         });
-        teamBg.bind(document.getElementById("projects"));
+        projectsBg.bind(document.getElementById("projects"));
+
+        var contactBg = new BackgroundPatterns("contact", {
+            isMobile: isMobile()
+		});
+		contactBg.bind(document.getElementById("contact"));
     }, 200);
 
     var description

@@ -4,7 +4,7 @@
   aria-label="main navigation"
 >
   <div class="navbar-brand">
-    <a class="navbar-item" data-id="home" href="/#home">Còdec</a>
+    <a class="navbar-item" data-id="home" href="/#home"></a>
 
     <a
       role="button"
@@ -21,8 +21,9 @@
 
   <div id="pageNavbarMenu" class="navbar-menu">
     <div class="navbar-start">
-      {% assign links = site.data.navigation | where_exp: "item", "item.id !=
-      'home'" %} {% for item in links %} {% if item.dropdown %}
+      {% assign links = site.data.navigation %}
+	  {% for item in links %}
+	  {% if item.dropdown %}
       <div
         data-id="{{ item.id }}"
         class="navbar-item has-dropdown is-hoverable"

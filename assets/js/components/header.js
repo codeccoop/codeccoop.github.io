@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             return item.dataset.id == id;
         })[0];
+		if (!item) return;
         if (item.classList.contains("has-dropdown")) {
             item.children[0].classList.add("is-active");
         } else {

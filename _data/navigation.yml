@@ -1,9 +1,6 @@
 - id: home
-  name: Còdec
-  link: '/#home'
-- id: work
   name: Què fem?
-  link: '/#work'
+  link: '/#home'
   dropdown:
     - id: products
       name: Codifiquem
@@ -21,6 +18,9 @@
     - id: archive
       name: Arxiu de projectes
       link: '/projects.html' 
+- id: contact
+  name: Contacte
+  link: '/#contact'
 - id: blog
   name: Blog
   link: /blog

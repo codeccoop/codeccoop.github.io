@@ -4,6 +4,7 @@
 @import "colors";
 @import "typography";
 @import "breakpoints";
+@import "images";
 
 header {
     position: fixed;
@@ -34,10 +35,9 @@ header {
             color: inherit !important;
             font-weight: bold;
 			text-decoration: none !important;
+			width: 90px;
 
-			@include m-media(zr, md) {
-				font-size: 1.4rem;
-			}
+			@include m-background-image('/assets/images/logo-codec.png');
         }
 
         .navbar-item.is-active,
