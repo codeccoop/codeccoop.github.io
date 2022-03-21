@@ -16,10 +16,6 @@
     background-size: cover;
     background-position: center;
 
-	&#home {
-		background-color: #051d41;
-	}
-
     &#team {
 		padding-bottom: 175px;
     }
@@ -76,14 +72,19 @@
     line-height: .9;
 
 	#home & {
+		width: 50vw;
+		height: 200px;
+		text-align: center;
 		color: white;
 		margin-top: 40px;
+		@include m-background-image('/assets/images/logo-codec.png');
 
 		.is-mobile & {
 			margin-top: 60px;
 		}
 
 		+ .subtitle {
+			text-align: center;
 			margin-top: -0.25rem;
 		}
 	}

@@ -12,7 +12,6 @@ main.products {
     .products__title {
 		margin-top: 0px;
 		height: 110px;
-		color: white;
         font-weight: 500;
 		line-height: .9;
 		display: flex;
@@ -38,7 +37,6 @@ main.products {
 		}
 
         .subtitle {
-			color: white;
             display: block;
 
 			@include m-media(zr, md) {
