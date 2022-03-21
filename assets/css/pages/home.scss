@@ -65,39 +65,22 @@
 	}
 }
 
-.home__title {
-	margin-top: 2rem;
-    font-size: ms(4);
-    font-weight: 500;
-    line-height: .9;
+.home__landing {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	background-color: #051d41;
+	padding: 0 $site-paddings;
+	margin: 0 calc(#{$site-paddings} * -1);
+	border-bottom: 10px solid #fe9e00;
 
-	#home & {
-		width: 50vw;
-		height: 200px;
-		text-align: center;
-		color: white;
-		margin-top: 40px;
-		@include m-background-image('/assets/images/logo-codec.png');
-
-		.is-mobile & {
-			margin-top: 60px;
-		}
-
-		+ .subtitle {
-			text-align: center;
-			margin-top: -0.25rem;
-		}
+	.home__title {
+		flex: 1;
+		height: 100%;
+		@include m-background-image('/assets/images/landing.gif');
 	}
-
-    &:not(:last-child) {
-        margin-bottom: 1rem;
-    }
 }
 
-.home__title + .subtitle {
-    line-height: 1;
-	color:white;
-}
 
 .home__cite {
 	flex: 1;

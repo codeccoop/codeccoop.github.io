@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
         },
     });
 
-    setTimeout(function() {
+    /* setTimeout(function() {
         var homeBg = new BackgroundPatterns("home", {
             isMobile: isMobile()
         });
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
             isMobile: isMobile()
 		});
 		contactBg.bind(document.getElementById("contact"));
-    }, 200);
+    }, 200); */
 
     var description
     var descriptions = document.getElementsByClassName("us__information-toggle");
