@@ -99,10 +99,8 @@ page: home
 
 </section>
 <section id="projects" class="home__section">
+    <h2 class="home__title title is-3">Projectes</h2>
     <div class="projects__content">
-        <h2 class="home__title title is-3">
-            Projectes
-        </h2>
         <div class="projects__data">
             {% assign home_projects = site.data.projects | slice: 0,2 %}
             {% for project in home_projects %}

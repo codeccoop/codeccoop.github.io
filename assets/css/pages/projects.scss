@@ -68,30 +68,44 @@ main.projects {
     align-items: center;
     display: flex;
     flex-direction: column;
-    width: 50%;
-	padding: 0px 2vw;
-	margin-top: 2rem;
+    width: 100%;
 
-	&:nth-child(1),
-	&:nth-child(2) {
-		margin-top: 0;
+	&:not(:last-child) {
+		padding-bottom: 3rem;
 	}
 
-    @include m-media(zr, xsm) {
-        width: 100%;
+	&:last-child {
+		margin-top: unset;
+	}
 
-		&:nth-child(1) {
-			margin-top: 10px;
+	@include m-media(md) {
+		width: 50%;
+
+		&:nth-child(odd) {
+			padding-right: 1rem;
 		}
 
-        + .projects__product {
-            margin-top: 40px;
-        }
-    }
+		&:nth-child(even) {
+			padding-left: 1rem;
+		}
+	}
 
-	img {
-		box-shadow: 0px 0px 6px #0003;
-		border-radius: 2px;
+	> a {
+		display: block;
+		width: 100%;
+
+		> img {
+			object-fit: cover;
+			object-position: left top;
+			width: 100%;
+			height: 40vw;
+			box-shadow: 0px 0px 6px #0003;
+			border-radius: 2px;
+
+			@include m-media(md) {
+				height: 20vw;
+			}
+		}
 	}
 
     h2 {
