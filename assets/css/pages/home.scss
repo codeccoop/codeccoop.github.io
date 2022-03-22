@@ -23,10 +23,6 @@
 	&#home {
 		padding-bottom: 55px;
 	}
-
-    &#team {
-		padding-bottom: 175px;
-    }
 }
 
 .home__section-content {
@@ -93,7 +89,7 @@
 	}
 
     &:not(:last-child) {
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
     }
 }
 
@@ -510,6 +506,10 @@
 
 		&:not(:last-child) {
 			padding-bottom: 2rem;
+
+			@media screen and (max-height: 520px) {
+				padding-bottom: 1rem;
+			}
 		}
 
 		&:last-child {
@@ -529,6 +529,12 @@
 
 			&:not(:last-child) {
 				padding-bottom: 0px;
+			}
+		}
+
+		> a > img {
+			@media screen and (max-height: 520px) {
+				height: 30vw;
 			}
 		}
 

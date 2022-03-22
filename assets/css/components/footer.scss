@@ -2,6 +2,7 @@
 ---
 
 @import "reset";
+@import "breakpoints";
 
 #pageFooter,
 #contact {
@@ -14,6 +15,10 @@
 }
 
 .footer__content {
-	padding: 5rem 4rem 2rem;
+	padding: 5rem 0 2rem;
 	padding-bottom: 150px;
+
+	@include m-media(lg) {
+		padding: 5rem 4rem 2rem;
+	}
 }
