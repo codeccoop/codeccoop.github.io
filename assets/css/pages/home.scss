@@ -78,6 +78,25 @@
 		flex: 1;
 		height: 100%;
 		@include m-background-image('/assets/images/landing.gif');
+
+	}
+}
+
+.home__landing-chevron {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	display: block;
+	width: 35px;
+	height: 35px;
+	border-bottom: 3px solid $font-color;
+	border-left: 3px solid $font-color;
+	transform: translateX(-50%) rotate(315deg);
+	cursor: pointer;
+	transition: transform 200ms;
+
+	&:hover {
+		transform: translate(-50%, -5px) rotate(315deg)
 	}
 }
 

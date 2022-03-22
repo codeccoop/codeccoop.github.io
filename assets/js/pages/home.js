@@ -9,27 +9,10 @@ document.addEventListener("DOMContentLoaded", function() {
         },
     });
 
-    /* setTimeout(function() {
-        var homeBg = new BackgroundPatterns("home", {
-            isMobile: isMobile()
-        });
-        homeBg.bind(document.getElementById("home"));
-
-        var teamBg = new BackgroundPatterns("team", {
-            isMobile: isMobile()
-        });
-        teamBg.bind(document.getElementById("team"));
-
-        var projectsBg = new BackgroundPatterns("projects", {
-            isMobile: isMobile()
-        });
-        projectsBg.bind(document.getElementById("projects"));
-
-        var contactBg = new BackgroundPatterns("contact", {
-            isMobile: isMobile()
-		});
-		contactBg.bind(document.getElementById("contact"));
-    }, 200); */
+	var scrollChevron = $el.getElementsByClassName("home__landing-chevron")[0];
+	scrollChevron.addEventListener("click", function () {
+		sectionScroller.scrollTo("work", 1, "smooth");
+	});
 
     var description
     var descriptions = document.getElementsByClassName("us__information-toggle");
