@@ -5,10 +5,8 @@ page: home
 ---
 
 <section id="home" class="home__section">
-    <h1 class="home__title title is-1" style="display: none"></h1>
-    <p class="subtitle is-3" style="display: none">Codis comuns per una tecnologia més democràtica</p>
     <div class="home__landing">
-        <div class="home__title"></div>
+        <div class="home__brand"></div>
     </div>
     <div class="home__landing-chevron"></div>
 </section>
@@ -48,26 +46,26 @@ page: home
 <section id="team" class="home__section">
     <h2 class="home__title title is-3">Nosaltres</h2>
     <div class="home__section-content">
-        <div class="home__us home__section-row columns">
-            <div class="home__us home__section-column column is-6">
-                <div class="content">
+        <div class="home__section-row columns">
+            <div class="home__section-column column is-6">
+                <div class="home__us content">
                     <h3 class="title is-6 us__information-toggle-btn" role="button" aria-pressed="false" tabindex="0">Solucions digitals</h3>
-                    <p class="us__information-description">Treballem per una digitalització a escala humana i amb caràcter comunitari. Naixem amb voluntat de desenvolupar productes i serveis digitals des de la cultura del programari lliure.</p>
+                    <p class="us__information-description">Treballem per una digitalització a escala humana i amb caràcter comunitari. <span class="hiddable">Naixem amb voluntat de desenvolupar productes i serveis digitals des de la cultura del programari lliure.</span></p>
                     <h3 class="title is-6 us__information-toggle-btn" role="button" aria-pressed="false" tabindex="0">Tecnologia i cultura lliure</h3>
-                    <p class="us__information-description">Volem ser espai de reflexió i formació crítica al voltant de la informàtica. Solucions simples a problemes simples, apropiables, accessibles i inclusives per garantir una tecnologia útil i
-                        empoderadora a escala local i comunitària. A favor de la creació
-                        entesa com a procés col·lectiu i comunitari basat en la còpia, la
-                        reutilització i la reapropiació.</p>
+                    <p class="us__information-description">Volem ser espai de reflexió i formació crítica al voltant de la informàtica. <span class="hiddable">Solucions simples a problemes simples, apropiables, accessibles i inclusives per garantir una tecnologia útil i
+                            empoderadora a escala local i comunitària. A favor de la creació
+                            entesa com a procés col·lectiu i comunitari basat en la còpia, la
+                            reutilització i la reapropiació.</span></p>
                     <h3 class="title is-6 us__information-toggle-btn" role="button" aria-pressed="false" tabindex="0">Autoocupació cooperativa</h3>
                     <p class="us__information-description">
                         Apostem per projectes d'ocupació a través de la cooperació per
                         superar les formes de treball basades en lògiques capitalistes.
-                        Volem construir espais laborals basats en l'horitzontalitat i les cures.
+                        <span class="hiddable">Volem construir espais laborals basats en l'horitzontalitat i les cures.</span>
                     </p>
                     </a>
                 </div>
             </div>
-            <div class="home__us home__section-column column is-6">
+            <div class="home__section-column column is-6">
                 <div class="home__profiles-wrapper">
                     <div class="home__team-picture"></div>
                     <div class="home__profiles">
@@ -118,4 +116,5 @@ page: home
     {% include footer.html %}
 </section>
 
+<script src="{{ base.url | prepend: site.url }}/assets/js/utils/animation.js"></script>
 <script src="{{ base.url | prepend: site.url }}/assets/js/pages/home.js"></script>

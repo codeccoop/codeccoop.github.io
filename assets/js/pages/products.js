@@ -12,19 +12,23 @@ document.addEventListener("DOMContentLoaded", function() {
     var descriptions = document.getElementsByClassName("products__product-toggle");
     for (var i = 0; i < descriptions.length; i++) {
         function toggleVisibility(ev) {
-			if (ev.target.classList.contains("products__product-contact")) {
-				location.hash = ev.target.dataset.href;
-			}
-            if (!ev.target.classList.contains("products__product-description")) {
-                ev.currentTarget.classList.toggle("open");
-                if (ev.currentTarget.classList.contains("open")) {
-                    ev.currentTarget.setAttribute("aria-pressed", "true");
-                    ev.currentTarget.setAttribute("aria-expanded", "true");
-                } else {
-                    ev.currentTarget.setAttribute("aria-pressed", "false");
-                    ev.currentTarget.setAttribute("aria-expanded", "false");
+            if (ev.target.classList.contains("products__product-contact")) {
+                window.scrollBy(
+                    0,
+                    document.getElementById("pageFooter")
+                    .getBoundingClientRect().top
+                );
+            } else {
+                if (!ev.target.classList.contains("products__product-description")) {
+                    ev.currentTarget.classList.toggle("open");
+                    if (ev.currentTarget.classList.contains("open")) {
+                        ev.currentTarget.setAttribute("aria-pressed", "true");
+                        ev.currentTarget.setAttribute("aria-expanded", "true");
+                    } else {
+                        ev.currentTarget.setAttribute("aria-pressed", "false");
+                        ev.currentTarget.setAttribute("aria-expanded", "false");
+                    }
                 }
-				// setTimeout(renderBackground(), 0);
             }
         }
 
