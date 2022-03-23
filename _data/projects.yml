@@ -30,3 +30,12 @@
   tags:
       - Programari a mida
       - WebGL
+- id: equinox
+  url: https://equinoxtrail.com
+  name: Equinox Trail
+  imagename: equinox
+  description: Pàgina web de la Equinox Trail, una lliga de dues curses de trail celebrada als dos equinoccis que atravessarem al llarg de l'any 2022
+  tags:
+      - Jekyll
+      - Pàgina web estàtica
+
