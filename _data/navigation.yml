@@ -1,6 +1,6 @@
-- id: home
+- id: work
   name: Què fem?
-  link: '/#home'
+  link: '/#work'
   dropdown:
     - id: products
       name: Codifiquem

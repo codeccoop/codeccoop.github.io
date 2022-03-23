@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		sectionScroller.scrollTo("work", 1, "smooth");
 	});
 
-    var description
+    /* var description
     var descriptions = document.getElementsByClassName("us__information-toggle");
     for (var i = 0; i < descriptions.length; i++) {
         function toggleVisibility(ev) {
@@ -44,9 +44,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         descriptions[i].addEventListener("click", toggleVisibility);
         descriptions[i].addEventListener("keydown", bindToEnter(toggleVisibility, 13));
-    }
+    } */
 
-	var profiles = $el.getElementsByClassName("home__profiles-wrapper")[0]
+	/* var profiles = $el.getElementsByClassName("home__profiles-wrapper")[0]
 	if (isMobile()) {
 		function onTouchStart () {
 			profiles.removeEventListener("touchstart", onTouchStart);
@@ -74,5 +74,5 @@ document.addEventListener("DOMContentLoaded", function() {
 			profiles.classList.remove("as-text");
 		}
 		profiles.addEventListener("mouseover", onMouseOver);
-	}
+	} */
 });

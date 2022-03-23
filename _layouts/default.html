@@ -31,6 +31,20 @@
     <script src="{{ base.url | prepend: site.url }}/assets/js/utils/viewport.js"></script>
     <script src="{{ base.url | prepend: site.url }}/assets/js/utils/easees.js"></script>
     <script src="{{ base.url | prepend: site.url }}/assets/js/utils/SectionScroller.js"></script>
+
+	<style>
+		#loader {
+			position: fixed;
+			height: calc(var(--vh, 1vh) * 100);
+			width: calc(var(--vw, 1vw) * 100);
+			background-color: #eef5f0;
+			z-index: 1000;
+			top: 0px;
+			left: 0px;
+			transition: opacity 300ms ease-out;
+			opacity: 1;
+		}
+	</style>
   </head>
   <body>
     {% if page.page == "blog" or page.collection == "posts" %}
@@ -42,7 +56,16 @@
 	{% if page.page != "home" %}
 	<footer id="pageFooter">{% include footer.html %}</footer>
 	{% endif %}
+	<div id="loader"></div>
     <script src="{{ base.url | prepend: site.url }}/assets/js/main.js" ></script>
     <script src="{{ base.url | prepend: site.url }}/assets/js/components/header.js" ></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document.getElementById("loader").style.opacity = 0;
+			setTimeout(function () {
+				document.getElementById("loader").style.display = "none";
+			}, 500);
+		});
+	</script>
   </body>
 </html>

@@ -1,17 +1,20 @@
 document.addEventListener("DOMContentLoaded", function() {
     var $el = document.getElementsByTagName("main")[0];
 
-    setTimeout(function () {
+    /* setTimeout(function () {
         var background = new BackgroundPatterns("products", {
             isMobile: isMobile()
         });
         background.bind($el);
-	}, 200);
+	}, 200); */
 
     var description
     var descriptions = document.getElementsByClassName("products__product-toggle");
     for (var i = 0; i < descriptions.length; i++) {
         function toggleVisibility(ev) {
+			if (ev.target.classList.contains("products__product-contact")) {
+				location.hash = ev.target.dataset.href;
+			}
             if (!ev.target.classList.contains("products__product-description")) {
                 ev.currentTarget.classList.toggle("open");
                 if (ev.currentTarget.classList.contains("open")) {
@@ -21,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     ev.currentTarget.setAttribute("aria-pressed", "false");
                     ev.currentTarget.setAttribute("aria-expanded", "false");
                 }
-				setTimeout(renderBackground(), 0);
+				// setTimeout(renderBackground(), 0);
             }
         }
 

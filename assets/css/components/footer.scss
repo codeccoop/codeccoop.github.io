@@ -21,4 +21,18 @@
 	@include m-media(lg) {
 		padding: 5rem 4rem 2rem;
 	}
+
+	.field.is-grouped {
+		.control {
+			padding-left: 1rem;
+		}
+	}
+
+	label.checkbox {
+		color: white;
+
+		> a {
+			color: white;
+		}
+	}
 }

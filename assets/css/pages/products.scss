@@ -147,6 +147,10 @@ main.products {
 			.products__product-description {
 				display: block;
 			}
+
+			.products__product-contact {
+				display: block;
+			}
 		}
 
 		.products__product-toggle-btn {
@@ -163,6 +167,12 @@ main.products {
 		.products__product-description {
 			display: none;
 			margin-bottom: 1em;
+		}
+
+		.products__product-contact {
+			display: none;
+			margin-right: auto;
+			margin-bottom: 1rem;
 		}
 	}
 }
