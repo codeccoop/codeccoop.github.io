@@ -99,7 +99,6 @@
 	display: flex;
 	flex-direction: column;
 	background-color: #43437a;
-	// background-color: $deep-cove;
 	padding: 0 $site-paddings;
 	margin: 0 calc(#{$site-paddings} * -1);
 	border-bottom: 10px solid $orange-peel;
@@ -457,7 +456,7 @@
 
 .scroll-span {
     width: 100%;
-    margin-top: -#{$header-height};
+    margin-top: calc(#{$header-height} * -1);
     background: transparent;
 }
 

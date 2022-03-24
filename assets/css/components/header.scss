@@ -17,11 +17,11 @@ header {
 
     .navbar {
         background-color: transparent;
-        padding: 0 #{$site-paddings};
+        padding: 0 $site-paddings;
 
         @media screen and (max-width: 1024px) {
             .navbar-menu {
-                width: calc(100% + 20vw);
+              	width: calc(100% + 20vw);
                 margin-left: -10vw;
 
                 .navbar-item {
@@ -36,8 +36,7 @@ header {
             font-weight: bold;
 			text-decoration: none !important;
 			width: 90px;
-
-			@include m-background-image('/assets/images/logo-codec.png');
+			@include m-background-image("/assets/images/logo-codec.png");
         }
 
         .navbar-item.is-active,

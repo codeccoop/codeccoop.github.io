@@ -39,6 +39,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-paginate
+  - jekyll-postcss
 
 sass:
   sourcemap: never
