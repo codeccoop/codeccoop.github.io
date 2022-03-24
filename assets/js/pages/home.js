@@ -11,7 +11,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var scrollChevron = $el.getElementsByClassName("home__landing-chevron")[0];
     scrollChevron.addEventListener("click", function() {
-        sectionScroller.scrollTo("work", 1, "smooth");
+		if (!isMobile()) {
+			sectionScroller.scrollTo("work", 1, "smooth");
+		} else {
+			location.hash = "work";
+		}
     });
 
     var frames = [
