@@ -126,6 +126,7 @@
 			width: 0px;
 
 			&.highlight {
+				background-color: $orange-peel;
 				color: $orange-peel;
 			}
 		}
@@ -147,6 +148,7 @@
 			color: $orange-peel;
 
 			.cursor {
+				background-color: $orange-peel;
 				margin: .05em;
 				border-width: 2px;
 			}
