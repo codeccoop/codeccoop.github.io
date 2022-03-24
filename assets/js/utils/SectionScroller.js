@@ -285,7 +285,18 @@ var SectionSnapScroller = (function() {
                         left: 0,
                         top: document.getElementById(currentSection).getBoundingClientRect().top
                     });
-                    setTimeout(setupInlineStyles, 500);
+					let delayed
+					function whileScroll () {
+						clearTimeout(delayed);
+						delayed = setTimeout(onScrollEnds, 50);
+					}
+
+					function onScrollEnds () {
+						self.$el.removeEventListener("scroll", whileScroll);
+						setupInlineStyles();
+					}
+
+					self.$el.addEventListener("scroll", whileScroll);
                 }, 0);
             } else {
                 setTimeout(setupInlineStyles, 500);
