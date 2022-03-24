@@ -12,27 +12,59 @@
 
 #pageFooter {
 	padding: 0 $site-paddings 3rem;
+	min-height: calc(calc(var(--vh, 1vh) * 100) - #{$header_height});
+
+	.is-mobile & {
+		min-height: calc(calc(var(--vh, 1vh) * 100) - #{$mobile-header-height});
+	}
 }
 
 .footer__content {
-	padding: 5rem 0 2rem;
-	padding-bottom: 150px;
+	padding: 2.5rem 0 2rem;
 
 	@include m-media(lg) {
-		padding: 5rem 4rem 2rem;
+		padding: 2.5rem 4rem 2rem;
 	}
 
-	.field.is-grouped {
-		.control {
-			padding-left: 1rem;
+	.is-mobile & {
+		@media (max-height: 500px) {
+			> .title,
+			> .subtitle {
+				display: none;
+			}
 		}
 	}
 
-	label.checkbox {
-		color: white;
+	.contact {
+		.field.is-grouped {
+			.control {
+				padding-left: 1rem;
+			}
+		}
 
-		> a {
+		label.checkbox {
 			color: white;
+
+			> a {
+				color: white;
+			}
+		}
+
+		.is-mobile & {
+			.contact__title {
+				margin-bottom: 1rem;
+			}
+
+			.contact__field {
+				input:not([type="checkbox"]) {
+					height: 2rem;
+					border-radius: 3px;
+				}
+
+				textarea {
+					min-height: 5rem;
+				}
+			}
 		}
 	}
 }

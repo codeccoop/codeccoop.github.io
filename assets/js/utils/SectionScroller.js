@@ -304,7 +304,11 @@ var SectionSnapScroller = (function() {
                 _currentSection = visibleSection.id;
                 location.hash = _currentSection;
 
-                self.scrollTo(_currentSection, 1, "auto");
+				if (self.getCurrentSectionOverflow(1) > 0) {
+					self.scrollTo(_currentSection, 1, "auto");
+				} else {
+					self.$viewport.scrollBy(0, self.$el.scrollTop);
+				}
                 self._delayed = false;
             }, 0);
         }
@@ -314,7 +318,7 @@ var SectionSnapScroller = (function() {
             var section = document.getElementById(_currentSection);
             var box = section.getBoundingClientRect();
             if (!isMobile()) {
-                self.$viewport.scrollBy(0, box.top);
+                self.$viewport.scrollTo(1, section.offsetTop);
             }
             self.onSectionUpdate(_currentSection);
         }
@@ -395,58 +399,6 @@ var SectionSnapScroller = (function() {
             from: location.hash
         }, null, "/#" + id);
     };
-
-    /* SectionSnapScroller.prototype.onSwipe = (function() {
-        var swipped = false;
-        var self, startY, deltaY, direction, overflow, speed, lastTrack;
-
-        function _onTouchMove(ev) {
-            if (self._delayed === true) return;
-            var currentY = ev.changedTouches[0].screenY;
-            var now = Date.now();
-            deltaY = startY - currentY;
-            direction = currentY > startY ? -1 : 1;
-            speed = deltaY / (now - lastTrack);
-
-            var offset = deltaY;
-            self.$el.scrollBy(0, offset);
-            self.$viewport.scrollBy(0, offset);
-            startY = currentY;
-            lastTrack = now;
-
-            swipped = true;
-        }
-
-        function _onTouchEnd(ev) {
-            document.removeEventListener("touchmove", _onTouchMove);
-            document.removeEventListener("touchend", _onTouchEnd);
-            if (!swipped) return;
-
-            overflow = self.getCurrentSectionOverflow(direction);
-
-            if (direction * overflow <= 0) {
-                self.currentSection =
-                    self.sections.indexOf(self.currentSection) + direction;
-            } else {
-                _swipeMotion.call(self, speed);
-            }
-
-            startY = void 0;
-            deltaY = void 0;
-            direction = void 0;
-            swipped = false;
-        }
-
-        return function(ev) {
-            self = this;
-            startY = ev.changedTouches[0].screenY;
-
-            _onTouchMove = _onTouchMove.bind(this);
-            document.addEventListener("touchmove", _onTouchMove);
-            _onTouchEnd = _onTouchEnd.bind(this);
-            document.addEventListener("touchend", _onTouchEnd);
-        };
-    })(); */
 
     SectionSnapScroller.prototype.onResize = (function() {
         var self;

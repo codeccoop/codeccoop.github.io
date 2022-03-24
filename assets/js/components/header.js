@@ -70,18 +70,38 @@ document.addEventListener("DOMContentLoaded", function() {
     $el.setActiveLink(currentPage);
 
     function scrollNavHandler(ev) {
-        var landingSections = ["home", "work", "team"];
+        var landingSections = ["home", "work", "team", "projects"];
         if (landingSections.includes(currentPage)) {
             if (ev.target.classList.contains("navbar-item") || ev.target.classList.contains("navbar-link")) {
                 if (ev.target.href.match(/\/#/)) {
                     ev.preventDefault();
                     ev.stopPropagation();
                     var id = ev.target.href.match(/\/#((.(?!\/))+[A-Za-z])/)[1]
-                    document.getElementsByClassName("scroll-root")[0].scrollBy({
+					var scrollRoot = document.getElementsByClassName("scroll-root")[0];
+					var scrollViewport = scrollRoot.getElementsByClassName("scroll-viewport")[0]
+                    scrollRoot.scrollBy({
                         top: document.getElementById(id).getBoundingClientRect().top,
                         left: 0,
                         behavior: "smooth"
-                    })
+                    });
+                    scrollViewport.scrollBy({
+                        top: document.getElementById(id).getBoundingClientRect().top,
+                        left: 0,
+                        behavior: "smooth"
+                    });
+
+					var delayed;
+					function whileScroll () {
+						clearTimeout(delayed);
+						delayed = setTimeout(onScrollEnds, 50);
+					}
+
+					function onScrollEnds () {
+						location.hash = id;
+						scrollRoot.removeEventListener("scroll", whileScroll);
+					}
+
+					scrollRoot.addEventListener("scroll", whileScroll);	
                 }
             }
         }
