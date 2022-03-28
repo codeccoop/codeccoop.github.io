@@ -1,0 +1,27 @@
+{
+  "name": "codec.coop",
+  "version": "1.0.0",
+  "description": "Pàgina web de la cooperativa",
+  "main": "index.js",
+  "dependencies": {
+    "autoprefixer": "^10.4.4",
+    "cssnano": "^5.1.5",
+    "postcss": "^8.4.12",
+    "postcss-cli": "^9.1.0",
+    "postcss-scss": "^4.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeccoop/codec.coop.git"
+  },
+  "author": "Còdec Cooperativa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codeccoop/codec.coop/issues"
+  },
+  "homepage": "https://github.com/codeccoop/codec.coop#readme"
+}
