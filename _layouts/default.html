@@ -1,3 +1,7 @@
+---
+layout: compress
+---
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -26,11 +30,7 @@
     <script src="my-analytics-script.js"></script>
     {% endif %}
 
-    <script src="{{ base.url | prepend: site.url }}/assets/js/utils/device-detect.js"></script>
-    <script src="{{ base.url | prepend: site.url }}/assets/js/utils/background-patterns.js"></script>
-    <script src="{{ base.url | prepend: site.url }}/assets/js/utils/viewport.js"></script>
-    <script src="{{ base.url | prepend: site.url }}/assets/js/utils/easees.js"></script>
-    <script src="{{ base.url | prepend: site.url }}/assets/js/utils/SectionScroller.js"></script>
+	<script src="{{ base.url | prepend: site.url }}/assets/js/index.js"></script>
 
 	<style>
 		#loader {
@@ -57,15 +57,5 @@
 	<footer id="pageFooter">{% include footer.html %}</footer>
 	{% endif %}
 	<div id="loader"></div>
-    <script src="{{ base.url | prepend: site.url }}/assets/js/main.js" ></script>
-    <script src="{{ base.url | prepend: site.url }}/assets/js/components/header.js" ></script>
-	<script>
-		document.addEventListener("DOMContentLoaded", function () {
-			document.getElementById("loader").style.opacity = 0;
-			setTimeout(function () {
-				document.getElementById("loader").style.display = "none";
-			}, 500);
-		});
-	</script>
   </body>
 </html>

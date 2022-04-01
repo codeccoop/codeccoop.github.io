@@ -40,8 +40,9 @@ plugins:
   - jekyll-seo-tag
   - jekyll-paginate
   - jekyll-postcss
+  - uglifier
 
 sass:
   sourcemap: never
-
+  style: compressed
 

@@ -1,6 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
-  if (isMobile()) {
-    document.documentElement.classList.add("is-mobile");
-    document.body.classList.add("is-mobile");
-  }
-});
+if (isMobile()) {
+  document.documentElement.classList.add("is-mobile");
+  document.body.classList.add("is-mobile");
+}

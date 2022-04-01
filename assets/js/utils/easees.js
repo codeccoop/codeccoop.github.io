@@ -72,8 +72,8 @@ var Easeer = (function () {
   }
 
   function debounce(fn, debounce, duration, ease) {
-    debounce ||= 10;
-    duration ||= 1000;
+    debounce = debounce || 10;
+    duration = duration || 1000;
     var gen = _easeSwitcher(ease, [0, 1], duration / debounce);
     var next = gen.next();
     var closed = false;
@@ -95,7 +95,7 @@ var Easeer = (function () {
   }
 
   function animate(fn, steps, ease) {
-    steps ||= 100;
+    steps = steps || 100;
     var gen = _easeSwitcher(ease, [0, 1], steps);
     var next = gen.next();
     var closed = false;
