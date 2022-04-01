@@ -29,7 +29,7 @@ page: products
             </p>
         </div>
         <div class="products__image column is-4">
-            <img src="{{ base.url | prepend: site.url }}/assets/images/products.png" />
+			<img src="{{ base.url | prepend: site.url }}/assets/images/products.webp" alt="Il·lustració de la secció de productes"/>
         </div>
     </div>
     <hr />
@@ -38,7 +38,7 @@ page: products
         <figure class="products__product-badge media-left">
             <a href="{{ product.url }}" target="__blank">
                 <p class="image is-128x128">
-                    <img src="{{ base.url | prepend: site.url }}/assets/images/logos/{{product.name | downcase }}.png" />
+				<img src="{{ base.url | prepend: site.url }}/assets/images/logos/{{product.name | downcase }}.webp" alt="Logotip del producte {{product.name }}"/>
                 </p>
             </a>
         </figure>

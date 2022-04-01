@@ -400,7 +400,7 @@
     		width: 100%;
     		border-radius: 5px;
     		transition: height 400ms ease-in-out;
-    		@include m-background-image("/assets/images/nosaltres-r.jpg", cover);
+    		@include m-background-image("/assets/images/nosaltres.webp", cover);
     		@include m-height-breakpoints();
         }
     

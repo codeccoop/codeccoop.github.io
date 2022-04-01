@@ -36,7 +36,7 @@ header {
             font-weight: bold;
 			text-decoration: none !important;
 			width: 90px;
-			@include m-background-image("/assets/images/logo-codec.png");
+			@include m-background-image("/assets/images/logo-codec.webp");
         }
 
         .navbar-item.is-active,
@@ -81,7 +81,7 @@ header {
                 $icons: email, mastodon, twitter, telegram, github;
                 @each $icon in $icons {
                     &[data-link="#{$icon}"] {
-                        background-image: url("/assets/images/icons/#{$icon}.png");
+                        background-image: url("/assets/images/icons/#{$icon}.webp");
                     }
                 }
 

@@ -21,7 +21,7 @@ page: home
                 </div>
                 <div class="home__section-column img-column column is-4">
                     <figure>
-                        <a href="{{ base.url | prepend: site.url }}/products.html"><img src="{{ base.url | prepend: site.url }}/assets/images/developer.png" /></a>
+                        <a href="{{ base.url | prepend: site.url }}/products.html"><img src="{{ base.url | prepend: site.url }}/assets/images/developer.webp" alt="Il·lustració de la secció 'codifiquem la web'" /></a>
                     </figure>
                 </div>
             </div>
@@ -36,7 +36,7 @@ page: home
                 </div>
                 <div class="home__section-column img-column column is-4">
                     <figure>
-                        <a href="{{ base.url | prepend: site.url }}/workshops.html"><img src="{{ base.url | prepend: site.url }}/assets/images/learning.png" /></a>
+                        <a href="{{ base.url | prepend: site.url }}/workshops.html"><img src="{{ base.url | prepend: site.url }}/assets/images/learning.webp" alt="Il·lustració de la secció 'decodifiquem la tecnologia'" /></a>
                     </figure>
                 </div>
             </div>
@@ -67,7 +67,7 @@ page: home
             </div>
             <div class="home__section-column column is-6">
                 <div class="home__profiles-wrapper">
-                    <div class="home__team-picture"></div>
+                    <div class="home__team-picture" role="img" aria-label="Fotografia de l'equip"></div>
                     <div class="home__profiles">
                         <div class="home__profile lucas">
                             <h5 class="title is-5">Lucas García</h4>
@@ -92,7 +92,7 @@ page: home
             {% for project in home_projects %}
             <article name="{{project.name}}" class="projects__product">
                 <a href="{{ project.url }}" target="_blank">
-                    <img src="{{ base.url | prepend: site.url }}/assets/images/projects/{{project.imagename}}.png">
+			<img src="{{ base.url | prepend: site.url }}/assets/images/projects/{{project.imagename}}.webp" alt="Poster del projecte {{ project.name }}">
                 </a>
                 <div class="projects__product-body">
                     <a href="{{project.url}}" target="_blank">

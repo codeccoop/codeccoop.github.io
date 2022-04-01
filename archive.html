@@ -13,7 +13,7 @@ page: archive
         {% for project in site.data.projects %}
         <article name="{{project.name}}" class="projects__product">
 			<a href="{{ project.url }}" target="_blank">
-				<img src="{{ base.url | prepend: site.url }}/assets/images/projects/{{project.imagename}}.png">
+				<img src="{{ base.url | prepend: site.url }}/assets/images/projects/{{project.imagename}}.webp" alt="Poster del projecte {{ project.name }}">
 			</a>
             <div class="projects__product-body">
                 <a href="{{project.url}}" target="_blank">
