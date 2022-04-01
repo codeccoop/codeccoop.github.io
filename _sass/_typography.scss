@@ -9,6 +9,7 @@ $mobile-line-height: 1.4;
 @font-face {
     font-family: "Quicksand";
     src: url("/assets/fonts/Quicksand/Quicksand-VariableFont_wght.ttf");
+	font-display: swap;
 }
 
 @function pow($number, $exponent) {

@@ -1,10 +1,5 @@
 ---
 ---
-/* PARTIALS */
-@import "typography";
-@import "colors";
-@import "reset";
-
 /* VENDOR */
 @import "vendor/bulma.min.css";
 
@@ -12,13 +7,13 @@
 @import "main.css";
 
 /* PAGES */
-@import "pages/home.css";
-@import "pages/products.css";
-@import "pages/workshops.css";
-@import "pages/blog.css";
-@import "pages/post.css";
-@import "pages/workshop.css";
-@import "pages/projects.css";
+/* @import "pages/home.css"; */
+/* @import "pages/products.css"; */
+/* @import "pages/workshops.css"; */
+/* @import "pages/blog.css"; */
+/* @import "pages/post.css"; */
+/* @import "pages/workshop.css"; */
+/* @import "pages/projects.css"; */
 
 /* COMPONENTS */
 @import "components/header.css";

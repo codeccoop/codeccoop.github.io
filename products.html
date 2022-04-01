@@ -4,6 +4,7 @@ title: Còdec | Productes
 page: products
 ---
 
+<link rel="stylesheet" href="{{ base.url | prepend: site.url }}/assets/css/pages/products.css" />
 <div class="products__content content">
     <h1 class="products__title title is-4">
         Codifiquem la web
@@ -54,10 +55,10 @@ page: products
                     <p><strong>Preu mínim: {{ product.price }}</strong></p>
                 </div>
                 <div>
-                    <a class="products__product-link" target="__blank" href="{{ product.url }}">
+					<a class="products__product-link" target="__blank" aria-label="Pàgina web del projecte {{ product.name }}" href="{{ product.url }}">
                         <span class="icon is-small webpage"><i></i></span>
                     </a>
-                    <a class="products__product-link" target="__blank" href="{{ product.github }}">
+					<a class="products__product-link" target="__blank" aria-label="Repositori github del projecte {{ product.name }}" href="{{ product.github }}">
                         <span class="icon is-small github"><i></i></span>
                     </a>
                 </div>

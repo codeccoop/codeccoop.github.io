@@ -4,7 +4,7 @@
   aria-label="main navigation"
 >
   <div class="navbar-brand">
-    <a class="navbar-item" data-id="home" href="/#home"></a>
+    <a aria-label="Inici" class="navbar-item" data-id="home" href="/#home"></a>
 
     <a
       role="button"
@@ -52,7 +52,7 @@
       <div class="navbar-item">
           {% for link in site.data.links %}
             <span data-link="{{ link.id }}" class="icon is-small">
-              <a href="{{ link.url }}" ><i></i></a>
+				<a aria-label="Enllaç al nostre perfil de {{ link.id }}" href="{{ link.url }}" ><i></i></a>
             </span>
             {% endfor %}
       </div>
