@@ -4,10 +4,10 @@ title: Còdec | Projectes
 page: archive
 ---
 
-<link rel="stylesheet" href="{{ base.url | prepend: site.url }}/assets/css/pages/projects.css" />
+<link rel="stylesheet" href="{{ base.url }}/assets/css/pages/projects.css" />
 
 <div class="projects__content content">
-    <h1 class="projects__title title is-4">
+    <h1 class="projects__title title is-3">
         Coneix els nostres projectes
         <span class="subtitle">Arxiu</span>
     </h1>
@@ -15,7 +15,10 @@ page: archive
         {% for project in site.data.projects %}
         <article name="{{project.name}}" class="projects__product">
 			<a href="{{ project.url }}" target="_blank">
-				<img src="{{ base.url | prepend: site.url }}/assets/images/projects/{{project.imagename}}.webp" alt="Poster del projecte {{ project.name }}">
+				<picture>
+					<source srcset="{{ base.url }}/assets/images/projects/{{ project.id }}.png" type="image/png" />
+					<img src="{{ base.url }}/assets/images/projects/{{ project.id }}.webp" type="image/webp" alt="Poster del projecte {{ project.name }}">
+				</picture>
 			</a>
             <div class="projects__product-body">
                 <a href="{{project.url}}" target="_blank">

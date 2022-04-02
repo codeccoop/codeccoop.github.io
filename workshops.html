@@ -4,9 +4,9 @@ title: Còdec | Tallers
 page: workshops
 ---
 
-<link rel="stylesheet" href="{{ base.url | prepend: site.url }}/assets/css/pages/workshops.css" />
+<link rel="stylesheet" href="{{ base.url }}/assets/css/pages/workshops.css" />
 <div class="workshops__content content">
-    <h1 class="workshops__title title is-4">
+    <h1 class="workshops__title title is-3">
         Descodifiquem la informàtica
         <span class="subtitle">Tallers i formacions</span>
     </h1>
@@ -28,7 +28,10 @@ page: workshops
             </p>
         </div>
         <div class="workshops__image column is-3">
-            <img src="{{ base.url | prepend: site.url }}/assets/images/workshops.webp" alt="Il·lustració de la pàgina de tallers"/>
+			<picture>
+				<source srcset="{{ base.url }}/assets/images/workshops.png" type="image/png" />
+				<img src="{{ base.url }}/assets/images/workshops.webp" type="image/webp" alt="Il·lustració de la pàgina de tallers"/>
+			</picture>
         </div>
     </div>
     <div id="workshops" class="workshops__items">
@@ -39,7 +42,10 @@ page: workshops
             <article id="{{ workshop.id }}" class="workshops__item media">
                 <figure class="workshops__sorkshop-badge media-left">
                     <p class="image is-128x128">
-					<img src="{{ base.url | prepend: site.url }}/assets/images/workshops/{{workshop.id | downcase }}.webp" alt="Logotip del taller {{ workshop.title}}"/>
+					<picture>
+						<source srcset="{{ base.url }}/assets/images/workshops/{{ workshop.id | downcase }}.png" type="image/png" />
+						<img src="{{ base.url }}/assets/images/workshops/{{workshop.id | downcase }}.webp" type="image/webp" alt="Logotip del taller {{ workshop.title}}"/>
+					</picture>
                     </p>
                 </figure>
                 <div class="workshops__workshop-description media-content">
@@ -52,7 +58,10 @@ page: workshops
         {% else %}
         <figure class="workshops__work-in-progress">
             <figcaption>Estem treballant en el contingut d'aquesta secció.</figcaption>
-            <img src="{{ base.url | prepend: site.url }}/assets/images/wip.webp" alt="work in progress" />
+			<picture>
+				<source srcset="{{ base.url }}/assets/images/wip.png" type="image/png" />
+				<img src="{{ base.url }}/assets/images/wip.webp" type="image/webp" alt="work in progress" />
+			</picture>
         </figure>
         {% endif %}
     </div>

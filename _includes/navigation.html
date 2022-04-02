@@ -4,7 +4,12 @@
   aria-label="main navigation"
 >
   <div class="navbar-brand">
-    <a aria-label="Inici" class="navbar-item" data-id="home" href="/#home"></a>
+    <a aria-label="Inici" class="navbar-item" data-id="home" href="/#home">
+		<picture>
+			<source srcset="{{ base.url }}/assets/images/logo-codec.png" type="image/png" />
+			<img src="{{ base.url }}/assets/images/logo-codec.webp" type="image/webp" alt="Logotip" />
+		</picture>
+	</a>
 
     <a
       role="button"

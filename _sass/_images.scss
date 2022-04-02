@@ -1,3 +1,5 @@
+@use "sass:string";
+
 @mixin m-icon ($icon, $ext: png) {
     $url: "/assets/images/icons/" + quote($icon) + "." + quote($ext);
     @include m-background-image($url);
@@ -8,4 +10,22 @@
     background-repeat: $repeat;
     background-position: $position;
     background-size: $size;
+}
+
+@mixin m-background-image-set ($url, $exts...) {
+	$dotidx: str-index($url, ".");
+	$filename: str-slice($url, 0, $dotidx - 1);
+	@include m-background-image($url);
+	background-image: image-set(#{f-image-set($filename, $exts...)});
+	background-image: -webkit-image-set(#{f-image-set($filename, $exts...)});
+}
+
+@function f-image-set($url, $exts...) {
+	$set: '';
+	@each $ext in $exts {
+		$set: $set + "url(\"#{$url}.#{$ext}\") type(\"image/#{$ext}\"), "
+	}
+
+	$set: str-slice($set, 1, -3);
+	@return $set;
 }

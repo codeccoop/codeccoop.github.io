@@ -9,45 +9,23 @@ main.archive {
 	min-height: 100vh;
 
     .projects__title {
-		margin-top: 15px;
-		height: 110px;
+		margin-top: 25px;
         font-weight: 500;
-		line-height: .9;
 		display: flex;
 		flex-direction: column;
 		justify-content: end;
 		padding-bottom: 10px;
 
 		.is-mobile & {
-			height: 75px;
-		}
-
-		@include m-media(zr, xsm) {
-			margin-top: 5px;
-		}
-
-		@media screen and (min-width: 0px) and (max-width: 340px) {
-			margin-top: 15px;
-		}
-
-		@include m-media(xsm) {
 			margin-top: 0px;
-		}
 
-		@include m-media(sm) {
-			margin-top: 5px;
-		}
-
-		@include m-media(md) {
-			font-size: 2.5rem;
+			@media (max-height: 500px) {
+				font-size: 1.6875rem;
+			}
 		}
 
         .subtitle {
             display: block;
-
-			@include m-media(zr, md) {
-				font-size: 1rem;
-			}
         }
     }
 }
@@ -94,16 +72,23 @@ main.archive {
 		display: block;
 		width: 100%;
 
-		> img {
-			object-fit: cover;
-			object-position: left top;
-			width: 100%;
-			height: 40vw;
-			box-shadow: 0px 0px 6px #0003;
-			border-radius: 2px;
+		picture {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 
-			@include m-media(md) {
-				height: 20vw;
+			> img {
+				object-fit: cover;
+				object-position: left top;
+				width: 100%;
+				height: 40vw;
+				box-shadow: 0px 0px 6px #0003;
+				border-radius: 2px;
+				height: 30vw;
+			
+				@include m-media(md) {
+					height: 20vw;
+				}
 			}
 		}
 	}

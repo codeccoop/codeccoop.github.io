@@ -36,7 +36,14 @@ header {
             font-weight: bold;
 			text-decoration: none !important;
 			width: 90px;
-			@include m-background-image("/assets/images/logo-codec.webp");
+
+			picture {
+				display: flex;
+
+				img {
+					margin-top: 2px;
+				}
+			}
         }
 
         .navbar-item.is-active,

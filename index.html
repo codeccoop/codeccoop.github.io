@@ -4,8 +4,8 @@ title: Còdec
 page: home
 ---
 
-<link rel="stylesheet" href="{{ base.url | prepend: site.url }}/assets/css/pages/home.css" />
-<link rel="stylesheet" href="{{ base.url | prepend: site.url }}/assets/css/pages/projects.css" />
+<link rel="stylesheet" href="{{ base.url }}/assets/css/pages/home.css" />
+<link rel="stylesheet" href="{{ base.url }}/assets/css/pages/projects.css" />
 <section id="home" class="home__section">
     <div class="home__landing">
         <div class="home__brand"></div>
@@ -19,11 +19,16 @@ page: home
                 <div class="home__section-column column is-8">
                     <h3 class="title is-3">Codifiquem la web</h3>
                     <h4 class="subtitle is-5">Convertim el teu projecte en codi</h4>
-                    <a class="button is-link" href="{{ base.url | prepend: site.url }}/products.html"><b>Fes la teva web amb nosaltres!</b></a>
+                    <a class="button is-link" href="{{ base.url }}/products.html"><b>Fes la teva web amb nosaltres!</b></a>
                 </div>
                 <div class="home__section-column img-column column is-4">
                     <figure>
-                        <a href="{{ base.url | prepend: site.url }}/products.html"><img src="{{ base.url | prepend: site.url }}/assets/images/developer.webp" alt="Il·lustració de la secció 'codifiquem la web'" /></a>
+                        <a href="{{ base.url }}/products.html">
+                            <picture>
+                                <source srcset="{{ base.url }}/assets/images/developer.png" type="image/png" />
+                                <img src="{{ base.url }}/assets/images/developer.webp" type="image/webp" alt="Il·lustració de la secció 'codifiquem la web'" />
+                            </picture>
+                        </a>
                     </figure>
                 </div>
             </div>
@@ -33,12 +38,17 @@ page: home
                     <h4 class="subtitle is-5">
                         Treballem per fer-la accessible i inclusiva
                     </h4>
-                    <a class="button is-link" href="{{ base.url | prepend: site.url }}/workshops.html"><b>Descobreix els nostres tallers</b>
+                    <a class="button is-link" href="{{ base.url }}/workshops.html"><b>Descobreix els nostres tallers</b>
                     </a>
                 </div>
                 <div class="home__section-column img-column column is-4">
                     <figure>
-                        <a href="{{ base.url | prepend: site.url }}/workshops.html"><img src="{{ base.url | prepend: site.url }}/assets/images/learning.webp" alt="Il·lustració de la secció 'decodifiquem la tecnologia'" /></a>
+                        <a href="{{ base.url }}/workshops.html">
+                            <picture>
+                                <source srcset="{{ base.url }}/assets/images/learning.png" type="image/png" />
+                                <img src="{{ base.url }}/assets/images/learning.webp" type="image/webp" alt="Il·lustració de la secció 'decodifiquem la tecnologia'" />
+                            </picture>
+                        </a>
                     </figure>
                 </div>
             </div>
@@ -55,9 +65,7 @@ page: home
                     <p class="us__information-description">Treballem per una digitalització a escala humana i amb caràcter comunitari. <span class="hiddable">Naixem amb voluntat de desenvolupar productes i serveis digitals des de la cultura del programari lliure.</span></p>
                     <h3 class="title is-6 us__information-toggle-btn" role="button" aria-pressed="false" tabindex="0">Tecnologia i cultura lliure</h3>
                     <p class="us__information-description">Volem ser espai de reflexió i formació crítica al voltant de la informàtica. <span class="hiddable">Solucions simples a problemes simples, apropiables, accessibles i inclusives per garantir una tecnologia útil i
-                            empoderadora a escala local i comunitària. A favor de la creació
-                            entesa com a procés col·lectiu i comunitari basat en la còpia, la
-                            reutilització i la reapropiació.</span></p>
+                            empoderadora a escala local i comunitària.</span></p>
                     <h3 class="title is-6 us__information-toggle-btn" role="button" aria-pressed="false" tabindex="0">Autoocupació cooperativa</h3>
                     <p class="us__information-description">
                         Apostem per projectes d'ocupació a través de la cooperació per
@@ -94,7 +102,10 @@ page: home
             {% for project in home_projects %}
             <article name="{{project.name}}" class="projects__product">
                 <a href="{{ project.url }}" target="_blank">
-			<img src="{{ base.url | prepend: site.url }}/assets/images/projects/{{project.imagename}}.webp" alt="Poster del projecte {{ project.name }}">
+                    <picture>
+                        <source srcset="{{ base.url }}/assets/images/projects/{{ project.id }}.png" type="image/png" />
+                        <img src="{{ base.url }}/assets/images/projects/{{ project.id }}.webp" type="image/webp" alt="Poster del projecte {{ project.name }}">
+                    </picture>
                 </a>
                 <div class="projects__product-body">
                     <a href="{{project.url}}" target="_blank">
@@ -118,4 +129,4 @@ page: home
     {% include footer.html %}
 </section>
 
-<script src="{{ base.url | prepend: site.url }}/assets/js/pages/home.js"></script>
+<script src="{{ base.url }}/assets/js/pages/home.js"></script>

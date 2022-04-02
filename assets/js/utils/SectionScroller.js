@@ -31,10 +31,26 @@ var SectionSnapScroller = (function () {
       height = getContentHeight();
       span.style.height = height + "px";
     });
-    screen.orientation.addEventListener("change", function () {
-      height = getContentHeight();
-      span.style.height = height + "px";
-    });
+    if (screen.orientation) {
+      screen.orientation.addEventListener("change", function () {
+        height = getContentHeight();
+        span.style.height = height + "px";
+      });
+    } else {
+      (function () {
+        var orientation =
+          window.innerWidth > window.innerHeight ? "landscape" : "portrait";
+        window.addEventListener("resize", function () {
+          var _orientation =
+            window.innerWidth > window.innerHeight ? "landscape" : "portrait";
+          if (orientation !== _orientation) {
+            height = getContentHeight();
+            span.style.height = height + "px";
+            orientation = _orientation;
+          }
+        });
+      })();
+    }
 
     span.style.height = height + "px";
     viewport.appendChild(span);

@@ -13,42 +13,23 @@ main.workshops {
     min-height: 100vh;
 
     .workshops__title {
-		margin-top: 15px;
-		height: 110px;
+		margin-top: 25px;
         font-weight: 500;
-		line-height: .9;
 		display: flex;
 		flex-direction: column;
 		justify-content: end;
 		padding-bottom: 10px;
 
 		.is-mobile & {
-			height: 75px;
-		}
-
-		@include m-media(zr, xxsm) {
-			margin-top: 15px;
-		}
-
-		@include m-media(xxsm) {
-			margin-top: 10px;
-		}
-
-		@include m-media(xsm) {
 			margin-top: 0px;
-		}
 
-		@include m-media(md) {
-			margin-top: 10px;
-			font-size: 2.5rem;
+			@media (max-height: 500px) {
+				font-size: 1.6875rem;
+			}
 		}
 
         .subtitle {
             display: block;
-
-			@include m-media(zr, md) {
-				font-size: 1rem;
-			}
         }
     }
 }
