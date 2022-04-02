@@ -43,6 +43,19 @@ main.products {
     display: flex;
     align-items: center;
     justify-content: center;
+
+	picture {
+		display: flex;
+		justify-content: center;
+
+		> img {
+			max-width: 60%;
+
+			@include m-media(sm) {
+				max-width: 100%;
+			}
+		}
+	}
 }
 
 .products__product {

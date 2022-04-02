@@ -41,9 +41,18 @@ main.workshops {
     align-items: center;
     justify-content: center;
 
-    > img {
-        max-height: 300px;
-    }
+	picture {
+		display: flex;
+		justify-content: center;
+
+		> img {
+			max-width: 50%;
+
+			@include m-media(sm) {
+				max-width: 100%;
+			}
+		}
+	}
 }
 
 .workshops__items {
