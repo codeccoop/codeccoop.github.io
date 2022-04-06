@@ -1,11 +1,11 @@
 (function () {
-  var $el = document.getElementById("pageHeader");
-  var burger = document.querySelectorAll(".navbar-burger")[0];
+  const $el = document.getElementById("pageHeader");
+  const burger = document.querySelectorAll(".navbar-burger")[0];
 
-  burger.addEventListener("click", function () {
+  burger.addEventListener("click", () => {
     if (!burger.classList.contains("is-active")) {
-      var targetId = burger.dataset.target;
-      var targetEl = document.getElementById(targetId);
+      const targetId = burger.dataset.target;
+      const targetEl = document.getElementById(targetId);
 
       burger.classList.add("is-active");
       targetEl.classList.add("is-active");
@@ -31,8 +31,8 @@
   }
 
   function setActiveLink(id) {
-    var items = Array.apply(null, this.getElementsByClassName("navbar-item"));
-    var item = items.filter(function (item) {
+    const items = Array.apply(null, this.getElementsByClassName("navbar-item"));
+    const item = items.filter(item => {
       if (item.classList.contains("has-dropdown")) {
         item.children[0].classList.remove("is-active");
       } else {
@@ -50,27 +50,25 @@
 
   $el.setActiveLink = setActiveLink.bind($el);
 
-  var currentPage;
-  var match = location.pathname.match(/\/(.*)(?=\.html)/);
+  let currentPage;
+  const match = location.pathname.match(/\/(.*)(?=\.html)/);
   if (match) {
-    var isPost = location.pathname.match(
+    const isPost = location.pathname.match(
       /\/[0-9]{4}\/[0-9]{1,2}\/[0-9]{1,2}\//
     );
-    var isWorkshop = location.pathname.match(/\/workshops\/.*\.html$/);
+    const isWorkshop = location.pathname.match(/\/workshops\/.*\.html$/);
     if (isPost) currentPage = "blog";
     else if (isWorkshop) currentPage = "workshops";
     else currentPage = match[1];
   } else if (location.hash !== "") {
     currentPage = location.hash.replace(/\#/, "");
-  } else {
-    if (location.pathname.match(/^\/blog\//)) currentPage = "blog";
-    else currentPage = "home";
-  }
+  } else if (location.pathname.match(/^\/blog\//)) currentPage = "blog";
+  else currentPage = "home";
 
   $el.setActiveLink(currentPage);
 
   function scrollNavHandler(ev) {
-    var landingSections = ["home", "work", "team", "projects"];
+    const landingSections = ["home", "work", "team", "projects"];
     if (landingSections.includes(currentPage)) {
       if (
         ev.target.classList.contains("navbar-item") ||
@@ -79,22 +77,22 @@
         if (ev.target.href.match(/\/#/)) {
           ev.preventDefault();
           ev.stopPropagation();
-          var id = ev.target.href.match(/\/#((.(?!\/))+[A-Za-z])/)[1];
-          var scrollRoot = document.getElementsByClassName("scroll-root")[0];
-          var scrollViewport =
+          const id = ev.target.href.match(/\/#((.(?!\/))+[A-Za-z])/)[1];
+          const scrollRoot = document.getElementsByClassName("scroll-root")[0];
+          const scrollViewport =
             scrollRoot.getElementsByClassName("scroll-viewport")[0];
           scrollRoot.scrollBy({
             top: document.getElementById(id).getBoundingClientRect().top,
             left: 0,
-            behavior: "smooth",
+            behavior: "smooth"
           });
           scrollViewport.scrollBy({
             top: document.getElementById(id).getBoundingClientRect().top,
             left: 0,
-            behavior: "smooth",
+            behavior: "smooth"
           });
 
-          var delayed;
+          let delayed;
 
           function whileScroll() {
             clearTimeout(delayed);
@@ -113,8 +111,8 @@
   }
 
   if (!isMobile()) {
-    var links = $el.getElementsByTagName("a");
-    for (var i = 0; i < links.length; i++) {
+    const links = $el.getElementsByTagName("a");
+    for (let i = 0; i < links.length; i++) {
       links[i].addEventListener("click", scrollNavHandler);
     }
   }
