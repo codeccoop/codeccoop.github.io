@@ -43,7 +43,7 @@
 	@media (orientation: portrait) {
 		flex-direction: column;
 	}
-	&.home__us{
+	#team & {
 		@media screen and (min-width: 769px) and (max-width: 1050px) {
 			flex-direction: column;
 		}
@@ -63,7 +63,7 @@
 	@media (orientation: portrait) {
 		width: 100%;
 	}
-	&.home__us{
+	#team & {
 		@media screen and (min-width: 769px) and (max-width: 1050px) {
 			width: 100%;
 		}
@@ -380,6 +380,15 @@
 			padding-top: 0px;
 		}
 	}
+	@media screen and (max-width: 1050px) {
+		.home__section-row {
+			flex-flow: column-reverse;
+		}
+
+		.home__section-column:first-child {
+			padding-top: 0px;
+		}
+	}
 
 	.home__us {
 		.title {
@@ -395,6 +404,12 @@
 				display: none;
 			}
 		}
+		@media screen and (max-height:750px){
+			.hiddable {
+				display: none;
+			}
+		}
+
 	}
 
     .home__profiles-wrapper {
@@ -424,7 +439,7 @@
     					opacity: 1;
     					font-size: .8rem;
     
-    					@include m-media(xsm) {
+    					@include m-media(md) {
     						font-size: 1rem;
     					}
     				}
