@@ -128,6 +128,7 @@ var SectionSnapScroller = (function () {
 
       var offset = ev.deltaY;
       direction = ev.deltaY < 0 ? -1 : 1;
+      offset = Math.min(offset * direction, 60) * direction;
 
       var nextSection =
         this.sections[
