@@ -61,16 +61,14 @@ var SectionSnapScroller = (function () {
     var styles = "html, body { overscroll-behavior-y: contain; }";
     if (isMobile() || isTouchEnabled()) {
       styles +=
-        ".scroll-root { overflow-y: scroll; height: 100vh; scroll-behavior: smooth; }";
+        ".scroll-root { display: flex; flex-direction: column; overflow-y: scroll; height: 100vh; height: calc(var(--vh, 1vh) * 100); }";
       styles +=
-        ".scroll-root .scroll-section { min-height: 100vh; min-height: calc(var(--vh, 1vh) * 100); width: 100vw; width: calc(var(--vw, 1vw) * 100); scroll-snap-align: start; }";
-      styles +=
-        ".scroll-root .scroll-section:last-child { height: 0px; min-height: 0px; scroll-snap-align: end; }";
+        ".scroll-root .scroll-section { min-height: 100vh; min-height: calc(var(--vh, 1vh) * 100); width: 100vw; width: calc(var(--vw, 1vw) * 100); scroll-snap-align: start; scroll-snap-stop: always; overflow: hidden; }";
     } else {
       styles +=
         ".scroll-root { overflow: hidden; height: 100vh; height: calc(var(--vh, 1vh) * 100); width: 100%; overscroll-behavior-y: contain; }";
       styles +=
-        ".scroll-root .scroll-section { min-height: 100vh; min-height: calc(var(--vh, 1vh) * 100); width: 100vw; width: calc(var(--vw, 1vw) * 100); }";
+        ".scroll-root .scroll-section { min-height: 100vh; min-height: calc(var(--vh, 1vh) * 100); width: 100vw; width: calc(var(--vw, 1vw) * 100); overflow: hidden; }";
       styles +=
         ".scroll-viewport { position: absolute; z-index: 90; pointer-events: none; top: 0px; left: 0px; width: 100vw; width: calc(var(--vw, 1vw) * 100); height: 100vh; height: calc(var(--vh, 1vh) * 100); overflow-x: hidden; overflow-y: auto; }";
       styles += ".scroll-viewport .scroll-span { width: 100%; background: transparent; }";
@@ -101,7 +99,7 @@ var SectionSnapScroller = (function () {
     return logger;
   }
 
-  var onScroll = (function () {
+  var _onScroll = (function () {
     var self, direction, overflow, delayed;
     var scrolling = false;
 
@@ -140,7 +138,7 @@ var SectionSnapScroller = (function () {
             )
           )
         ];
-      var nextSectionOverflow = getSectionOverflow(nextSection, direction);
+      var nextSectionOverflow = _getSectionOverflow(nextSection, direction);
 
       if (this.behavior === "mandatory") {
         offset =
@@ -156,7 +154,7 @@ var SectionSnapScroller = (function () {
     };
   })();
 
-  function getSectionOverflow(id, direction) {
+  function _getSectionOverflow(id, direction) {
     if (direction === void 0) {
       console.warn(
         "getSectionOverflow needs a direction to compute the sections overflow. Direction mus't be a positive integer like 1 to get descending overflow, and negative integer, like -1, to get ascending overflow. When no direction is informed, then it uses 1 as a fallback value."
@@ -175,7 +173,7 @@ var SectionSnapScroller = (function () {
     return Math.abs(overflow) <= 5 ? 0 : overflow;
   }
 
-  var onTouchScroll = (function () {
+  var _onTouchScroll = (function () {
     var self;
     var debounced;
 
@@ -192,6 +190,13 @@ var SectionSnapScroller = (function () {
       debounced = setTimeout(onScrollEnds, 50);
     };
   })();
+
+  function _onResize(ev) {
+    if (isMobile() || isTouchEnabled()) return;
+    // console.log(this.getCurrentSectionOverflow());
+    var box = this.currentSectionEl.getBoundingClientRect();
+    this.$el.scrollBy(0, box.top);
+  }
 
   /* PUBLIC INTERFACE */
   function SectionSnapScroller(scrollEl, settings) {
@@ -280,74 +285,64 @@ var SectionSnapScroller = (function () {
 
     Object.defineProperty(this, "currentSectionEl", {
       get: function () {
-        return Array.apply(
-          null,
-          self.$el.getElementsByClassName(self._sectionClass)
-        ).filter(function (el) {
-          return el.id === self.currentSection;
-        });
+        return Array.apply(null, self.$el.getElementsByClassName(self._sectionClass))
+          .filter(function (el) {
+            return el.id === self.currentSection;
+          })
+          .pop();
       },
     });
 
     if (isMobile() || isTouchEnabled()) {
-      var lastChild = document.createElement("div");
-      lastChild.classList.add(this._sectionClass);
-      this.$el.appendChild(lastChild);
-      onTouchScroll = onTouchScroll.bind(this);
+      var onTouchScroll = _onTouchScroll.bind(this);
       this.$el.addEventListener("scroll", onTouchScroll);
 
       function setupInlineStyles() {
+        self.$el.style.scrollBehavior = "smooth";
         self.$el.style.scrollSnapType = "y mandatory";
-        Array.apply(null, self.$el.getElementsByClassName(self._sectionClass)).forEach(
-          function ($section) {
-            $section.style.scrollSnapStop = "always";
-          }
-        );
+        self.$el.style.scrollBehavior = "smooth";
       }
       var currentSection = location.hash.split("/").pop().replace(/#/, "");
       if (currentSection && currentSection !== this.sections[0]) {
-        setTimeout(function () {
-          self.$el.scrollBy({
-            behavior: "smooth",
-            left: 0,
-            top: document.getElementById(currentSection).getBoundingClientRect().top,
-          });
-          var delayed;
-          function whileScroll() {
-            clearTimeout(delayed);
-            delayed = setTimeout(onScrollEnds, 50);
-          }
+        self.$el.scrollBy({
+          behavior: "auto",
+          left: 0,
+          top: document.getElementById(currentSection).getBoundingClientRect().top,
+        });
 
-          function onScrollEnds() {
-            self.$el.removeEventListener("scroll", whileScroll);
-            setupInlineStyles();
-          }
+        var delayed;
+        function whileScroll() {
+          clearTimeout(delayed);
+          delayed = setTimeout(onScrollEnds, 50);
+        }
 
-          self.$el.addEventListener("scroll", whileScroll);
-        }, 0);
+        function onScrollEnds() {
+          setupInlineStyles();
+          self.$el.removeEventListener("scroll", whileScroll);
+        }
+
+        self.$el.addEventListener("scroll", whileScroll);
       } else {
-        setTimeout(setupInlineStyles, 500);
+        setupInlineStyles();
       }
     } else {
-      onScroll = onScroll.bind(this);
+      var onScroll = _onScroll.bind(this);
       document.addEventListener("wheel", onScroll, true);
 
-      setTimeout(function () {
-        self.$viewport = _setupScrollViewport(self.getContentHeight.bind(self));
-        self.$el.appendChild(self.$viewport);
+      self.$viewport = _setupScrollViewport(self.getContentHeight.bind(self));
+      self.$el.appendChild(self.$viewport);
 
-        var hashId = location.hash.replace(/#/, "");
-        var visibleSection = document.getElementById(hashId) || self.getVisibleSection();
-        _currentSection = visibleSection.id;
-        location.hash = _currentSection;
+      var hashId = location.hash.replace(/#/, "");
+      var visibleSection = document.getElementById(hashId) || self.getVisibleSection();
+      _currentSection = visibleSection.id;
+      location.hash = _currentSection;
 
-        if (self.getCurrentSectionOverflow(1) > 0) {
-          self.scrollTo(_currentSection, 1, "auto");
-        } else {
-          self.$viewport.scrollBy(0, self.$el.scrollTop);
-        }
-        self._delayed = false;
-      }, 0);
+      if (self.getCurrentSectionOverflow(1) > 0) {
+        self.scrollTo(_currentSection, 1, "auto");
+      } else {
+        self.$viewport.scrollBy(0, self.$el.scrollTop);
+      }
+      self._delayed = false;
     }
 
     function onPopState() {
@@ -361,6 +356,18 @@ var SectionSnapScroller = (function () {
     }
 
     window.addEventListener("popstate", onPopState);
+
+    var onResize = (function (self) {
+      var onResize = _onResize.bind(self);
+      var debounced;
+      return function (ev) {
+        clearTimeout(debounced);
+        debounced = setTimeout(function () {
+          onResize(ev);
+        }, 100);
+      };
+    })(this);
+    window.addEventListener("resize", onResize);
 
     // this.$logger = _setupLogger();
 
@@ -401,7 +408,7 @@ var SectionSnapScroller = (function () {
   };
 
   SectionSnapScroller.prototype.getCurrentSectionOverflow = function (direction) {
-    return getSectionOverflow(this.currentSection, direction);
+    return _getSectionOverflow(this.currentSection, direction);
   };
 
   SectionSnapScroller.prototype.scrollTo = function (id, direction, behavior) {

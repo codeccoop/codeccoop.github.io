@@ -5,7 +5,7 @@
 @import "breakpoints";
 
 main.archive {
-    padding: $header-height $site-paddings 175px;
+    padding: $header-height $site-paddings 0;
 	min-height: 100vh;
 
     .projects__title {
@@ -35,11 +35,7 @@ main.archive {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: stretch;
-    padding: 50px 0;
-
-	@include m-media(zr, xsm)  {
-		padding: 0px;
-	}
+    padding: 1rem 0 3rem;
 }
 
 .projects__product {
@@ -52,21 +48,23 @@ main.archive {
 		padding-bottom: 3rem;
 	}
 
-	&:last-child {
-		margin-top: unset;
-	}
-
 	@include m-media(md) {
 		width: 50%;
 
-		&:nth-child(odd) {
-			padding-right: 1rem;
-		}
-
-		&:nth-child(even) {
-			padding-left: 1rem;
-		}
+		&:nth-child(odd) { padding-right: 1rem; }
+		&:nth-child(even) { padding-left: 1rem; }
+        &:not(:last-child) { padding-bottom: 3rem; }
 	}
+
+    .is-mobile & {
+        @include m-media(landscape) {
+            width: 50%;
+
+		    &:nth-child(odd) { padding-right: 1rem; }
+		    &:nth-child(even) { padding-left: 1rem; }
+            &:not(:last-child) { padding-bottom: 3rem; }
+        }
+    }
 
 	> a {
 		display: block;
@@ -83,15 +81,23 @@ main.archive {
 				width: 100%;
 				height: 40vw;
 				box-shadow: 0px 0px 6px #0003;
-				border-radius: 2px;
-				height: 30vw;
+				border-radius: 5px;
+				height: 40vw;
+                max-height: 30vh;
 			
 				@include m-media(md) {
 					height: 20vw;
+                    max-height: unset;
 				}
 			}
 		}
 	}
+
+    .projects__product-body {
+        padding-left: 2px;
+        width: 100%;
+    }
+
 
     h2 {
         margin-top: 1rem;
@@ -103,7 +109,7 @@ main.archive {
 		margin-bottom: .5rem;
 
         @include m-media(zr, xsm){
-            font-size:1em;  
+            font-size: 1em;  
         }
     }
 

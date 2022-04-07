@@ -36,9 +36,9 @@ if [[ -z "$order" ]]; then
 fi
 
 if [[ "$order" == "serve" ]]; then
-	bundle exec jekyll serve --livereload -P 8050
+	bundle exec jekyll serve -H 0.0.0.0 --livereload -P 8050
 elif [[ "$order" == "serve:drafts" ]]; then
-	bundle exec jekyll serve --livereload -P 8050 --drafts
+	bundle exec jekyll serve -H 0.0.0.0 --livereload -P 8050 --drafts
 elif [[ "$order" == "build:pre" ]]; then
 	if [[ -f "dist.zip" ]]; then
 		rm dist.zip

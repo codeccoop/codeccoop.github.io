@@ -3,11 +3,11 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['airbnb-base'],
+  extends: ["airbnb-base"],
   parserOptions: {
-    ecmaVersion: 'latest',
+    ecmaVersion: "latest",
   },
   rules: {
-    arrowParens: false,
+    arrowParens: "as-needed",
   },
 };
