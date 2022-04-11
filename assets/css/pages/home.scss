@@ -448,12 +448,6 @@
 				display: none;
 			}
 		}
-
-        @include m-media(zr, xsm, landscape) {
-            @media (max-height: 400px) {
-                display: none;
-            }
-        }
     }
 
     .home__profiles-wrapper {
