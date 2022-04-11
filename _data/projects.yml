@@ -20,7 +20,7 @@
       - Programari a mida
       - Single-page application (SPA)
 - id: vh3d
-  url: https://fem.vallhebron.com/#/?pieceId=2534
+  url: https://dadescomunals.org/vh3d
   name: Vall d'Hebron 3D
   description: Videojoc col·laboratiu per a la presentació del nou Pla Estratègic 2021-2025 de la Vall d'Hebron
   tags:
@@ -33,4 +33,10 @@
   tags:
       - Jekyll
       - Pàgina web estàtica
-
+- id: hemeroteca-oberta
+  url: https://dadescomunals.org/hemeroteca-oberta
+  name: Hemeroteca Oberta
+  description: Eina web per fer scrapping de l'hemeroteca de la Vanguardia de cara a la seva explotació estadística 
+  tags:
+      - Programari a mida
+      - Pàgina web estàtica

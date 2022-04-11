@@ -608,6 +608,20 @@
 			}
 		}
 	}
+
+    .projects__link {
+        text-align: left;
+
+        @include m-media(md) {
+            text-align: center;
+        }
+
+        .is-mobile & {
+            @include m-media(landscape) {
+                text-align: center;
+            }
+        }
+    }
 }
 
 #contact {
