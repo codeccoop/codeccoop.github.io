@@ -17,7 +17,6 @@
     background-position: center;
 	min-height: calc(var(--vh, 1vh) * 100);
     transition: height 100ms ease;
-    /* min-height: 100vh; */
 
 	.is-mobile & {
 		padding-top: $mobile-header-height;
@@ -449,12 +448,6 @@
 				display: none;
 			}
 		}
-
-        @include m-media(zr, xsm, landscape) {
-            @media (max-height: 400px) {
-                display: none;
-            }
-        }
     }
 
     .home__profiles-wrapper {
@@ -559,6 +552,8 @@
 	}
 
     .projects__data {
+        padding-bottom: 2rem;
+
         @include m-media(portrait) {
             @media (max-height: 500px) {
                 padding-bottom: 2rem;
@@ -573,12 +568,17 @@
     }
 
     .projects__product {
-
         &:not(:last-child) {
+            padding-bottom: 2rem;
+
             @include m-media(portrait) {
                 @media (max-height: 500px) {
                     padding-bottom: 1rem;
                 }
+            }
+
+            @include m-media(md) {
+                padding-bottom: 0rem;
             }
         }
 
