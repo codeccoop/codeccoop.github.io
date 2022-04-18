@@ -40,3 +40,10 @@
   tags:
       - Programari a mida
       - Pàgina web estàtica
+- id: icqa_waves
+  url: https://dadescomunals.org/icqa_waves
+  name: ICQA Waves
+  description: Mapa isobàric 3D de la qualitat de l'aire a l'àrea metropolitana de Barcelona
+  tags:
+      - Programari a mida
+      - Pàgina web estàtica

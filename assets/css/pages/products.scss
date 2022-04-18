@@ -208,11 +208,11 @@ main.products {
             height: 100%;
         }
 
-        &.webpage i {
+        &.webpage > i {
             @include m-icon(webpage);
         }
 
-        &.github i {
+        &.github > i {
             @include m-icon(github);
         }
     }
