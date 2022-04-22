@@ -36,6 +36,7 @@
 
 .home__section-row {
     display: flex;
+    flex: 1;
 
     @include m-media(zr, sm) {
         flex-direction: column;
@@ -227,6 +228,9 @@
 
 .home__services {
     padding-right: 5%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 
     .home__section-row {
         &:not(:last-child) {
@@ -625,6 +629,7 @@
 }
 
 #contact {
+    display: block;
     height: auto;
     min-height: unset;
     overflow: visible;

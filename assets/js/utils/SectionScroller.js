@@ -58,13 +58,15 @@ var SectionSnapScroller = (function () {
   }
 
   function _createStylesheet() {
-    var styles = "html, body { overscroll-behavior-y: contain; }";
+    var styles; // = "html, body { overscroll-behavior-y: contain; }";
     if (isMobile() || isTouchEnabled()) {
+      styles = "html, body { overscroll-behavior-y: contain; }";
       styles +=
         ".scroll-root { display: flex; flex-direction: column; overflow-y: scroll; height: 100vh; height: calc(var(--vh, 1vh) * 100); }";
       styles +=
         ".scroll-root .scroll-section { min-height: 100vh; min-height: calc(var(--vh, 1vh) * 100); width: 100vw; width: calc(var(--vw, 1vw) * 100); scroll-snap-align: start; scroll-snap-stop: always; overflow: hidden; }";
     } else {
+      styles = "html, body { overscroll-behavior-y: contain; overflow: hidden; }";
       styles +=
         ".scroll-root { overflow: hidden; height: 100vh; height: calc(var(--vh, 1vh) * 100); width: 100%; overscroll-behavior-y: contain; }";
       styles +=
@@ -77,7 +79,7 @@ var SectionSnapScroller = (function () {
     }
 
     var css = document.createElement("style");
-    css.type = "text/css";
+    // css.type = "text/css";
 
     if (css.styleSheet) {
       css.styleSheet.cssText = styles;
@@ -193,7 +195,6 @@ var SectionSnapScroller = (function () {
 
   function _onResize(ev) {
     if (isMobile() || isTouchEnabled()) return;
-    // console.log(this.getCurrentSectionOverflow());
     var box = this.currentSectionEl.getBoundingClientRect();
     this.$el.scrollBy(0, box.top);
   }
@@ -427,15 +428,16 @@ var SectionSnapScroller = (function () {
       order.top = el.getBoundingClientRect().bottom - window.innerHeight;
     }
 
-    this.$el.scrollBy(order);
+    if (order.top === 0) return;
 
     if (behavior === "auto") {
+      this.$el.scrollBy(order);
       this.$viewport.scrollBy(order);
     } else {
+      _smoothScrolling(this.$el, order);
       _smoothScrolling(this.$viewport, order);
     }
 
-    this.currentSection = id;
     history.replaceState(
       {
         from: location.hash,
