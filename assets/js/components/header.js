@@ -75,10 +75,14 @@
         ev.target.classList.contains("navbar-link")
       ) {
         if (ev.target.href.match(/\/#/)) {
-          ev.preventDefault();
-          ev.stopPropagation();
           const id = ev.target.href.match(/\/#((.(?!\/))+[A-Za-z])/)[1];
           const scrollRoot = document.getElementsByClassName("scroll-root")[0];
+          if(scrollRoot!=undefined){
+            ev.preventDefault();
+            ev.stopPropagation();
+          }else{
+            return;
+          }
           const scrollViewport =
             scrollRoot.getElementsByClassName("scroll-viewport")[0];
           scrollRoot.scrollBy({

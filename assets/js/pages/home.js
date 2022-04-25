@@ -1,14 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
   var $el = document.getElementsByTagName("main")[0];
-
-  var sectionScroller = new SectionSnapScroller($el, {
-    sectionClass: "home__section",
-    debug: false,
-    behavior: "mandatory",
-    onSectionUpdate: function (sectionId) {
-      document.getElementById("pageHeader").setActiveLink(sectionId);
-    },
-  });
+  if (!(isMobile() && isSafari())){
+    var sectionScroller = new SectionSnapScroller($el, {
+      sectionClass: "home__section",
+      debug: false,
+      behavior: "mandatory",
+      onSectionUpdate: function (sectionId) {
+        document.getElementById("pageHeader").setActiveLink(sectionId);
+      },
+    });
+  }
+    
 
   var scrollChevron = $el.getElementsByClassName("home__landing-chevron")[0];
   scrollChevron.addEventListener("click", function () {

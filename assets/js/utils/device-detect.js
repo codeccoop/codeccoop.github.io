@@ -8,6 +8,16 @@ function isMobile() {
   );
 }
 
+function isSafari() {
+  return (
+    /Safari/i.test(
+      navigator.userAgent
+    ) &&
+    navigator.userAgent.match(/version\/[0-9]+/i) != null &&
+    navigator.userAgent.match(/version\/([0-9]+)/i)[1] <= 12
+  );
+}
+
 function isTouchEnabled() {
   return (
     "ontouchstart" in window ||
