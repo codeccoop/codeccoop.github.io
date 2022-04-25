@@ -4,7 +4,7 @@
   description: "L'arxiconegut WordPress, el gran democratitzador de la web. WordPress és un sistema de gestió de contingut (CMS per les inicials en anglès) que permet una gestió intuïtiva de webs per les usuàries que vulguin publicar i actualitzar contingut de forma quotidiana. Un programari madur amb un ecosistema ric en plantilles d'aparença i extensions funcionals que permet personalitzar la nostra pàgina de mil maneres diferents, des d'una botiga online a un portal de notícies. Des de Còdec l'estimem per la seva gran versatilitat i l'autonomia que dona a les usuàries sense necessitat de coneixement tècnic, per la facilitat amb què permet tenir una pàgina web funcionant, per l'amplissima comunitat que té al darrere i per ser un dels casos d'èxit més sonats del món del programari lliure."
   url: https://wordpress.org/
   github: https://github.com/WordPress/WordPress
-  price: 450€
+  price: 800€
 - id: jekyll
   name: Jekyll
   subtitle: Un generador minimalista de blogs i pàgines web
