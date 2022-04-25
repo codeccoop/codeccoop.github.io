@@ -556,8 +556,7 @@
 	}
 
     .projects__data {
-        padding-bottom: 2rem;
-
+		padding-bottom: 2rem;
         @include m-media(portrait) {
             @media (max-height: 500px) {
                 padding-bottom: 2rem;
@@ -573,16 +572,14 @@
 
     .projects__product {
         &:not(:last-child) {
-            padding-bottom: 2rem;
-
+			padding-bottom: 2rem;
             @include m-media(portrait) {
                 @media (max-height: 500px) {
                     padding-bottom: 1rem;
                 }
             }
-
-            @include m-media(md) {
-                padding-bottom: 0rem;
+			@include m-media(md) {
+				padding-bottom: 0rem;
             }
         }
 
