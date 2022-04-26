@@ -1,5 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin: https://codeccoop.org");
+header("Access-Control-Allow-Origin: https://www.codeccoop.org");
 header("Content-Type: application/json");
 header("Cache-Control: no-cache, must-revalidate");
 
