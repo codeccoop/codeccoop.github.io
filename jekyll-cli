@@ -40,13 +40,7 @@ if [[ "$order" == "serve" ]]; then
 elif [[ "$order" == "serve:drafts" ]]; then
 	bundle exec jekyll serve -H 0.0.0.0 --livereload -P 8050 --drafts
 elif [[ "$order" == "build:pre" ]]; then
-	if [[ -f "dist.zip" ]]; then
-		rm dist.zip
-	fi
-
 	bundle exec jekyll build
-
-	zip dist.zip -r _site/*
 
 	echo
 	echo "Build success!"

@@ -46,3 +46,4 @@ sass:
   sourcemap: never
   style: compressed
 
+exclude: [package.json, package-lock.json, postcss.config.js, LICENSE, README.md, jekyll-cli]
