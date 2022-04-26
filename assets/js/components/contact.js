@@ -227,7 +227,7 @@ ContactForm.prototype.submit = function (ev) {
         });
       };
 
-      req.open("POST", "https://codeccoop.org/api/email_form.php");
+      req.open("POST", "https://www.codeccoop.org/api/email_form.php");
       req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       req.setRequestHeader("Accept", "application/json");
       req.send(form);
