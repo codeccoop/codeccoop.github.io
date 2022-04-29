@@ -1,5 +1,3 @@
-@use "sass:string";
-
 @mixin m-icon ($icon, $ext: png) {
     $url: "/assets/images/icons/" + quote($icon) + "." + quote($ext);
     @include m-background-image($url);
