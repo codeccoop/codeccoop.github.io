@@ -50,7 +50,7 @@ main.workshops {
             height: 150px;
             object-fit: contain;
 
-            @include m-media(xms) {
+            @include m-media(xsm) {
                 height: 250px;
             }
 
